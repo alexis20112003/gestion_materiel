@@ -1,6 +1,6 @@
 function connect() {
   $.ajax({
-    url: "/certification3/controller/connect.php",
+    url: "../controller/connect.php",
     dataType: "json",
     type: "POST",
     data: {
