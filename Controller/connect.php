@@ -1,5 +1,6 @@
 <?php
 require_once ('../Entity/Database.php'); 
+require_once ('../Entity/User.php'); 
 $db = new Database();
 $GLOBALS['database'] = $db->mysqlConnexion(); 
 
@@ -35,6 +36,26 @@ case 'connect':
   
 
   echo json_encode(array("error"=>$error, "status"=>$status, "msg"=>$msg, "session"=>$_SESSION));
+
+break;
+
+case 'update_user':
+
+  session_start();
+
+    $error = 0;
+    $statut = 0;
+    $msg = "Mot de passe incorrect";
+    $user = new User($_SESSION["id"]);
+    if($_POST["PasswordConfirme"] == $user->getPass()){
+     
+          $msg = "Changement réussi";    
+        }
+      
+      
+  
+
+  echo json_encode(array("error"=>$error, "msg"=>$msg, "statut"=>$statut));
 
 break;
 }

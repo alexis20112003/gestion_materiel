@@ -24,9 +24,9 @@
     padding-right: 25%;
   }
 }
-li > a > span {
-  color: white;
-}
+// li > a > span {
+//   color: white;
+// }
 .sideBar {
   background-image: url(../Assets/SideBarAccueil.jpg);
   background-repeat: no-repeat;
@@ -34,6 +34,11 @@ li > a > span {
 }
 .mainBackground {
   background-image: url(../Assets/MainAccueil.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.mainSideBar {
+  background-image: url(../Assets/SideBarMain.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
