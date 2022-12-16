@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<script type = "text/javascript" src="../Js/fonctions.js"></script> 
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="container-fluid" id="menuAdmin">
+	<div class="row flex-nowrap">
+		<div class="col-auto col-3 col-xl-2 px-sm-2 px-0 bg-gray border border-2 border-dark">
+			<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+			<img class="img-fluid rounded-circle border border-2  border-dark " src="/certification3/assets/aflokkat.png">
+				<ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start fw-bold " id="menu">
+
+				{% if user.getStatut == "admin" or user.getStatut == "super_admin" %}
+				{% for site in sites %}	
+					<li class="nav-item">
+						<a href="#" class="nav-link align-middle px-0">
+							<i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Site {{site.site}}</span>
+						</a>
+					</li>
+				{% endfor %}
+					<li>
+						<a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+							<i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Inventaire Materiel</span>
+						</a>
+					</li>
+					<li>
+						<a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+							<i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Demandes et Attributions</span>
+						</a>
+					</li>
+					<li>
+						<a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+							<i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Gestion des Comptes</span>
+						</a>
+					</li>
+				{% endif %}
+				{% if statut != "admin" and statut != "super_admin" %}
+				
+					<li>
+						<a href="#" class="nav-link px-0 align-middle">
+							<i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Demandes</span></a>
+					</li>
+					<li>
+						<a href="#" class="nav-link px-0 align-middle">
+							<i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Contacter Administrateur</span></a>
+					</li>
+				{% endif %}
+				</ul>
+				<hr>
+				<div class="d-block d-sm-none">
+					<a href="#" class="d-flex align-items-center text-white text-decoration-none border border-2 border-dark rounded" id="dropdownMenuUser" data-bs-toggle="dropdown" aria-expanded="false">
+						<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+							class="bi bi-list" viewBox="0 0 16 16">
+							<path fill-rule="evenodd"
+								d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+						</svg>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownMenuUser">
+						{% if statut == "admin" or statut == "super_admin" %}
+						<li><a class="dropdown-item" href="#">Site Bastia</a></li>
+						<li><a class="dropdown-item" href="#">Site Ajaccio</a></li>
+						<li><a class="dropdown-item" href="#">Inventaire Materiel</a></li>
+						<li><a class="dropdown-item" href="#">Demandes et Attributions</a></li>
+						<li><a class="dropdown-item" href="#">Gestion des Comptes</a></li>
+						{% endif %}
+						{% if statut != "admin" and statut != "super_admin" %}
+						<li><a class="dropdown-item" href="#">Demandes</a></li>
+						<li><a class="dropdown-item" href="#">Contacter Administrateur</a></li>
+						{% endif %}
+						
+					</ul>
+				</div>
+				<hr>
+				<div class="dropdown pb-4">
+					<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+						id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
+							class="rounded-circle ">
+						<span class="d-none d-sm-inline mx-1">{{user.nom}} {% if user.statut == "eleve" %}
+						{{user.promo}}-{{user.promo +1}}{% endif %}</span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+						<li><a class="dropdown-item" href="#">Profile</a></li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+						<li><a class="dropdown-item" href="#">Deconnexion</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		{% block body %}
+		{% include "test.html" %}
+		{% endblock %}			
+	</div>				
+</div>				    
+</body>
+</html>

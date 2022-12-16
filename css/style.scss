@@ -1,0 +1,37 @@
+.bg-gray {
+  background-color: rgb(178, 178, 178);
+}
+
+li > a > span {
+  color: white;
+}
+
+@media (min-width: 992px) {
+  .navbar,
+  .navbar-collapse {
+    flex-direction: column;
+  }
+  .navbar-expand-lg .navbar-nav {
+    flex-direction: column;
+  }
+  .navbar {
+    width: 28%;
+    height: 100vh;
+    align-items: flex-start;
+  }
+  .navbar-brand {
+    margin-left: 0.5em;
+    padding-bottom: 0;
+    border-bottom: 4px solid #464646;
+  }
+  form input {
+    margin-bottom: 0.7em;
+  }
+}
+
+$position-values: (
+  0: 0,
+  25: 25%,
+  50: 50%,
+  100: 100%,
+);
