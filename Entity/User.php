@@ -167,9 +167,9 @@ class User
 	{
 
 		$requete = $GLOBALS['database']->prepare('SELECT * FROM `utilisateur` 
-        INNER JOIN `utilisateur_type` ON `utilisateur`.`Id_utilisateur` = `utilisateur_type`.`Id_utilisateur`
-        INNER JOIN type ON `utilisateur_type`.`Id_type` = `type`.`Id_type`
-        WHERE `utilisateur`.`Id_utilisateur` = :id');
+        INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
+        INNER JOIN type ON `utilisateur_type`.`id_type` = `type`.`id_type`
+        WHERE `utilisateur`.`id_utilisateur` = :id');
 		$requete->bindvalue(":id", $this->id);
 		$requete->execute();
 		$user = $requete->fetch(PDO::FETCH_ASSOC);
@@ -249,13 +249,13 @@ class User
 			if ($requete->execute()) {
 
 				$this->id = $GLOBALS['database']->lastInsertId();
-				$requeteType = $GLOBALS['database']->prepare("INSERT INTO `utilisateur_type` (`Id_utilisateur`, `Id_type`) VALUES (:id, :status)");
+				$requeteType = $GLOBALS['database']->prepare("INSERT INTO `utilisateur_type` (`id_utilisateur`, `id_type`) VALUES (:id, :status)");
 				$requeteType->bindValue(':id', $this->id);
 				$requeteType->bindValue(':status', $status);
 
 				$requeteType->execute();
 
-				$requeteSite = $GLOBALS['database']->prepare("INSERT INTO `utilisateur_site` (`Id_utilisateur`, `Id_site`) VALUES (:id, :site)");
+				$requeteSite = $GLOBALS['database']->prepare("INSERT INTO `utilisateur_site` (`id_utilisateur`, `id_site`) VALUES (:id, :site)");
 				$requeteSite->bindValue(':id', $this->id);
 				$requeteSite->bindValue(':site', $site);
 
@@ -266,7 +266,7 @@ class User
 
 	public function updateAll()
 	{
-		$requete = $GLOBALS['database']->prepare("UPDATE `utilisateur` SET `nom`=:nom, `prenom`=:prenom, `email`= :mail, WHERE `Id_utilisateur`= :id");
+		$requete = $GLOBALS['database']->prepare("UPDATE `utilisateur` SET `nom`=:nom, `prenom`=:prenom, `email`= :mail, WHERE `id_utilisateur`= :id");
 		$requete->bindValue(':nom', $this->nom);
 		$requete->bindValue(':prenom', $this->prenom);
 		$requete->bindValue(':mail', $this->mail);

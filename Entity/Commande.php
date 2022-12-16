@@ -37,7 +37,7 @@ class User
     private function getFromDatabase()
     {
 
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `id` = $this->id");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `id_commande` = $this->id");
 
         $requete->execute();
 
@@ -52,7 +52,7 @@ class User
 
     public static function selectIdUser($id)
     {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `Id_utilisateur` = :id");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `id_utilisateur` = :id");
         $requete->bindValue(':id', $id);
 
         $requete->execute();
@@ -75,7 +75,7 @@ class User
 
     public  function deleteCom()
     {
-        $requete = $GLOBALS['database']->prepare("DELETE * FROM `commande` WHERE `Id_commande` = :id");
+        $requete = $GLOBALS['database']->prepare("DELETE * FROM `commande` WHERE `id_commande` = :id");
         $requete->bindValue(':id', $this->id);
 
         $requete->execute();

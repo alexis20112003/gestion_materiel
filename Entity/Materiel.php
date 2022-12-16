@@ -64,7 +64,7 @@ class User
     private function getFromDatabase()
     {
 
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `Id_materiels` = $this->id");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_materiels` = $this->id");
 
         $requete->execute();
 
@@ -81,7 +81,7 @@ class User
 
     public function updateMat()
     {
-        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `nom_materiel`=:nom, `description`=:description, WHERE `Id_materiels`= :id");
+        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `nom_materiel`=:nom, `description`=:description, WHERE `id_materiels`= :id");
         $requete->bindValue(':id', $this->id);
         $requete->bindValue(':nom', $this->nom);
         $requete->bindValue(':description', $this->description);
@@ -102,7 +102,7 @@ class User
 
     public static function selectIdTypeMat($id)
     {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `Id_type_materiel` = :id");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_type_materiel` = :id");
         $requete->bindValue(':id', $id);
 
         $requete->execute();
@@ -113,7 +113,7 @@ class User
     }
     public  function deleteMat()
     {
-        $requete = $GLOBALS['database']->prepare("DELETE * FROM `materiels` WHERE `Id_materiels`= :id");
+        $requete = $GLOBALS['database']->prepare("DELETE * FROM `materiels` WHERE `id_materiels`= :id");
         $requete->bindValue(':id', $this->id);
 
         $requete->execute();
