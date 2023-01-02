@@ -35,7 +35,7 @@ $linux = selectIdTypeMat(1);
 $mac = selectIdTypeMat(2);
 $windows = selectIdTypeMat(3);
 
-echo $twig->render('commande.html.twig', array(
+echo $twig->render('gestion_mat.html.twig', array(
     "linux" => $linux,
     "mac" => $mac,
     "windows" => $windows
