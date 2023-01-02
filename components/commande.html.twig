@@ -177,109 +177,19 @@
 						<thead>
 							<tr>
 								<th scope="col">#</th>
-								<th scope="col">First</th>
-								<th scope="col">Last</th>
-								<th scope="col">Handle</th>
+								<th scope="col">nom ordinateur</th>
+								<th scope="col">desc</th>
 							</tr>
 						</thead>
 						<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
 							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Linux</td>
-									<td>Thornton</td>
-									<td>@fat</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Linux</td>
-									<td>Otto</td>
-									<td>@twitter</td>
-								</tr>
+								{% for item in linux %}
+									<tr>
+										<th scope="row">1</th>
+										<td>{{item.nom_materiel}}</td>
+										<td>{{item.description}}</td>
+									</tr>
+								{% endfor %}
 							</tbody>
 						</div>
 					</table>

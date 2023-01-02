@@ -5,10 +5,30 @@
 <link rel="stylesheet" href="../css/iziToast.css">
 
 <?php
-require_once '../vendor/autoload.php';
+require_once('../vendor/autoload.php');
+require_once('../Entity/Database.php');
+require_once '../Entity/Materiel.php';
+$db = new Database();
+$GLOBALS['database'] = $db->mysqlConnexion();
+
+session_start();
+
 
 $render = new \Twig\Loader\FilesystemLoader('../components/');
 
 $twig = new \Twig\Environment($render);
 
-echo $twig->render('commande.html.twig');
+
+$requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_type_materiel` = :id");
+$requete->bindValue(':id', 1);
+
+$requete->execute();
+
+$result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+
+$linux = $result;
+
+echo $twig->render('commande.html.twig', array(
+    "linux" => $linux,
+));
