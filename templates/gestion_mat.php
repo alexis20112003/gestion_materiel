@@ -30,7 +30,18 @@ function selectIdTypeMat($id)
     return $result;
 }
 
+function TypeMat()
+{
+    $requete = $GLOBALS['database']->prepare("SELECT * FROM `type_materiel`");
 
+    $requete->execute();
+
+    $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
+}
+
+$icon = TypeMat();
 $linux = selectIdTypeMat(1);
 $mac = selectIdTypeMat(2);
 $windows = selectIdTypeMat(3);
@@ -38,5 +49,6 @@ $windows = selectIdTypeMat(3);
 echo $twig->render('gestion_mat.html.twig', array(
     "linux" => $linux,
     "mac" => $mac,
-    "windows" => $windows
+    "windows" => $windows,
+    "icon" => $icon
 ));
