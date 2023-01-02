@@ -28,3 +28,20 @@ function connect() {
     },
   });
 }
+function onclicMat() {
+  type = $(this).attr("name");
+  $.ajax({
+    url: "../controller/gestion_mat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "gestionMat",
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}

@@ -18,33 +18,10 @@ $render = new \Twig\Loader\FilesystemLoader('../components/');
 
 $twig = new \Twig\Environment($render);
 
-function selectIdTypeMat($id)
-{
-    $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_type_materiel` = :id");
-    $requete->bindValue(':id', $id);
-
-    $requete->execute();
-
-    $result = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-    return $result;
-}
-
-function TypeMat()
-{
-    $requete = $GLOBALS['database']->prepare("SELECT * FROM `type_materiel`");
-
-    $requete->execute();
-
-    $result = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-    return $result;
-}
-
-$icon = TypeMat();
-$linux = selectIdTypeMat(1);
-$mac = selectIdTypeMat(2);
-$windows = selectIdTypeMat(3);
+$icon = Materiel::TypeMat();
+$linux = Materiel::selectAllMat(1);
+$mac = Materiel::selectAllMat(2);
+$windows = Materiel::selectAllMat(3);
 
 echo $twig->render('gestion_mat.html.twig', array(
     "linux" => $linux,

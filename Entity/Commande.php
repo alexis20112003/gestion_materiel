@@ -1,7 +1,7 @@
 <?php
 
 
-class User
+class Commande
 {
 
     private $id;

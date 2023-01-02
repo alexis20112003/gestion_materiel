@@ -1,6 +1,6 @@
 <?php
 
-class User
+class Materiel
 {
 
     private $id;
@@ -111,6 +111,18 @@ class User
 
         return $result;
     }
+
+    public static function TypeMat()
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `type_materiel`");
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
     public  function deleteMat()
     {
         $requete = $GLOBALS['database']->prepare("DELETE * FROM `materiels` WHERE `id_materiels`= :id");

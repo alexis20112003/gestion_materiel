@@ -2,18 +2,18 @@
 {% block body %}
 	<script src="https://kit.fontawesome.com/817d6c5352.js" crossorigin="anonymous"></script>
 	<div>
-		<h3>titre page commande ordi</h3>
+		<h3>titre page gestion ordi</h3>
 		<!-- sqlcount pour la pagination -->
 		<!-- mettre variable qui prend +1 a chaque boucle en twig -->
+		<!-- fonction ajax en onclic pour mes onglet -->
 
 
-		<div class="col py-3">
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<div class="col py-3"> <ul class="nav nav-tabs" id="myTab" role="tablist">
 				{% for item in icon %}
 					{% if item == icon[0] %}
 
 						<li class="nav-item">
-							<a class="nav-link active" id="home-tab" data-toggle="tab" href="#{{item.origine_materiel}}" role="tab" aria-controls="home" aria-selected="true">
+							<a class="nav-link active" id="home-tab" name="{{item.id_type_materiel}}" data-toggle="tab" href="#{{item.origine_materiel}}" role="tab" aria-controls="home" aria-selected="true">
 								<i class="{{item.icon}}"></i>
 								{{item.origine_materiel}}</a>
 						</li>
