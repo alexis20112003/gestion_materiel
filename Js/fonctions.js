@@ -28,20 +28,27 @@ function connect() {
     },
   });
 }
-function onclicMat() {
-  type = $(this).attr("name");
+
+function changeMat(type) {
+  // console.log('coucou');
+  // type = $(this).attr("name");
+  console.log(type);
   $.ajax({
-    url: "../controller/gestion_mat.php",
+    url: "../controller/ControllerTypeMat.php",
     dataType: "json",
     type: "POST",
     data: {
       request: "gestionMat",
+      type: type
     },
     success: function (response) {
       $("#myTabContent").html(response);
     },
     error: function () {
       alert("Error !");
-    },
+    }
   });
 }
+
+
+
