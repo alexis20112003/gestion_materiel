@@ -73,9 +73,9 @@ class Materiel
 
             $this->nom = $data['nom'];
 
-            $this->prenom = $data['description'];
+            $this->description = $data['description'];
 
-            $this->mail = $data['id_type_mat'];
+            $this->id_type_mat = $data['id_type_mat'];
         }
     }
 
@@ -103,6 +103,18 @@ class Materiel
     public static function selectIdTypeMat($id)
     {
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_type_materiel` = :id");
+        $requete->bindValue(':id', $id);
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public static function sqlCount($id)
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT COUNT(*) FROM `materiels` WHERE `id_type_materiel` = :id");
         $requete->bindValue(':id', $id);
 
         $requete->execute();
