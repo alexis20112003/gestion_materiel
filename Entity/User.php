@@ -16,7 +16,7 @@ class User
 
 	private $promo;
 
-	private $status;
+	private $statut;
 
 
 	public function __construct($id)

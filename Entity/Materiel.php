@@ -142,4 +142,15 @@ class Materiel
 
         $requete->execute();
     }
+
+    public  function insertMat()
+    {
+        $requete = $GLOBALS['database']->prepare("INSERT INTO `materiels` (`nom_materiel`, `description`, `id_type_materiel`) VALUES (:nom, :description, :id)");
+        $requete->bindValue(':nom', $this->nom);
+        $requete->bindValue(':description', $this->description);
+        $requete->bindValue(':id', $this->id);
+
+
+        $requete->execute();
+    }
 }
