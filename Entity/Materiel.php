@@ -114,14 +114,14 @@ class Materiel
 
     public static function sqlCount($id)
     {
-        $requete = $GLOBALS['database']->prepare("SELECT COUNT(*) FROM `materiels` WHERE `id_type_materiel` = :id");
+        $requete = $GLOBALS['database']->prepare("SELECT COUNT(*) as nb FROM `materiels` WHERE `id_type_materiel` = :id");
         $requete->bindValue(':id', $id);
 
         $requete->execute();
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $result = $requete->fetch(PDO::FETCH_ASSOC);
 
-        return $result;
+        return $result["nb"];
     }
 
     public static function TypeMat()

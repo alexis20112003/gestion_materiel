@@ -30,9 +30,6 @@ function connect() {
 }
 
 function changeMat(type) {
-  // console.log('coucou');
-  // type = $(this).attr("name");
-  console.log(type);
   $.ajax({
     url: "../controller/ControllerTypeMat.php",
     dataType: "json",
@@ -50,5 +47,21 @@ function changeMat(type) {
   });
 }
 
+function pageGestionMat() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageGestionMat",
+    },
+    success: function (response) {
+      $("#page").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
 
 
