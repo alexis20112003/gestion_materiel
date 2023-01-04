@@ -76,7 +76,7 @@
 									<li>
 										<a class="dropdown-item" href="#">Site Ajaccio</a>
 									</li>
-									<li>
+									<li onclick="pageGestionMat();">
 										<a class="dropdown-item" href="#">Inventaire Materiel</a>
 									</li>
 									<li>
@@ -108,13 +108,13 @@
 								</span>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-								<li>
+								<li onclick="pageGestionProfile();">
 									<a class="dropdown-item" href="#">Profile</a>
 								</li>
 								<li>
 									<hr class="dropdown-divider">
 								</li>
-								<li>
+								<li onclick="deconnexion();">
 									<a class="dropdown-item" href="#">Deconnexion</a>
 								</li>
 							</ul>
@@ -123,7 +123,7 @@
 				</div>
 				<div class="updatePage" id="page">
 					{% block body %}
-						{% include "test.html" %}
+						{% include "gestion_profile.html.twig" %}
 					{% endblock %}
 				</div>
 			</div>

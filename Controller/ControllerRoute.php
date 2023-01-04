@@ -22,4 +22,16 @@ switch ($_POST['request']) {
         )));
 
         break;
+
+    case 'pageGestionProfile':
+
+        echo json_encode($twig->render('gestion_profile.html.twig'));
+
+        break;
+
+    case 'deconnexion':
+        error_log("ici");
+        session_destroy();
+        echo json_encode(0);
+        break;
 }

@@ -69,14 +69,14 @@ function changeMat(type) {
     type: "POST",
     data: {
       request: "gestionMat",
-      type: type
+      type: type,
     },
     success: function (response) {
       $("#myTabContent").html(response);
     },
     error: function () {
       alert("Error !");
-    }
+    },
   });
 }
 
@@ -93,8 +93,42 @@ function pageGestionMat() {
     },
     error: function () {
       alert("Error !");
-    }
+    },
   });
 }
 
+function pageGestionProfile() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageGestionProfile",
+    },
+    success: function (response) {
+      $("#page").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
 
+function deconnexion() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "deconnexion",
+    },
+    success: function (response) {
+      if (!response["session"]) {
+        window.location.href = "Accueil.php";
+      }
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
