@@ -97,4 +97,37 @@ function pageGestionMat() {
   });
 }
 
+function pageAddMat() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageAddMat",
+    },
+    success: function (response) {
+      $("#page").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
+
+function addMat() {
+  $.ajax({
+    url: "../controller/ControllerAddMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "addMat",
+    },
+    success: function (response) {
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
+
 

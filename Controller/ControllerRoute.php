@@ -22,4 +22,13 @@ switch ($_POST['request']) {
         )));
 
         break;
+
+    case 'pageAddMat':
+
+        $TypeMat =  Materiel::TypeMat();
+        echo json_encode($twig->render('addMat.html.twig', array(
+            "TypeMat" => $TypeMat
+        )));
+
+        break;
 }
