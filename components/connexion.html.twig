@@ -3,35 +3,54 @@
 <script src="../JS/iziToast.js" type="text/javascript"></script>
 
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Document</title>
-	</head>
-	<body>
-		<div class="container-fluid min-vh-100" id="menuAdmin">
-			<div class="row flex-nowrap">
-				<div class="col-auto col-3 col-xl-2 px-sm-2 px-0 bg-gray">
-					<div class="d-flex flex-column min-vh-100"></div>
-				</div>
-				{# <div class="d-none d-sm-block col-sm-2"></div> #}
-				<div class="col-sm-3 col align-self-center position-absolute start-25 border border-2 border-dark bg-light">
-					<img class="img-fluid rounded-circle border border-2 border-dark" src="../assets/aflokkat.png">
-					<form action="javascript:connect();" class="text-center">
-						<div class="mb-3">
-							<label for="exampleInputEmail1" class="form-label">Email</label>
-							<input type="email" class="form-control" id="EmailConnexion" aria-describedby="emailHelp">
-						</div>
-						<div class="mb-3">
-							<label for="exampleInputPassword1" class="form-label">Mot de passe</label>
-							<input type="password" class="form-control" id="PasswordConnexion">
-						</div>
-						<button type="submit" class="btn btn-primary">Connexion</button>
-					</form>
-				</div>
-			</div>
-		</div>
-
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container-fluid min-vh-100" id="menuAdmin">
+      <div class="row flex-nowrap accueilRow">
+        <div class="sideBar col-5 col-sm-3 px-sm-2 px-0 min-vh-100"></div>
+          <div
+            class="col-5 col-sm-3 form-connexion align-self-center justify-self-center border border-2 border-dark bg-white rounded"
+          >
+            <img
+              class="logoAccueil img-fluid rounded-circle border-start border-2 border-dark mx-md-1 mx-xl-5"
+              src="../assets/aflokkat.png"
+            />
+            <form action="javascript:connect();" class="text-center mb-5 mx-1 mx-sm-1 mx-md-4">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  class="form-control border-start border-2 border-dark"
+                  id="EmailConnexion"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Mot de passe</label
+                >
+                <input
+                  type="password"
+                  class="form-control border-start border-2 border-dark"
+                  id="PasswordConnexion"
+                />
+              </div>
+              <div class="row">
+                <button type="submit" class="btn border border-dark">Connexion</button>
+                <a href="#" class="text-dark text-decoration-none">Mot de passe oublié?</a>
+              </div>
+            </form>
+          </div>
+        <div class="col mainBackground"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

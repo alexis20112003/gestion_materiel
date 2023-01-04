@@ -1,9 +1,55 @@
-.bg-gray {
-  background-color: rgb(178, 178, 178);
+.accueilRow {
+  position: relative;
 }
-
-li > a > span {
-  color: white;
+.form-connexion {
+  position: absolute;
+  left: 12%;
+  background: rgb(226, 63, 48);
+  background: linear-gradient(
+    90deg,
+    rgba(226, 63, 48, 1) 0%,
+    rgba(251, 232, 218, 1) 23%,
+    rgba(255, 255, 255, 1) 65%
+  );
+}
+@media screen and (max-width: 576px) {
+  .form-connexion {
+    left: 17.5%;
+    width: 65%;
+  }
+}
+@media screen and (min-width: 385px) and (max-width: 576px) {
+  .logoAccueil {
+    padding-left: 25%;
+    padding-right: 25%;
+  }
+}
+// li > a > span {
+//   color: white;
+// }
+.sideBar {
+  background-image: url(../Assets/SideBarAccueil.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.mainBackground {
+  background-image: url(../Assets/MainAccueil.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.mainSideBar {
+  background-image: url(../Assets/SideBarMain.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.updatePage {
+  background-image: url(../Assets/updateBackground.jpg);
+  background-repeat: no-repeat;
+  background-size: 83.5% 100%;
+}
+.updatePosition {
+  top: 20%;
+  left: 40%;
 }
 
 @media (min-width: 992px) {

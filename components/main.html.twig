@@ -10,9 +10,9 @@
 	</head>
 	<body>
 		<div class="container-fluid" id="menuAdmin">
-			<div class="row flex-nowrap">
-				<div class="col-auto col-3 col-xl-2 px-sm-2 px-0 bg-gray border border-2 border-dark">
-					<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+			<div class="row flex-nowrap position-relative">
+				<div class="col-auto col-3 col-xl-2 p-0">
+					<div class="mainSideBar d-flex flex-column align-items-center align-items-sm-start px-2 pt-1 min-vh-100">
 						<img class="img-fluid rounded-circle border border-2  border-dark " src="../assets/aflokkat.png">
 						<ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start fw-bold " id="menu">
 
@@ -63,7 +63,7 @@
 						</ul>
 						<hr>
 						<div class="d-block d-sm-none">
-							<a href="#" class="d-flex align-items-center text-white text-decoration-none border border-2 border-dark rounded" id="dropdownMenuUser" data-bs-toggle="dropdown" aria-expanded="false">
+							<a href="#" class="d-flex align-items-center text-dark text-decoration-none border border-2 border-dark rounded" id="dropdownMenuUser" data-bs-toggle="dropdown" aria-expanded="false">
 								<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-list" viewbox="0 0 16 16">
 									<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
 								</svg>
@@ -99,7 +99,7 @@
 						</div>
 						<hr>
 						<div class="dropdown pb-4">
-							<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+							<a href="#" class="d-flex align-items-center text-decoration-none text-white dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 								<img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle ">
 								<span class="d-none d-sm-inline mx-1">{{user.nom}}
 									{% if user.statut == "eleve" %}
@@ -121,7 +121,7 @@
 						</div>
 					</div>
 				</div>
-				<div style="width:1180px" id="page">
+				<div class="updatePage" id="page">
 					{% block body %}
 						{% include "test.html" %}
 					{% endblock %}
