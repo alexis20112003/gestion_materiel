@@ -121,8 +121,12 @@ function addMat() {
     type: "POST",
     data: {
       request: "addMat",
+      nom: $("#Nom").val(),
+      description: $("#Description").val(),
+      type: $("#TypeMat").val(),
     },
     success: function (response) {
+      console.log(response);
     },
     error: function () {
       alert("Error !");
