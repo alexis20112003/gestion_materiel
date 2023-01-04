@@ -28,6 +28,7 @@ function connect() {
     },
   });
 }
+
 function update_user() {
   $.ajax({
     url: "../controller/connect.php",
@@ -60,3 +61,40 @@ function update_user() {
     },
   });
 }
+
+function changeMat(type) {
+  $.ajax({
+    url: "../controller/ControllerTypeMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "gestionMat",
+      type: type
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
+
+function pageGestionMat() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageGestionMat",
+    },
+    success: function (response) {
+      $("#page").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
+
+

@@ -1,6 +1,6 @@
 <?php
 
-class User
+class Materiel
 {
 
     private $id;
@@ -73,9 +73,9 @@ class User
 
             $this->nom = $data['nom'];
 
-            $this->prenom = $data['description'];
+            $this->description = $data['description'];
 
-            $this->mail = $data['id_type_mat'];
+            $this->id_type_mat = $data['id_type_mat'];
         }
     }
 
@@ -111,6 +111,30 @@ class User
 
         return $result;
     }
+
+    public static function sqlCount($id)
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT COUNT(*) as nb FROM `materiels` WHERE `id_type_materiel` = :id");
+        $requete->bindValue(':id', $id);
+
+        $requete->execute();
+
+        $result = $requete->fetch(PDO::FETCH_ASSOC);
+
+        return $result["nb"];
+    }
+
+    public static function TypeMat()
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `type_materiel`");
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
     public  function deleteMat()
     {
         $requete = $GLOBALS['database']->prepare("DELETE * FROM `materiels` WHERE `id_materiels`= :id");
