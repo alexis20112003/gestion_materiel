@@ -51,6 +51,14 @@
   top: 20%;
   left: 40%;
 }
+.profileBanner {
+  min-height: 200;
+  background-color: black;
+}
+.imgProfile {
+  top: 40%;
+  left: 10%;
+}
 
 @media (min-width: 992px) {
   .navbar,
