@@ -123,6 +123,7 @@ function addMat() {
       request: "addMat",
       nom: $("#Nom").val(),
       description: $("#Description").val(),
+      caution: $("#Caution").val(),
       type: $("#TypeMat").val(),
     },
     success: function (response) {

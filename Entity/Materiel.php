@@ -11,6 +11,8 @@ class Materiel
 
     private $description;
 
+    private $caution;
+
 
     private $id_type_mat;
 
@@ -51,6 +53,16 @@ class Materiel
         $this->description = $description;
     }
 
+    public function getCaution()
+    {
+        return $this->caution;
+    }
+
+    public function setCaution($caution)
+    {
+        $this->caution = $caution;
+    }
+
     public function getId_type_mat()
     {
         return $this->id_type_mat;
@@ -74,6 +86,8 @@ class Materiel
             $this->nom = $data['nom'];
 
             $this->description = $data['description'];
+
+            $this->caution = $data['caution'];
 
             $this->id_type_mat = $data['id_type_mat'];
         }
@@ -145,12 +159,15 @@ class Materiel
 
     public  function insertMat()
     {
-        $requete = $GLOBALS['database']->prepare("INSERT INTO `materiels` (`nom_materiel`, `description`, `id_type_materiel`) VALUES (:nom, :description, :id)");
-        $requete->bindValue(':nom', $this->nom);
-        $requete->bindValue(':description', $this->description);
-        $requete->bindValue(':id', $this->id);
+        if ($this->id == 0) {
+            $requete = $GLOBALS['database']->prepare("INSERT INTO `materiels` (`nom_materiel`, `description`, `caution`, `id_type_materiel`) VALUES (:nom, :description, :caution, :id)");
+            $requete->bindValue(':nom', $this->nom);
+            $requete->bindValue(':description', $this->description);
+            $requete->bindValue(':caution', $this->caution);
+            $requete->bindValue(':id', $this->id_type_mat);
 
 
-        $requete->execute();
+            $requete->execute();
+        }
     }
 }
