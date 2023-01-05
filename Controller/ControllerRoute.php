@@ -2,6 +2,7 @@
 require_once('../vendor/autoload.php');
 require_once('../Entity/Database.php');
 require_once '../Entity/Materiel.php';
+require_once '../Entity/User.php';
 $db = new Database();
 $GLOBALS['database'] = $db->mysqlConnexion();
 
@@ -24,8 +25,10 @@ switch ($_POST['request']) {
         break;
 
     case 'pageGestionProfile':
-
-        echo json_encode($twig->render('gestion_profile.html.twig'));
+        $user = new User($_SESSION["id"]);
+        echo json_encode($twig->render('gestion_profile.html.twig', array(
+            "user" => $user
+        )));
 
         break;
 
