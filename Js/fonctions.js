@@ -81,6 +81,9 @@ function changeMat(type) {
 }
 
 function pageGestionMat() {
+  $(document).ready(function () {
+    changeMat(1);
+  });
   $.ajax({
     url: "../controller/ControllerRoute.php",
     dataType: "json",
@@ -156,16 +159,22 @@ function addTypeMat() {
 }
 
 function deleteMat() {
+  id_check_s = [];
+  $("input.checkbox_check").each(function () {
+    if ($(this).is(':checked')) {
+      id_check_s.push($(this).val());
+    }
+  });
   $.ajax({
     url: "../controller/ControllerAddMat.php",
     dataType: "json",
     type: "POST",
     data: {
       request: "deleteMat",
-      id: $("#flexCheckDefault").val(),
+      id: JSON.stringify(id_check_s),
     },
-    success: function (response) {
-      console.log(response);
+    success: function () {
+      location.reload();
     },
     error: function () {
       alert("Error !");

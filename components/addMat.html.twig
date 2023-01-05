@@ -10,7 +10,7 @@
 				<label for="inputCaution" class="form-label">Caution</label>
 				<input type="number" class="form-control" id="Caution" aria-describedby="nomHelp"/>
 				<label for="EmailUpdate" class="form-label">Type Materiel</label>
-				<select name="Type_Mat" id="TypeMat">
+				<select class="form-select" name="Type_Mat" id="TypeMat">
 					{% for item in TypeMat %}
 						<option value="{{item.id_type_materiel}}">{{item.origine_materiel}}</option>
 					{% endfor %}

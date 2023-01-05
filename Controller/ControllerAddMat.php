@@ -44,10 +44,12 @@ switch ($_POST['request']) {
     case 'deleteMat':
 
         if (isset($_POST['id'])) {
-            $materiel = new Materiel($_POST['id']);
-            $materiel->deleteMat();
-
-            $responce = $_POST['id'];
+            $id = json_decode($_POST['id']);
+            foreach ($id as $value) {
+                $materiel = new Materiel($value);
+                $materiel->deleteMat();
+            }
+            $responce = $id;
         }
 
         echo json_encode($responce);
