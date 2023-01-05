@@ -76,8 +76,11 @@ class Commande
     public  function deleteCom()
     {
         $requete = $GLOBALS['database']->prepare("DELETE FROM `commande` WHERE `id_commande` = :id");
+        $requete2 = $GLOBALS['database']->prepare("DELETE FROM `commande_material` WHERE `id_commande` = :id");
         $requete->bindValue(':id', $this->id);
+        $requete2->bindValue(':id', $this->id);
 
         $requete->execute();
+        $requete2->execute();
     }
 }
