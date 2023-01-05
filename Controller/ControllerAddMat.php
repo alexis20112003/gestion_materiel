@@ -23,4 +23,20 @@ switch ($_POST['request']) {
         echo json_encode($responce);
 
         break;
+    case 'addTypeMat':
+
+        if (isset($_POST['nom']) && isset($_POST['icon'])) {
+
+            $requete = $GLOBALS['database']->prepare("INSERT INTO `type_materiel` (`origine_materiel`, `icon`) VALUES (:nom, :icon)");
+            $requete->bindValue(':nom', $_POST['nom']);
+            $requete->bindValue(':icon', $_POST['icon']);
+
+            $requete->execute();
+
+            $responce = $_POST['nom'] . ' ' . $_POST['icon'];
+        }
+
+        echo json_encode($responce);
+
+        break;
 }

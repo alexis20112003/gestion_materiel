@@ -134,5 +134,23 @@ function addMat() {
     }
   });
 }
+function addTypeMat() {
+  $.ajax({
+    url: "../controller/ControllerAddMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "addTypeMat",
+      nom: $("#Nom").val(),
+      icon: $("#Icon").val(),
+    },
+    success: function (response) {
+      console.log(response);
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
 
 
