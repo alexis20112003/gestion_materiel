@@ -55,21 +55,26 @@ changeMat(1);
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-								<button type="submit" class="btn btn-primary">submit</button>
+								<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">submit</button>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-			<div class="tab-content" id="myTabContent">
-				{% for item in icon %}
-					{% if item == icon[0] %}
-						{% block listeActive %}{% endblock %}
-					{% else %}
-						{% block liste %}{% endblock %}
-					{% endif %}
-				{% endfor %}
-			</div>
+			<form action="javascript:deleteMat();">
+				<div class="tab-content" id="myTabContent">
+					{% for item in icon %}
+						{% if item == icon[0] %}
+							{% block listeActive %}{% endblock %}
+						{% else %}
+							{% block liste %}{% endblock %}
+						{% endif %}
+					{% endfor %}
+				</div>
+				<button type="submit">
+					<i class="fa-solid fa-trash"></i>
+					delete</button>
+			</form>
 		</div>
 
 

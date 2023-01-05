@@ -23,6 +23,7 @@ switch ($_POST['request']) {
         echo json_encode($responce);
 
         break;
+
     case 'addTypeMat':
 
         if (isset($_POST['nom']) && isset($_POST['icon'])) {
@@ -34,6 +35,19 @@ switch ($_POST['request']) {
             $requete->execute();
 
             $responce = $_POST['nom'] . ' ' . $_POST['icon'];
+        }
+
+        echo json_encode($responce);
+
+        break;
+
+    case 'deleteMat':
+
+        if (isset($_POST['id'])) {
+            $materiel = new Materiel($_POST['id']);
+            $materiel->deleteMat();
+
+            $responce = $_POST['id'];
         }
 
         echo json_encode($responce);

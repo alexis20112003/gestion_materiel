@@ -134,6 +134,7 @@ function addMat() {
     }
   });
 }
+
 function addTypeMat() {
   $.ajax({
     url: "../controller/ControllerAddMat.php",
@@ -143,6 +144,25 @@ function addTypeMat() {
       request: "addTypeMat",
       nom: $("#Nom").val(),
       icon: $("#Icon").val(),
+    },
+    success: function (response) {
+      location.reload();
+      changeMat(1);
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
+
+function deleteMat() {
+  $.ajax({
+    url: "../controller/ControllerAddMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "deleteMat",
+      id: $("#flexCheckDefault").val(),
     },
     success: function (response) {
       console.log(response);
