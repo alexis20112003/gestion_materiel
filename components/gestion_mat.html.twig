@@ -1,12 +1,8 @@
 {% block body %}
 	<div>
-		<script>
-			$(document).ready(function () {
-changeMat(1);
-});
-		</script>
 		<h3>Inventaire Materiel</h3>
 		<!-- sqlcount pour la pagination -->
+		<h6 onclick="pageAddMat();">add mat</h6>
 		<!-- mettre variable qui prend +1 a chaque boucle en twig -->
 
 
@@ -28,16 +24,52 @@ changeMat(1);
 						</li>
 					{% endif %}
 				{% endfor %}
+				<li class="nav-item" onclick="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+					<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+						<i class="fa-solid fa-plus"></i>
+						add
+					</a>
+				</li>
 			</ul>
-			<div class="tab-content" id="myTabContent">
-				{% for item in icon %}
-					{% if item == icon[0] %}
-						{% block listeActive %}{% endblock %}
-					{% else %}
-						{% block liste %}{% endblock %}
-					{% endif %}
-				{% endfor %}
+			<!-- Modal -->
+			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form action="javascript:addTypeMat();">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="staticBackdropLabel">ajout type mat</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<label for="inputNom" class="form-label">Nom</label>
+								<input type="text" class="form-control" id="Nom" aria-describedby="nomHelp"/>
+								<label for="inputPrenom" class="form-label">Icon
+									<a href="https://fontawesome.com/icons">site icon</a>
+								</label>
+								<input type="text" class="form-control" id="Icon" aria-describedby="prenomHelp"/>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">submit</button>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
+			<form action="javascript:deleteMat();">
+				<div class="tab-content" id="myTabContent">
+					{% for item in icon %}
+						{% if item == icon[0] %}
+							{% block listeActive %}{% endblock %}
+						{% else %}
+							{% block liste %}{% endblock %}
+						{% endif %}
+					{% endfor %}
+				</div>
+				<button type="submit">
+					<i class="fa-solid fa-trash"></i>
+					delete</button>
+			</form>
 		</div>
 
 

@@ -1,85 +1,103 @@
 .accueilRow {
   position: relative;
 }
+
 .form-connexion {
   position: absolute;
   left: 12%;
   background: rgb(226, 63, 48);
-  background: linear-gradient(
-    90deg,
-    rgba(226, 63, 48, 1) 0%,
-    rgba(251, 232, 218, 1) 23%,
-    rgba(255, 255, 255, 1) 65%
-  );
+  background: linear-gradient(90deg,
+      rgba(226, 63, 48, 1) 0%,
+      rgba(251, 232, 218, 1) 23%,
+      rgba(255, 255, 255, 1) 65%);
 }
+
 @media screen and (max-width: 576px) {
   .form-connexion {
     left: 17.5%;
     width: 65%;
   }
 }
+
 @media screen and (min-width: 385px) and (max-width: 576px) {
   .logoAccueil {
     padding-left: 25%;
     padding-right: 25%;
   }
 }
+
+// li > a > span {
+//   color: white;
+// }
 .sideBar {
   background-image: url(../Assets/SideBarAccueil.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .mainBackground {
   background-image: url(../Assets/MainAccueil.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .mainSideBar {
   background-image: url(../Assets/SideBarMain.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .updatePage {
   background-image: url(../Assets/updateBackground.jpg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+
 .updatePosition {
   top: 20%;
   left: 40%;
 }
+
 .profileBanner {
   min-height: 200;
   background-color: black;
 }
+
 .imgProfile {
   top: 50%;
   left: 10%;
   width: 20%;
 }
+
 .profileText {
   border-bottom: 1px solid black;
   padding-bottom: 2%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 25px 20px -5px;
 }
+
 @media (min-width: 992px) {
+
   .navbar,
   .navbar-collapse {
     flex-direction: column;
   }
+
   .navbar-expand-lg .navbar-nav {
     flex-direction: column;
   }
+
   .navbar {
     width: 28%;
     height: 100vh;
     align-items: flex-start;
   }
+
   .navbar-brand {
     margin-left: 0.5em;
     padding-bottom: 0;
     border-bottom: 4px solid #464646;
   }
+
   form input {
     margin-bottom: 0.7em;
   }

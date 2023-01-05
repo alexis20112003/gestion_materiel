@@ -81,6 +81,9 @@ function changeMat(type) {
 }
 
 function pageGestionMat() {
+  $(document).ready(function () {
+    changeMat(1);
+  });
   $.ajax({
     url: "../controller/ControllerRoute.php",
     dataType: "json",
@@ -97,7 +100,9 @@ function pageGestionMat() {
   });
 }
 
+
 function pageGestionProfile() {
+
   $.ajax({
     url: "../controller/ControllerRoute.php",
     dataType: "json",
@@ -110,9 +115,95 @@ function pageGestionProfile() {
     },
     error: function () {
       alert("Error !");
+
     },
   });
 }
+
+function pageAddMat() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageAddMat",
+    },
+    success: function (response) {
+      $("#page").html(response);
+    },
+    error: function () {
+      alert("Error !");
+
+    },
+  });
+}
+
+
+function addMat() {
+  $.ajax({
+    url: "../controller/ControllerAddMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "addMat",
+      nom: $("#Nom").val(),
+      description: $("#Description").val(),
+      caution: $("#Caution").val(),
+      type: $("#TypeMat").val(),
+    },
+    success: function (response) {
+      console.log(response);
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
+
+function addTypeMat() {
+  $.ajax({
+    url: "../controller/ControllerAddMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "addTypeMat",
+      nom: $("#Nom").val(),
+      icon: $("#Icon").val(),
+    },
+    success: function (response) {
+      location.reload();
+      changeMat(1);
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
+
+function deleteMat() {
+  id_check_s = [];
+  $("input.checkbox_check").each(function () {
+    if ($(this).is(':checked')) {
+      id_check_s.push($(this).val());
+    }
+  });
+  $.ajax({
+    url: "../controller/ControllerAddMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "deleteMat",
+      id: JSON.stringify(id_check_s),
+    },
+    success: function () {
+      location.reload();
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
+
 
 function deconnexion() {
   $.ajax({
