@@ -24,9 +24,6 @@
     padding-right: 25%;
   }
 }
-// li > a > span {
-//   color: white;
-// }
 .sideBar {
   background-image: url(../Assets/SideBarAccueil.jpg);
   background-repeat: no-repeat;
@@ -45,13 +42,26 @@
 .updatePage {
   background-image: url(../Assets/updateBackground.jpg);
   background-repeat: no-repeat;
-  background-size: 83.5% 100%;
+  background-size: 100% 100%;
 }
 .updatePosition {
   top: 20%;
   left: 40%;
 }
-
+.profileBanner {
+  min-height: 200;
+  background-color: black;
+}
+.imgProfile {
+  top: 50%;
+  left: 10%;
+  width: 20%;
+}
+.profileText {
+  border-bottom: 1px solid black;
+  padding-bottom: 2%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 25px 20px -5px;
+}
 @media (min-width: 992px) {
   .navbar,
   .navbar-collapse {

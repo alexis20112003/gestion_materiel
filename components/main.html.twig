@@ -45,7 +45,7 @@
 									</a>
 								</li>
 							{% endif %}
-							{% if statut != "admin" and statut != "super_admin" %}
+							{% if user.getStatut != "admin" and user.getStatut != "super_admin" %}
 
 								<li>
 									<a href="#" class="nav-link px-0 align-middle">
@@ -69,14 +69,14 @@
 								</svg>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownMenuUser">
-								{% if statut == "admin" or statut == "super_admin" %}
+								{% if user.getStatut == "admin" or user.getStatut == "super_admin" %}
 									<li>
 										<a class="dropdown-item" href="#">Site Bastia</a>
 									</li>
 									<li>
 										<a class="dropdown-item" href="#">Site Ajaccio</a>
 									</li>
-									<li>
+									<li onclick="pageGestionMat();">
 										<a class="dropdown-item" href="#">Inventaire Materiel</a>
 									</li>
 									<li>
@@ -86,7 +86,7 @@
 										<a class="dropdown-item" href="#">Gestion des Comptes</a>
 									</li>
 								{% endif %}
-								{% if statut != "admin" and statut != "super_admin" %}
+								{% if user.getStatut != "admin" and user.getStatut != "super_admin" %}
 									<li>
 										<a class="dropdown-item" href="#">Demandes</a>
 									</li>
@@ -108,22 +108,22 @@
 								</span>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-								<li>
+								<li onclick="pageGestionProfile();">
 									<a class="dropdown-item" href="#">Profile</a>
 								</li>
 								<li>
 									<hr class="dropdown-divider">
 								</li>
-								<li>
+								<li onclick="deconnexion();">
 									<a class="dropdown-item" href="#">Deconnexion</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="updatePage" id="page">
+				<div class="updatePage col-9 col-lg-10" id="page">
 					{% block body %}
-						{% include "test.html" %}
+						{% include "profile.html" %}
 					{% endblock %}
 				</div>
 			</div>
