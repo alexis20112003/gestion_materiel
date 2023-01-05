@@ -6,7 +6,11 @@ class Commande
 
     private $id;
 
-    private $id_utilisateur;
+    private $id_materiels;
+
+    private $date_debut;
+
+    private $date_fin;
 
     public function __construct($id)
     {
@@ -25,15 +29,36 @@ class Commande
         $this->id = $id;
     }
 
-    public function getId_utilisateur()
+    public function getId_materiels()
     {
-        return $this->id_utilisateur;
+        return $this->id_materiels;
     }
 
-    public function setId_utilisateur($id_utilisateur)
+    public function setId_materiels($id_materiels)
     {
-        $this->id_utilisateur = $id_utilisateur;
+        $this->id_materiels = $id_materiels;
     }
+
+    public function getDate_debut()
+    {
+        return $this->date_debut;
+    }
+
+    public function setDate_debut($date_debut)
+    {
+        $this->date_debut = $date_debut;
+    }
+
+    public function getDate_fin()
+    {
+        return $this->date_fin;
+    }
+
+    public function setDate_fin($date_fin)
+    {
+        $this->date_fin = $date_fin;
+    }
+
     private function getFromDatabase()
     {
 
@@ -44,9 +69,13 @@ class Commande
         $result = $requete->fetchAll(PDO::FETCH_ASSOC);
         if ($data = $result) {
 
-            $this->id = $data['id'];
+            $this->id = $data['id_commande'];
 
-            $this->id_utilisateur = $data['id_utilisateur'];
+            $this->id_materiels = $data['id_materiels'];
+
+            $this->date_debut = $data['date_debut'];
+
+            $this->date_fin = $data['date_fin'];
         }
     }
 
