@@ -30,7 +30,6 @@ switch ($_POST['request']) {
         break;
 
     case 'deconnexion':
-        error_log("ici");
         session_destroy();
         echo json_encode(0);
         break;
