@@ -12,6 +12,8 @@ class Commande
 
     private $date_fin;
 
+    private $restitute;
+
     public function __construct($id)
     {
         $this->id = $id;
@@ -59,6 +61,16 @@ class Commande
         $this->date_fin = $date_fin;
     }
 
+    public function getRestitute()
+    {
+        return $this->restitute;
+    }
+
+    public function setRestitute($restitute)
+    {
+        $this->restitute = $restitute;
+    }
+
     private function getFromDatabase()
     {
 
@@ -76,6 +88,8 @@ class Commande
             $this->date_debut = $data['date_debut'];
 
             $this->date_fin = $data['date_fin'];
+
+            $this->restitute = $data['restitute'];
         }
     }
 
@@ -113,14 +127,21 @@ class Commande
         $requete2->execute();
     }
 
-    public  function insertCom()
+    public  function insertCom($idUser)
     {
-        $requete = $GLOBALS['database']->prepare("DELETE FROM `commande` WHERE `id_commande` = :id");
-        $requete2 = $GLOBALS['database']->prepare("DELETE FROM `commande_material` WHERE `id_commande` = :id");
-        $requete->bindValue(':id', $this->id);
-        $requete2->bindValue(':id', $this->id);
+        if ($this->id == 0) {
 
-        // $requete->execute();
-        // $requete2->execute();
+            $requete = $GLOBALS['database']->prepare("INSERT INTO `commande` (`id_utilisateur`) VALUES (:id)");
+            $requete2 = $GLOBALS['database']->prepare("INSERT INTO `commande_material` (`id_commande`, `id_materiels`, `date_debut`, `date_fin`, `restitute`) VALUES (:id, :id_mat, :date_debut, :date_fin, :restitute)");
+            $requete->bindValue(':id', $idUser);
+            $requete2->bindValue(':id', $this->id);
+            $requete2->bindValue(':id_mat', $this->id_materiels);
+            $requete2->bindValue(':date_debut', $this->date_debut);
+            $requete2->bindValue(':date_fin', $this->date_fin);
+            $requete2->bindValue(':restitute', $this->restitute);
+
+            $requete->execute();
+            $requete2->execute();
+        }
     }
 }
