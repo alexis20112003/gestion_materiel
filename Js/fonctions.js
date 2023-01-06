@@ -79,6 +79,23 @@ function changeMat(type) {
     },
   });
 }
+function changeUser(type) {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "gestionCompte",
+      type: type,
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
 
 function pageGestionMat() {
   $.ajax({
@@ -87,6 +104,23 @@ function pageGestionMat() {
     type: "POST",
     data: {
       request: "pageGestionMat",
+    },
+    success: function (response) {
+      $("#page").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function pageGestionCompte() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageGestionCompte",
     },
     success: function (response) {
       $("#page").html(response);
