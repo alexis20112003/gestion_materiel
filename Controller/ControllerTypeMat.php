@@ -1,7 +1,7 @@
 <?php
 require_once('../vendor/autoload.php');
 require_once('../Entity/Database.php');
-require_once '../Entity/Materiel.php';
+require_once('../Entity/Materiel.php');
 $db = new Database();
 $GLOBALS['database'] = $db->mysqlConnexion();
 
@@ -16,7 +16,7 @@ switch ($_POST['request']) {
     case 'gestionMat':
         $resultNum = Materiel::sqlCount($_POST['type']);
         $type = Materiel::selectIdTypeMat($_POST['type']);
-        echo json_encode($twig->render('gestion_mat_type.html.twig', array(
+        echo json_encode($twig->render('gestion_mat.html.twig', array(
             "type" => $type,
             "resultNum" => $resultNum,
         )));

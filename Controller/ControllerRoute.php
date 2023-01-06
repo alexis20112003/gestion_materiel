@@ -17,7 +17,7 @@ switch ($_POST['request']) {
 
         $icon = Materiel::TypeMat();
 
-        echo json_encode($twig->render('gestion_mat.html.twig', array(
+        echo json_encode($twig->render('gestion_mat_onglet.html.twig', array(
             "icon" => $icon
         )));
 

@@ -203,6 +203,30 @@ function deleteMat() {
     }
   });
 }
+function demandeMat() {
+  id_check_s = [];
+  $("input.checkbox_check").each(function () {
+    if ($(this).is(':checked')) {
+      id_check_s.push($(this).val());
+    }
+  });
+  $.ajax({
+    url: "../controller/ControllerAddMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "demandeMat",
+      id: JSON.stringify(id_check_s),
+      date_debut: $("#Date_debut").val(),
+      date_fin: $("#Date_fin").val(),
+    },
+    success: function () {
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
 
 
 function deconnexion() {
@@ -225,6 +249,9 @@ function deconnexion() {
 }
 
 function pageDemande() {
+  $(document).ready(function () {
+    chargeMatDemande(1);
+  });
   $.ajax({
     url: "../controller/ControllerRoute.php",
     dataType: "json",
@@ -259,3 +286,5 @@ function chargeMatDemande(type) {
     },
   });
 }
+
+function toto() { }
