@@ -286,5 +286,3 @@ function chargeMatDemande(type) {
     },
   });
 }
-
-function toto() { }

@@ -15,10 +15,15 @@ $twig = new \Twig\Environment($render);
 switch ($_POST['request']) {
     case 'demandeMat':
 
-        if (isset($_POST['id']) && isset($_POST['date_debut'])) {
+        if (isset($_POST['id']) && isset($_POST['date_debut']) && isset($_POST['date_debut'])) {
             $id = json_decode($_POST['id']);
             foreach ($id as $value) {
-                $demande = new Commande($value);
+                $demande = new Commande(0);
+                $demande->setId_materiels($value);
+                $demande->setDate_debut($_POST['date_debut']);
+                $demande->setDate_fin($_POST['date_fin']);
+                $demande->setRestitute(0);
+                $demande->insertCom($_SESSION['id']);
             }
             $responce = $id;
         }
