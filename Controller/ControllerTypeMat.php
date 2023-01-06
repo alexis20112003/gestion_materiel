@@ -22,4 +22,14 @@ switch ($_POST['request']) {
         )));
 
         break;
+
+    case 'gestionMatDemande':
+        $resultNum = Materiel::sqlCount($_POST['type']);
+        $type = Materiel::selectIdTypeMat($_POST['type']);
+        echo json_encode($twig->render('gestion_mat_demande.html.twig', array(
+            "type" => $type,
+            "resultNum" => $resultNum,
+        )));
+
+        break;
 }

@@ -241,3 +241,21 @@ function pageDemande() {
     },
   });
 }
+
+function chargeMatDemande(type) {
+  $.ajax({
+    url: "../controller/ControllerTypeMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "gestionMatDemande",
+      type: type,
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
