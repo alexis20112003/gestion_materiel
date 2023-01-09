@@ -2,7 +2,7 @@
 	<div>
 		<h3>Inventaire Materiel</h3>
 		<!-- sqlcount pour la pagination -->
-		<h6 onclick="pageAddMat();">add mat</h6>
+		<h6 data-bs-toggle="modal" data-bs-target="#staticBackdrop2">add mat</h6>
 		<!-- mettre variable qui prend +1 a chaque boucle en twig -->
 
 
@@ -47,6 +47,37 @@
 									<a href="https://fontawesome.com/icons">site icon</a>
 								</label>
 								<input type="text" class="form-control" id="Icon" aria-describedby="prenomHelp"/>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">submit</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form action="javascript:addMat();" method="post">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="staticBackdropLabel">Add Mat</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<label for="inputNom" class="form-label">Nom</label>
+								<input type="text" class="form-control" id="NomMat" aria-describedby="nomHelp"/>
+								<label for="inputPrenom" class="form-label">Description</label>
+								<input type="text" class="form-control" id="Description" aria-describedby="prenomHelp"/>
+								<label for="inputCaution" class="form-label">Caution</label>
+								<input type="number" class="form-control" id="Caution" aria-describedby="nomHelp"/>
+								<label for="EmailUpdate" class="form-label">Type Materiel</label>
+								<select class="form-select" name="Type_Mat" id="TypeMat">
+									{% for item in icon %}
+										<option value="{{item.id_type_materiel}}">{{item.origine_materiel}}</option>
+									{% endfor %}
+								</select>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

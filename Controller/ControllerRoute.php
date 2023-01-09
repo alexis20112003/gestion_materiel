@@ -34,14 +34,6 @@ switch ($_POST['request']) {
         echo json_encode(0);
         break;
 
-    case 'pageAddMat':
-
-        $TypeMat =  Materiel::TypeMat();
-        echo json_encode($twig->render('addMat.html.twig', array(
-            "TypeMat" => $TypeMat
-        )));
-
-        break;
     case 'pageDemande':
         $icon = Materiel::TypeMat();
         echo json_encode($twig->render('demande.html.twig', array(

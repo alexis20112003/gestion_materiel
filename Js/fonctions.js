@@ -120,25 +120,6 @@ function pageGestionProfile() {
   });
 }
 
-function pageAddMat() {
-  $.ajax({
-    url: "../controller/ControllerRoute.php",
-    dataType: "json",
-    type: "POST",
-    data: {
-      request: "pageAddMat",
-    },
-    success: function (response) {
-      $("#page").html(response);
-    },
-    error: function () {
-      alert("Error !");
-
-    },
-  });
-}
-
-
 function addMat() {
   $.ajax({
     url: "../controller/ControllerAddMat.php",
@@ -146,13 +127,14 @@ function addMat() {
     type: "POST",
     data: {
       request: "addMat",
-      nom: $("#Nom").val(),
+      nom: $("#NomMat").val(),
       description: $("#Description").val(),
       caution: $("#Caution").val(),
       type: $("#TypeMat").val(),
     },
     success: function (response) {
       console.log(response);
+      pageGestionMat();
     },
     error: function () {
       alert("Error !");
@@ -171,8 +153,7 @@ function addTypeMat() {
       icon: $("#Icon").val(),
     },
     success: function (response) {
-      location.reload();
-      changeMat(1);
+      pageGestionMat();
     },
     error: function () {
       alert("Error !");
