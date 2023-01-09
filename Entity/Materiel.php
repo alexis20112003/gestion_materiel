@@ -91,7 +91,7 @@ class Materiel
         $requete->bindValue(':id', $this->id);
         $requete->execute();
 
-        $result = $requete->fetch(PDO::FETCH_ASSOC);
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
         if ($data = $result) {
 
             $this->nom = $data['nom_materiel'];

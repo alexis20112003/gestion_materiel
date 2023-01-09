@@ -211,7 +211,7 @@ function demandeMat() {
     }
   });
   $.ajax({
-    url: "../controller/ControllerAddMat.php",
+    url: "../controller/ControllerDemande.php",
     dataType: "json",
     type: "POST",
     data: {

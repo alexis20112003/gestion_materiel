@@ -137,12 +137,14 @@ class Commande
             $requete->execute();
             $lastid = $GLOBALS['database']->lastInsertId();
 
+
             $requete2 = $GLOBALS['database']->prepare("INSERT INTO `commande_material` (`id_commande`, `id_materiels`, `date_debut`, `date_fin`, `restitute`) VALUES (:id, :id_mat, :date_debut, :date_fin, :restitute)");
             $requete2->bindValue(':id', $lastid);
             $requete2->bindValue(':id_mat', $this->id_materiels);
             $requete2->bindValue(':date_debut', $this->date_debut);
             $requete2->bindValue(':date_fin', $this->date_fin);
             $requete2->bindValue(':restitute', $this->restitute);
+
 
             $requete2->execute();
         }
