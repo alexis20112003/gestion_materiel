@@ -74,11 +74,12 @@ class Commande
     private function getFromDatabase()
     {
 
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `id_commande` = $this->id");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `id_commande` = :id");
+        $requete->bindValue(':id', $this->id);
 
         $requete->execute();
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $result = $requete->fetch(PDO::FETCH_ASSOC);
         if ($data = $result) {
 
             $this->id = $data['id_commande'];

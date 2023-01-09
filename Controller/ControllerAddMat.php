@@ -46,6 +46,7 @@ switch ($_POST['request']) {
         if (isset($_POST['id'])) {
             $id = json_decode($_POST['id']);
             foreach ($id as $value) {
+                error_log($value);
                 $materiel = new Materiel($value);
                 $materiel->deleteMat();
             }

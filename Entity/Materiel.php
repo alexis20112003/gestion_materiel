@@ -13,8 +13,9 @@ class Materiel
 
     private $caution;
 
-
     private $id_type_mat;
+
+    private $enable;
 
     public function __construct($id)
     {
@@ -73,23 +74,35 @@ class Materiel
         $this->id_type_mat = $id_type_mat;
     }
 
+    public function getEnable()
+    {
+        return $this->enable;
+    }
+
+    public function setEnable($enable)
+    {
+        $this->enable = $enable;
+    }
+
     private function getFromDatabase()
     {
 
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_materiels` = $this->id");
-
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_materiels` = :id");
+        $requete->bindValue(':id', $this->id);
         $requete->execute();
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $result = $requete->fetch(PDO::FETCH_ASSOC);
         if ($data = $result) {
 
-            $this->nom = $data['nom'];
+            $this->nom = $data['nom_materiel'];
 
             $this->description = $data['description'];
 
             $this->caution = $data['caution'];
 
-            $this->id_type_mat = $data['id_type_mat'];
+            $this->id_type_mat = $data['id_type_materiel'];
+
+            $this->enable = $data['enable'];
         }
     }
 

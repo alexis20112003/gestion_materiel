@@ -18,6 +18,8 @@ class User
 
 	private $statut;
 
+	private $enable;
+
 
 	public function __construct($id)
 	{
@@ -163,6 +165,16 @@ class User
 		$this->statut = $statut;
 	}
 
+	public function getEnable()
+	{
+		return $this->enable;
+	}
+
+	public function setEnable($enable)
+	{
+		$this->enable = $enable;
+	}
+
 	private function getFromDatabase()
 	{
 
@@ -185,6 +197,8 @@ class User
 		$this->promo = $user['promo'];
 
 		$this->statut = $user['statut'];
+
+		$this->enable = $user['enable'];
 	}
 
 
