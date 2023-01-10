@@ -198,8 +198,6 @@ function demandeMat() {
     data: {
       request: "demandeMat",
       id: JSON.stringify(id_check_s),
-      date_debut: $("#Date_debut").val(),
-      date_fin: $("#Date_fin").val(),
     },
     success: function () {
     },
@@ -229,7 +227,7 @@ function deconnexion() {
   });
 }
 
-function pageDemande() {
+function pageMatDemande() {
   $(document).ready(function () {
     chargeMatDemande(1);
   });
@@ -238,7 +236,7 @@ function pageDemande() {
     dataType: "json",
     type: "POST",
     data: {
-      request: "pageDemande",
+      request: "pageMatDemande",
     },
     success: function (response) {
       $("#page").html(response);
@@ -261,6 +259,41 @@ function chargeMatDemande(type) {
     },
     success: function (response) {
       $("#myTabContent").html(response);
+    },
+    error: function () {
+
+      alert("Error !");
+    },
+  });
+}
+
+function pageDemande() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageDemande",
+    },
+    success: function (response) {
+      $("#page").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function dateRecup() {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageDemande",
+    },
+    success: function () {
+      pageMatDemande();
     },
     error: function () {
       alert("Error !");

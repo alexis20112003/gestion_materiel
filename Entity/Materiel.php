@@ -182,4 +182,18 @@ class Materiel
             $requete->execute();
         }
     }
+
+    // SELECT `date_debut`, `date_fin` FROM `commande_material` WHERE `id_materiels` = 5;
+    // SELECT TIMEDIFF(`date_fin`, CURRENT_DATE) FROM `commande_material`,`utilisateur` WHERE `id_materiels`=5 AND `id_utilisateur`=1;
+    // SELECT * FROM `materiels`, `commande_material` WHERE `id_type_materiel`=2 AND `date_fin`< CURRENT_DATE();  materiel multiplier par le nombre de commande 
+    // SELECT * FROM `materiels`, `commande_material` WHERE `id_type_materiel`=2 AND `date_fin`< CURRENT_DATE() AND `restitute`=0; meme probleme mais sans mat restituer
+    // SELECT * FROM `materiels`, `commande_material` WHERE `id_type_materiel`=2 AND `date_fin`< CURRENT_DATE() AND `date_debut`<CURRENT_DATE() AND `restitute`=0;
 }
+
+// SELECT * FROM `materiels`
+// INNER JOIN `commande_material` ON `commande_material`.`id_materiels` = `materiels`.`id_materiels`
+// INNER JOIN `commande` ON `commande`.`id_commande` = `commande_material`.`id_commande`
+// WHERE `id_type_materiel`=1 
+// AND (`date_fin`NOT BETWEEN "2023-01-05" AND "2023-01-07"
+// AND `date_debut` NOT BETWEEN "2023-01-05" AND "2023-01-07")
+// OR (`statut`=0 );
