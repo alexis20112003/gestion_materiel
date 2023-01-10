@@ -227,7 +227,7 @@ function deconnexion() {
   });
 }
 
-function pageMatDemande() {
+function pageMatDemande(date_debut, date_fin) {
   $(document).ready(function () {
     chargeMatDemande(1);
   });
@@ -237,6 +237,8 @@ function pageMatDemande() {
     type: "POST",
     data: {
       request: "pageMatDemande",
+      date_debut: date_debut,
+      date_fin: date_fin,
     },
     success: function (response) {
       $("#page").html(response);
@@ -290,10 +292,12 @@ function dateRecup() {
     dataType: "json",
     type: "POST",
     data: {
-      request: "pageDemande",
+      request: "dateRecup",
+      date_debut: $("#date_debut").val(),
+      date_fin: $("#date_fin").val(),
     },
-    success: function () {
-      pageMatDemande();
+    success: function (response) {
+      pageMatDemande(response['date_debut'], response['date_fin']);
     },
     error: function () {
       alert("Error !");
