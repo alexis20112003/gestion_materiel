@@ -79,6 +79,23 @@ function changeMat(type) {
     },
   });
 }
+function changeUser(type) {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "gestionCompte",
+      type: type,
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
 
 function pageGestionMat() {
   $(document).ready(function () {
@@ -99,10 +116,24 @@ function pageGestionMat() {
     },
   });
 }
-
+function pageGestionCompte() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageGestionCompte",
+    },
+    success: function (response) {
+      $("#page").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
 
 function pageGestionProfile() {
-
   $.ajax({
     url: "../controller/ControllerRoute.php",
     dataType: "json",
@@ -115,7 +146,6 @@ function pageGestionProfile() {
     },
     error: function () {
       alert("Error !");
-
     },
   });
 }
@@ -133,11 +163,9 @@ function pageAddMat() {
     },
     error: function () {
       alert("Error !");
-
     },
   });
 }
-
 
 function addMat() {
   $.ajax({
@@ -156,7 +184,7 @@ function addMat() {
     },
     error: function () {
       alert("Error !");
-    }
+    },
   });
 }
 
@@ -176,14 +204,14 @@ function addTypeMat() {
     },
     error: function () {
       alert("Error !");
-    }
+    },
   });
 }
 
 function deleteMat() {
   id_check_s = [];
   $("input.checkbox_check").each(function () {
-    if ($(this).is(':checked')) {
+    if ($(this).is(":checked")) {
       id_check_s.push($(this).val());
     }
   });
@@ -200,10 +228,9 @@ function deleteMat() {
     },
     error: function () {
       alert("Error !");
-    }
+    },
   });
 }
-
 
 function deconnexion() {
   $.ajax({

@@ -24,6 +24,16 @@ switch ($_POST['request']) {
 
         break;
 
+    case 'pageGestionCompte':
+
+        $onglet = User::typeUser();
+
+        echo json_encode($twig->render('gestion_compte_onglet.html.twig', array(
+            "onglet" => $onglet
+        )));
+
+        break;
+
     case 'pageGestionProfile':
         $user = new User($_SESSION["id"]);
         echo json_encode($twig->render('gestion_profile.html.twig', array(
@@ -33,7 +43,7 @@ switch ($_POST['request']) {
         break;
 
     case 'deconnexion':
-        error_log("ici");
+       
         session_destroy();
         echo json_encode(0);
         break;
