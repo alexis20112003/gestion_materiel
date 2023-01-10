@@ -26,10 +26,10 @@ switch ($_POST['request']) {
 
     case 'pageGestionCompte':
 
-        $icon = Materiel::TypeMat();
+        $onglet = User::typeUser();
 
         echo json_encode($twig->render('gestion_compte_onglet.html.twig', array(
-            "icon" => $icon
+            "onglet" => $onglet
         )));
 
         break;

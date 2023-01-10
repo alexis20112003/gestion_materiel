@@ -2,7 +2,7 @@
 	<div>
 		<script>
 			$(document).ready(function () {
-changeUser(1);
+			changeUser(4);
 });
 		</script>
 		<h3>Gestion des Comptes</h3>
@@ -12,26 +12,25 @@ changeUser(1);
 
 		<div class="col py-3">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				{% for item in icon %}
-					{% if item == icon[0] %}
-
-						<li class="nav-item" onclick="changeUser({{item.id_type_materiel}});">
+				{% for item in onglet %}
+					{% if item == onglet[0] %}
+						<li class="nav-item" onclick="changeUser({{item.id_type}});">
 							<a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
-								<i class="{{item.icon}}"></i>
-								{{item.origine_materiel}}</a>
+								<i class="{{item.onglet}}"></i>
+								{{item.statut | capitalize}}</a>
 						</li>
 					{% else %}
-						<li class="nav-item" onclick="changeUser({{item.id_type_materiel}});">
+						<li class="nav-item" onclick="changeUser({{item.id_type}});">
 							<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
-								<i class="{{item.icon}}"></i>
-								{{item.origine_materiel}}</a>
+								<i class="{{item.onglet}}"></i>
+								{{item.statut | capitalize}}</a>
 						</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
 			<div class="tab-content" id="myTabContent">
-				{% for item in icon %}
-					{% if item == icon[0] %}
+				{% for item in onglet %}
+					{% if item == onglet[0] %}
 						{% block listeActive %}{% endblock %}
 					{% else %}
 						{% block liste %}{% endblock %}

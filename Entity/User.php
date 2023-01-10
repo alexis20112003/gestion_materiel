@@ -168,7 +168,7 @@ class User
 
 		$requete = $GLOBALS['database']->prepare('SELECT * FROM `utilisateur` 
         INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
-        INNER JOIN type ON `utilisateur_type`.`id_type` = `type`.`id_type`
+        INNER JOIN `type` ON `utilisateur_type`.`id_type` = `type`.`id_type`
         WHERE `utilisateur`.`id_utilisateur` = :id');
 		$requete->bindvalue(":id", $this->id);
 		$requete->execute();
@@ -234,6 +234,46 @@ class User
 
 		return $response;
 	}
+	public static function selectIdTypeUser($id)
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
+		INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
+        INNER JOIN `type` ON `utilisateur_type`.`id_type` = `type`.`id_type`
+		WHERE `type`.`id_type` = :id");
+		
+        $requete->bindValue(':id', $id);
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+	public static function typeUser()
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `type`");
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return array_reverse($result);
+    }
+
+	public static function userCount($id)
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT COUNT(*) as nb FROM `utilisateur` 
+		INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
+        INNER JOIN `type` ON `utilisateur_type`.`id_type` = `type`.`id_type`
+        WHERE `type`.`id_type` = :id");
+        $requete->bindValue(':id', $id);
+
+        $requete->execute();
+
+        $result = $requete->fetch(PDO::FETCH_ASSOC);
+
+        return $result["nb"];
+    }
 
 
 	public function register($site, $status)
