@@ -100,9 +100,7 @@ function pageGestionMat() {
   });
 }
 
-
 function pageGestionProfile() {
-
   $.ajax({
     url: "../controller/ControllerRoute.php",
     dataType: "json",
@@ -115,7 +113,6 @@ function pageGestionProfile() {
     },
     error: function () {
       alert("Error !");
-
     },
   });
 }
@@ -133,11 +130,47 @@ function pageAddMat() {
     },
     error: function () {
       alert("Error !");
-
     },
   });
 }
 
+function pageModifMat(id) {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageModifMat",
+      id: id,
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function pageAfficherMat(id) {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageAfficherMat",
+      id: id,
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
 
 function addMat() {
   $.ajax({
@@ -156,7 +189,32 @@ function addMat() {
     },
     error: function () {
       alert("Error !");
-    }
+    },
+  });
+}
+
+function modifMat() {
+  console.log("aaa");
+  $.ajax({
+    url: "../controller/ControllerAddMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "modifMat",
+      id: $("#id").val(),
+      nom: $("#Nom").val(),
+      description: $("#Description").val(),
+      caution: $("#Caution").val(),
+      enable: $("#Enable").val(),
+    },
+    success: function (response) {
+      console.log(response);
+      changeMat(1);
+      $("#modal").modal("hide");
+    },
+    error: function () {
+      alert("Error !");
+    },
   });
 }
 
@@ -176,14 +234,14 @@ function addTypeMat() {
     },
     error: function () {
       alert("Error !");
-    }
+    },
   });
 }
 
 function deleteMat() {
   id_check_s = [];
   $("input.checkbox_check").each(function () {
-    if ($(this).is(':checked')) {
+    if ($(this).is(":checked")) {
       id_check_s.push($(this).val());
     }
   });
@@ -200,10 +258,9 @@ function deleteMat() {
     },
     error: function () {
       alert("Error !");
-    }
+    },
   });
 }
-
 
 function deconnexion() {
   $.ajax({

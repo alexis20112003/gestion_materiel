@@ -63,6 +63,16 @@ class Materiel
         $this->caution = $caution;
     }
 
+    public function getEnable()
+    {
+        return $this->enable;
+    }
+
+    public function setEnable($enable)
+    {
+        $this->enable = $enable;
+    }
+
     public function getId_type_mat()
     {
         return $this->id_type_mat;
@@ -80,26 +90,34 @@ class Materiel
 
         $requete->execute();
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $result = $requete->fetch(PDO::FETCH_ASSOC);
         if ($data = $result) {
 
-            $this->nom = $data['nom'];
+            $this->nom = $data['nom_materiel'];
 
             $this->description = $data['description'];
 
             $this->caution = $data['caution'];
 
-            $this->id_type_mat = $data['id_type_mat'];
+            $this->id_type_mat = $data['id_type_materiel'];
+
+            $this->enable = $data['enable'];
         }
     }
 
     public function updateMat()
     {
-        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `nom_materiel`=:nom, `description`=:description, WHERE `id_materiels`= :id");
+        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `nom_materiel`=:nom, `description`=:description, `caution`=:caution, `enable`=:enable WHERE `id_materiels`= :id");
         $requete->bindValue(':id', $this->id);
         $requete->bindValue(':nom', $this->nom);
         $requete->bindValue(':description', $this->description);
-
+        $requete->bindValue(':caution', $this->caution);
+        $requete->bindValue(':enable', $this->enable);
+        error_log($this->id);
+        error_log($this->nom);
+        error_log($this->description);
+        error_log($this->caution);
+        error_log($this->enable);
         $requete->execute();
     }
 
@@ -110,6 +128,17 @@ class Materiel
         $requete->execute();
 
         $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public  static function selecIdMat()
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_materiels`= :id ");
+        $requete->bindValue(':id', $id);
+        $requete->execute();
+
+        $result = $requete->fetch(PDO::FETCH_ASSOC);
 
         return $result;
     }

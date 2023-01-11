@@ -31,32 +31,10 @@
 					</a>
 				</li>
 			</ul>
-			<!-- Modal -->
-			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<form action="javascript:addTypeMat();">
-							<div class="modal-header">
-								<h1 class="modal-title fs-5" id="staticBackdropLabel">ajout type mat</h1>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<label for="inputNom" class="form-label">Nom</label>
-								<input type="text" class="form-control" id="Nom" aria-describedby="nomHelp"/>
-								<label for="inputPrenom" class="form-label">Icon
-									<a href="https://fontawesome.com/icons">site icon</a>
-								</label>
-								<input type="text" class="form-control" id="Icon" aria-describedby="prenomHelp"/>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-								<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">submit</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<form action="javascript:deleteMat();">
+			
+			
+
+			<form action="javascript:modifMat();">
 				<div class="tab-content" id="myTabContent">
 					{% for item in icon %}
 						{% if item == icon[0] %}
@@ -72,6 +50,16 @@
 			</form>
 		</div>
 
+
+	</div>
+
+	<div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				
+			</div>
+		</div>
 
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

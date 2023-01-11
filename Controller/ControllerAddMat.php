@@ -55,4 +55,19 @@ switch ($_POST['request']) {
         echo json_encode($responce);
 
         break;
+    
+    case 'modifMat':
+        error_log(json_encode($_POST));
+        $materiel = new Materiel($_POST['id']);
+        $materiel->setNom($_POST['nom']);
+        $materiel->setDescription($_POST['description']);
+        $materiel->setCaution($_POST['caution']);
+        $materiel->setEnable($_POST['enable']);
+        $materiel->updateMat();
+        
+
+        echo json_encode(1);
+
+
+        break;
 }

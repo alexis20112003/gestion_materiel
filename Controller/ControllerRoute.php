@@ -46,4 +46,25 @@ switch ($_POST['request']) {
         )));
 
         break;
+    
+        case 'pageModifMat':
+        $materiel = new Materiel($_POST['id']);
+        $TypeMat =  Materiel::TypeMat();
+        echo json_encode($twig->render('modifMat.html.twig', array(
+            "materiel" => $materiel,
+            "TypeMat" => $TypeMat
+        )
+        ));
+
+        break;
+
+        case 'pageAfficherMat':
+            error_log($_POST['id']);
+            $materiel = new Materiel($_POST['id']);
+            echo json_encode($twig->render('afficherMat.html.twig', array(
+                "materiel" => $materiel
+            )
+            ));
+    
+            break;
 }
