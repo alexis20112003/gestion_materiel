@@ -9,7 +9,7 @@
 		<!-- sqlcount pour la pagination -->
 		<!-- mettre variable qui prend +1 a chaque boucle en twig -->
 
-
+		<button class="btn border border-dark" onclick="addUserModal();">Ajouter un utilisateur</button>
 		<div class="col py-3">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				{% for item in onglet %}
@@ -20,11 +20,23 @@
 								{{item.statut | capitalize}}</a>
 						</li>
 					{% else %}
-						<li class="nav-item" onclick="changeUser({{item.id_type}});">
-							<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
-								<i class="{{item.onglet}}"></i>
-								{{item.statut | capitalize}}</a>
-						</li>
+						{% if user.statut == "super_admin" %}
+							<li class="nav-item" onclick="changeUser({{item.id_type}});">
+								<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+									<i class="{{item.onglet}}"></i>
+									{{item.statut | capitalize}}</a>
+							</li>
+						{% else %}
+							{% if item.statut != "admin" %}
+                        		{% if  item.statut != "super_admin" %}
+									<li class="nav-item" onclick="changeUser({{item.id_type}});">
+										<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+											<i class="{{item.onglet}}"></i>
+											{{item.statut | capitalize}}</a>
+									</li>
+								{% endif %}
+							{% endif %}
+						{% endif %}
 					{% endif %}
 				{% endfor %}
 			</ul>
@@ -38,6 +50,14 @@
 				{% endfor %}
 			</div>
 		</div>
+		<!-- Modal -->
+			<div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						
+					</div>
+				</div>
+			</div>
 
 
 	</div>

@@ -188,6 +188,28 @@ function addMat() {
   });
 }
 
+function addUser() {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "addUser",
+      nom: $("#Nom").val(),
+      prenom: $("#Prenom").val(),
+      email: $("#Email").val(),
+      promo: $("#Promo").val(),
+      statut: $("#Statut").val(),
+    },
+    success: function (response) {
+      console.log(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
 function addTypeMat() {
   $.ajax({
     url: "../controller/ControllerAddMat.php",
@@ -225,6 +247,43 @@ function deleteMat() {
     },
     success: function () {
       location.reload();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function addUserModal() {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "addUserModal",
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function updateUserModal(id) {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "updateUserModal",
+      id: id,
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
     },
     error: function () {
       alert("Error !");

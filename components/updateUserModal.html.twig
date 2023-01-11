@@ -1,0 +1,27 @@
+<form action="javascript:addTypeMat();">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Ajouter un utilisateur</h1>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <label for="inputNom" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="Nom" aria-describedby="nomHelp" value={{user.nom}} />
+        <label for="inputPrenom" class="form-label">Prenom</label>
+        <input type="text" class="form-control" id="Prenom" aria-describedby="prenomHelp" value={{user.prenom}} />
+        <label for="inputEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" value={{user.mail}} />
+        <label for="inputPromo" class="form-label">Promo</label>
+        <input type="text" class="form-control" id="Promo" aria-describedby="promoHelp" value={{user.promo}} />
+        <label for="inputStatut" class="form-label">Statut</label>
+        <input type="text" class="form-control" id="Statut" aria-describedby="statutHelp" value={{user.statut}} readonly />
+        <label for="selectEnable" class="form-label">Etat du compte</label>
+        <select class="form-select" name="enable_user" id="enableUser">
+            <option value=0>Actif</option>
+            <option value=1>Inactif</option>
+        </select>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal">submit</button>
+    </div>
+</form>

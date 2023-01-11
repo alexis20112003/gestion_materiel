@@ -1,0 +1,35 @@
+<form action="javascript:addUser();">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Ajouter un utilisateur</h1>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <label for="inputNom" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="Nom" aria-describedby="nomHelp"/>
+        <label for="inputPrenom" class="form-label">Prenom</label>
+        <input type="text" class="form-control" id="Prenom" aria-describedby="prenomHelp"/>
+        <label for="inputEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp"/>
+         <label for="inputPromo" class="form-label">Promo</label>
+        <input type="text" class="form-control" id="Promo" aria-describedby="promoHelp"/>
+        <select class="form-select" name="Type_Mat" id="Statut">
+            {% for item in role %}
+                {% if user.statut == "super_admin" %}
+                    <option value={{item.id_type}}>{{ item.statut | capitalize}}</option>
+                {% else %}
+                    {% if item.statut != "admin" %}
+                        {% if  item.statut != "super_admin" %}
+                            <option value={{item.id_type}}>{{ item.statut  | capitalize}}</option>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+
+            {% endfor %}
+        </select>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal">submit</button>
+    </div>
+</form>

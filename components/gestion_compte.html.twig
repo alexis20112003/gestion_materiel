@@ -13,10 +13,11 @@
 				<tbody>
 					{% for item in typeUser %}
 						<tr>
-							<th scope="row">{{userCount}}</th>
+							<th scope="row"></th>
 							<td>{{item.nom}}</td>
 							<td>{{item.prenom}}</td>
 							<td>{{item.promo}}</td>
+							<td onclick="updateUserModal({{item.id_utilisateur}});"><i class="fa-solid fa-pencil"></i></td>
 						</tr>
 					{% endfor %}
 				</tbody>
@@ -40,10 +41,11 @@
 				<tbody>
 					{% for item in typeUser %}
 						<tr>
-							<th scope="row">{{userCount}}</th>
+							<th scope="row"></th>
 							<td>{{item.nom}}</td>
 							<td>{{item.prenom}}</td>
 							<td>{{item.promo}}</td>
+							<td onclick="updateUserModal({{item.id_utilisateur}});"><i class="fa-solid fa-pencil"></i></td>
 						</tr>
 					{% endfor %}
 				</tbody>
