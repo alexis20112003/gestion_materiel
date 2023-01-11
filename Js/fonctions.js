@@ -202,6 +202,7 @@ function demandeMat() {
       date_fin: $("#date_fin").val(),
     },
     success: function () {
+      pageDemande();
     },
     error: function () {
       alert("Error !");
