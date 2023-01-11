@@ -25,7 +25,8 @@ switch ($_POST['request']) {
 
     case 'gestionMatDemande':
         $resultNum = Materiel::sqlCount($_POST['type']);
-        $type = Materiel::selectIdTypeMat($_POST['type']);
+        $type = Materiel::selectIdTypeMatDemande($_POST['type'], $_POST['date_debut'], $_POST['date_fin']);
+        error_log(json_encode($type));
         echo json_encode($twig->render('gestion_mat_demande.html.twig', array(
             "type" => $type,
             "resultNum" => $resultNum,

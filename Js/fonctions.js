@@ -184,13 +184,14 @@ function deleteMat() {
     }
   });
 }
-function demandeMat() {
+function demandeMat(date_debut, date_fin) {
   id_check_s = [];
   $("input.checkbox_check").each(function () {
     if ($(this).is(':checked')) {
       id_check_s.push($(this).val());
     }
   });
+  console.log(id_check_s);
   $.ajax({
     url: "../controller/ControllerDemande.php",
     dataType: "json",
@@ -198,6 +199,8 @@ function demandeMat() {
     data: {
       request: "demandeMat",
       id: JSON.stringify(id_check_s),
+      date_debut: date_debut,
+      date_fin: date_fin,
     },
     success: function () {
     },
@@ -229,7 +232,7 @@ function deconnexion() {
 
 function pageMatDemande(date_debut, date_fin) {
   $(document).ready(function () {
-    chargeMatDemande(1);
+    chargeMatDemande(1, date_debut, date_fin);
   });
   $.ajax({
     url: "../controller/ControllerRoute.php",
@@ -250,7 +253,7 @@ function pageMatDemande(date_debut, date_fin) {
   });
 }
 
-function chargeMatDemande(type) {
+function chargeMatDemande(type, date_debut, date_fin) {
   $.ajax({
     url: "../controller/ControllerTypeMat.php",
     dataType: "json",
@@ -258,6 +261,8 @@ function chargeMatDemande(type) {
     data: {
       request: "gestionMatDemande",
       type: type,
+      date_debut: date_debut,
+      date_fin: date_fin,
     },
     success: function (response) {
       $("#myTabContent").html(response);

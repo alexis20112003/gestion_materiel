@@ -128,15 +128,11 @@ class Commande
         $requete2->execute();
     }
 
-    public  function insertCom($idUser)
+    public  function insertComMat()
     {
         if ($this->id == 0) {
 
-            $requete = $GLOBALS['database']->prepare("INSERT INTO `commande` (`id_utilisateur`) VALUES (:id)");
-            $requete->bindValue(':id', $idUser);
-            $requete->execute();
             $lastid = $GLOBALS['database']->lastInsertId();
-
 
             $requete2 = $GLOBALS['database']->prepare("INSERT INTO `commande_material` (`id_commande`, `id_materiels`, `date_debut`, `date_fin`, `restitute`) VALUES (:id, :id_mat, :date_debut, :date_fin, :restitute)");
             $requete2->bindValue(':id', $lastid);
@@ -148,5 +144,13 @@ class Commande
 
             $requete2->execute();
         }
+    }
+    public  function insertCom($idUser)
+    {
+
+        $requete = $GLOBALS['database']->prepare("INSERT INTO `commande` (`id_utilisateur`, `statut`) VALUES (:id, :statut)");
+        $requete->bindValue(':id', $idUser);
+        $requete->bindValue(':statut', 0);
+        $requete->execute();
     }
 }

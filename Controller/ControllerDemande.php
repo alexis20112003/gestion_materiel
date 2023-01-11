@@ -17,13 +17,15 @@ switch ($_POST['request']) {
 
         if (isset($_POST['id']) && isset($_POST['date_debut']) && isset($_POST['date_fin'])) {
             $id = json_decode($_POST['id']);
+            $demande = new Commande(0);
+            $demande->insertCom($_SESSION['id']);
+
             foreach ($id as $value) {
-                $demande = new Commande(0);
                 $demande->setId_materiels($value);
                 $demande->setDate_debut($_POST['date_debut']);
                 $demande->setDate_fin($_POST['date_fin']);
                 $demande->setRestitute(0);
-                $demande->insertCom($_SESSION['id']);
+                $demande->insertComMat();
             }
             $responce = $id;
         }
@@ -38,7 +40,6 @@ switch ($_POST['request']) {
             $date_fin = $_POST['date_fin'];
 
             echo json_encode(array("date_debut" => $date_debut, "date_fin" => $date_fin));
-            error_log('c bon');
         }
 
         break;
