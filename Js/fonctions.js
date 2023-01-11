@@ -150,6 +150,7 @@ function pageGestionProfile() {
   });
 }
 
+
 function pageAddMat() {
   $.ajax({
     url: "../controller/ControllerRoute.php",
@@ -174,13 +175,14 @@ function addMat() {
     type: "POST",
     data: {
       request: "addMat",
-      nom: $("#Nom").val(),
+      nom: $("#NomMat").val(),
       description: $("#Description").val(),
       caution: $("#Caution").val(),
       type: $("#TypeMat").val(),
     },
     success: function (response) {
       console.log(response);
+      pageGestionMat();
     },
     error: function () {
       alert("Error !");
@@ -199,8 +201,7 @@ function addTypeMat() {
       icon: $("#Icon").val(),
     },
     success: function (response) {
-      location.reload();
-      changeMat(1);
+      pageGestionMat();
     },
     error: function () {
       alert("Error !");
@@ -231,6 +232,31 @@ function deleteMat() {
     },
   });
 }
+function demandeMat() {
+  id_check_s = [];
+  $("input.checkbox_check").each(function () {
+    if ($(this).is(':checked')) {
+      id_check_s.push($(this).val());
+    }
+  });
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "demandeMat",
+      id: JSON.stringify(id_check_s),
+      date_debut: $("#date_debut").val(),
+      date_fin: $("#date_fin").val(),
+    },
+    success: function () {
+      pageDemande();
+    },
+    error: function () {
+      alert("Error !");
+    }
+  });
+}
 
 function deconnexion() {
   $.ajax({
@@ -249,4 +275,67 @@ function deconnexion() {
       alert("Error !");
     },
   });
+}
+
+function pageMatDemande(date_debut, date_fin) {
+  chargeMatDemande(1);
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageMatDemande",
+      date_debut: date_debut,
+      date_fin: date_fin,
+    },
+    success: function (response) {
+      $("#result_demande").html(response);
+    },
+    error: function () {
+      alert("Error !");
+
+    },
+  });
+}
+
+function chargeMatDemande(type) {
+  $.ajax({
+    url: "../controller/ControllerTypeMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "gestionMatDemande",
+      type: type,
+      date_debut: $("#date_debut").val(),
+      date_fin: $("#date_fin").val(),
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+
+      alert("Error !");
+    },
+  });
+}
+
+function pageDemande() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageDemande",
+    },
+    success: function (response) {
+      $("#page").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function dateRecup() {
+  pageMatDemande($("#date_debut").val(), $("#date_fin").val());
 }

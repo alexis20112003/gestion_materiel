@@ -22,6 +22,7 @@ $preparedSql = $GLOBALS['database']->prepare('SELECT * FROM `site` ');
 $preparedSql->execute();
 $sites = $preparedSql->fetchAll(PDO::FETCH_ASSOC);
 
+
 echo $twig->render('main.html.twig', array(
   "user" => $user,
   "sites" => $sites,

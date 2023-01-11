@@ -18,7 +18,7 @@ switch ($_POST['request']) {
 
         $icon = Materiel::TypeMat();
 
-        echo json_encode($twig->render('gestion_mat.html.twig', array(
+        echo json_encode($twig->render('gestion_mat_onglet.html.twig', array(
             "icon" => $icon
         )));
 
@@ -43,17 +43,24 @@ switch ($_POST['request']) {
         break;
 
     case 'deconnexion':
-       
         session_destroy();
         echo json_encode(0);
         break;
 
-    case 'pageAddMat':
-
-        $TypeMat =  Materiel::TypeMat();
-        echo json_encode($twig->render('addMat.html.twig', array(
-            "TypeMat" => $TypeMat
+    case 'pageMatDemande':
+        $icon = Materiel::TypeMat();
+        $date_debut = $_POST['date_debut'];
+        $date_fin = $_POST['date_fin'];
+        echo json_encode($twig->render('matDemande.html.twig', array(
+            "icon" => $icon,
+            "date_debut" => $date_debut,
+            "date_fin" => $date_fin
         )));
+
+        break;
+
+    case 'pageDemande':
+        echo json_encode($twig->render('demande.html.twig', array()));
 
         break;
 }

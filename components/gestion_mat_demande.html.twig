@@ -6,24 +6,15 @@
 					<th scope="col">#</th>
 					<th scope="col">nom ordinateur</th>
 					<th scope="col">desc</th>
-					<th scope="col"></th>
-					<th scope="col"></th>
-					<th scope="col"></th>
-					
 				</tr>
 			</thead>
 			<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
 				<tbody>
 					{% for item in type %}
 						<tr>
-							<th scope="row">{{resultNum}}</th>
+							<th scope="row"><input class="checkbox_check form-check-input" type="checkbox" value="{{item.id_materiels}}" id="flexCheckDefault"></th>
 							<td>{{item.nom_materiel}}</td>
 							<td>{{item.description}}</td>
-							<td><i class="fa-solid fa-eye"></i></td>
-							<td><i class="fa-solid fa-pencil"></i></td>
-							<td>
-								<input class="checkbox_check form-check-input" type="checkbox" value="{{item.id_materiels}}" id="flexCheckDefault">
-							</td>
 						</tr>
 					{% endfor %}
 				</tbody>
@@ -40,19 +31,15 @@
 					<th scope="col">#</th>
 					<th scope="col">nom ordinateur</th>
 					<th scope="col">desc</th>
-					<th scope="col"></th>
 				</tr>
 			</thead>
 			<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
 				<tbody>
 					{% for item in type %}
 						<tr>
-							<th scope="row">{{resultNum}}</th>
+							<th scope="row"><input class="checkbox_check form-check-input" type="checkbox" value="{{item.id_materiels}}" id="flexCheckDefault"></th>
 							<td>{{item.nom_materiel}}</td>
 							<td>{{item.description}}</td>
-							<td>
-								<input class="checkbox_check form-check-input" type="checkbox" value="{{item.id_materiels}}" id="flexCheckDefault">
-							</td>
 						</tr>
 					{% endfor %}
 				</tbody>
