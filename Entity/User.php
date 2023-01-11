@@ -142,7 +142,7 @@ class User
 			'cost' => 8,
 		];
 
-		$this->pass = password_hash($pass, PASSWORD_BCRYPT, $options);
+		return $this->pass = password_hash($pass, PASSWORD_BCRYPT, $options);
 	}
 
 	public function getPromo()

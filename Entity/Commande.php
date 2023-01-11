@@ -128,15 +128,21 @@ class Commande
         $requete2->execute();
     }
 
-    public  function insertComMat()
-    {
-        if ($this->id == 0) {
 
-            $lastid = $GLOBALS['database']->lastInsertId();
+    public  function insertCom($idUser, $id)
+    {
+
+        $requete = $GLOBALS['database']->prepare("INSERT INTO `commande` (`id_utilisateur`, `statut`) VALUES (:id, :statut)");
+        $requete->bindValue(':id', $idUser);
+        $requete->bindValue(':statut', 0);
+        $requete->execute();
+        $lastid = $GLOBALS['database']->lastInsertId();
+        foreach ($id as $value) {
+
 
             $requete2 = $GLOBALS['database']->prepare("INSERT INTO `commande_material` (`id_commande`, `id_materiels`, `date_debut`, `date_fin`, `restitute`) VALUES (:id, :id_mat, :date_debut, :date_fin, :restitute)");
             $requete2->bindValue(':id', $lastid);
-            $requete2->bindValue(':id_mat', $this->id_materiels);
+            $requete2->bindValue(':id_mat', $value);
             $requete2->bindValue(':date_debut', $this->date_debut);
             $requete2->bindValue(':date_fin', $this->date_fin);
             $requete2->bindValue(':restitute', $this->restitute);
@@ -144,13 +150,5 @@ class Commande
 
             $requete2->execute();
         }
-    }
-    public  function insertCom($idUser)
-    {
-
-        $requete = $GLOBALS['database']->prepare("INSERT INTO `commande` (`id_utilisateur`, `statut`) VALUES (:id, :statut)");
-        $requete->bindValue(':id', $idUser);
-        $requete->bindValue(':statut', 0);
-        $requete->execute();
     }
 }

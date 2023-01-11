@@ -184,14 +184,13 @@ function deleteMat() {
     }
   });
 }
-function demandeMat(date_debut, date_fin) {
+function demandeMat() {
   id_check_s = [];
   $("input.checkbox_check").each(function () {
     if ($(this).is(':checked')) {
       id_check_s.push($(this).val());
     }
   });
-  console.log(id_check_s);
   $.ajax({
     url: "../controller/ControllerDemande.php",
     dataType: "json",
@@ -199,8 +198,8 @@ function demandeMat(date_debut, date_fin) {
     data: {
       request: "demandeMat",
       id: JSON.stringify(id_check_s),
-      date_debut: date_debut,
-      date_fin: date_fin,
+      date_debut: $("#date_debut").val(),
+      date_fin: $("#date_fin").val(),
     },
     success: function () {
     },
@@ -231,9 +230,7 @@ function deconnexion() {
 }
 
 function pageMatDemande(date_debut, date_fin) {
-  $(document).ready(function () {
-    chargeMatDemande(1, date_debut, date_fin);
-  });
+  chargeMatDemande(1);
   $.ajax({
     url: "../controller/ControllerRoute.php",
     dataType: "json",
@@ -244,7 +241,7 @@ function pageMatDemande(date_debut, date_fin) {
       date_fin: date_fin,
     },
     success: function (response) {
-      $("#page").html(response);
+      $("#result_demande").html(response);
     },
     error: function () {
       alert("Error !");
@@ -253,7 +250,7 @@ function pageMatDemande(date_debut, date_fin) {
   });
 }
 
-function chargeMatDemande(type, date_debut, date_fin) {
+function chargeMatDemande(type) {
   $.ajax({
     url: "../controller/ControllerTypeMat.php",
     dataType: "json",
@@ -261,8 +258,8 @@ function chargeMatDemande(type, date_debut, date_fin) {
     data: {
       request: "gestionMatDemande",
       type: type,
-      date_debut: date_debut,
-      date_fin: date_fin,
+      date_debut: $("#date_debut").val(),
+      date_fin: $("#date_fin").val(),
     },
     success: function (response) {
       $("#myTabContent").html(response);
@@ -292,20 +289,5 @@ function pageDemande() {
 }
 
 function dateRecup() {
-  $.ajax({
-    url: "../controller/ControllerDemande.php",
-    dataType: "json",
-    type: "POST",
-    data: {
-      request: "dateRecup",
-      date_debut: $("#date_debut").val(),
-      date_fin: $("#date_fin").val(),
-    },
-    success: function (response) {
-      pageMatDemande(response['date_debut'], response['date_fin']);
-    },
-    error: function () {
-      alert("Error !");
-    },
-  });
+  pageMatDemande($("#date_debut").val(), $("#date_fin").val());
 }

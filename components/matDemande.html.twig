@@ -1,21 +1,16 @@
 {% block body %}
-	<h3>Demande</h3>
-
 	<div class="col py-3">
-		<h3>{{date_debut}}
-			/
-			{{date_fin}}</h3>
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			{% for item in icon %}
 				{% if item == icon[0] %}
 
-					<li class="nav-item" onclick="chargeMatDemande({{item.id_type_materiel}}, '{{date_debut}}', '{{date_fin}}');">
+					<li class="nav-item" onclick="chargeMatDemande({{item.id_type_materiel}});">
 						<a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
 							<i class="{{item.icon}}"></i>
 							{{item.origine_materiel}}</a>
 					</li>
 				{% else %}
-					<li class="nav-item" onclick="chargeMatDemande({{item.id_type_materiel}}, '{{date_debut}}', '{{date_fin}}');">
+					<li class="nav-item" onclick="chargeMatDemande({{item.id_type_materiel}});">
 						<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
 							<i class="{{item.icon}}"></i>
 							{{item.origine_materiel}}</a>
@@ -23,7 +18,7 @@
 				{% endif %}
 			{% endfor %}
 		</ul>
-		<form action="javascript:demandeMat('{{date_debut}}', '{{date_fin}}');">
+		<form action="javascript:demandeMat();">
 			<div class="tab-content" id="myTabContent">
 				{% for item in icon %}
 					{% if item == icon[0] %}
