@@ -33,7 +33,7 @@ switch ($_POST['request']) {
         break;
 
     case 'deconnexion':
-        error_log("ici");
+        
         session_destroy();
         echo json_encode(0);
         break;
@@ -57,14 +57,23 @@ switch ($_POST['request']) {
         ));
 
         break;
-
+        
         case 'pageAfficherMat':
-            error_log($_POST['id']);
+        
             $materiel = new Materiel($_POST['id']);
             echo json_encode($twig->render('afficherMat.html.twig', array(
                 "materiel" => $materiel
             )
             ));
     
-            break;
+        break;
+        
+        case 'pageAddTypeMat':
+            echo json_encode($twig->render('addTypeMat.html.twig', array(
+            )
+            ));
+
+        break;
+        
+        
 }

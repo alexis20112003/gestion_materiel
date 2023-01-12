@@ -57,7 +57,7 @@ switch ($_POST['request']) {
         break;
     
     case 'modifMat':
-        error_log(json_encode($_POST));
+        
         $materiel = new Materiel($_POST['id']);
         $materiel->setNom($_POST['nom']);
         $materiel->setDescription($_POST['description']);

@@ -1,24 +1,27 @@
-{% block body %}
-	<h3>Add Mat</h3>
-	<div class="col py-3">
-		<form action="javascript:addMat();" method="post">
-			<div class="mb-3">
-				<label for="inputNom" class="form-label">Nom</label>
-				<input type="text" class="form-control" id="Nom" aria-describedby="nomHelp"/>
-				<label for="inputPrenom" class="form-label">Description</label>
-				<input type="text" class="form-control" id="Description" aria-describedby="prenomHelp"/>
-				<label for="inputCaution" class="form-label">Caution</label>
-				<input type="number" class="form-control" id="Caution" aria-describedby="nomHelp"/>
-				<label for="EmailUpdate" class="form-label">Type Materiel</label>
-				<select class="form-select" name="Type_Mat" id="TypeMat">
-					{% for item in TypeMat %}
-						<option value="{{item.id_type_materiel}}">{{item.origine_materiel}}</option>
-					{% endfor %}
-				</select>
-				<br>
-				<br>
-				<button type="submit" class="btn border border-dark">Ajouter</button>
-			</div>
-		</form>
+<form action="javascript:addMat();" method="post">
+	<div class="modal-header">
+		<h1 class="modal-title fs-5" id="ModifMatLabel">Ajouter mat</h1>
+		<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
 	</div>
-{% endblock %}
+    </div>
+    <div class="modal-body">
+        <label for="inputNom" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="Nom" aria-describedby="nomHelp"/>
+        <label for="inputPrenom" class="form-label">Description</label>
+        <input type="text" class="form-control" id="Description" aria-describedby="prenomHelp"/>
+        <label for="inputCaution" class="form-label">Caution</label>
+        <input type="number" class="form-control" id="Caution" aria-describedby="nomHelp"/>
+        <label for="EmailUpdate" class="form-label">Type Materiel</label>
+        <select class="form-select" name="Type_Mat" id="TypeMat">
+            {% for item in TypeMat %}
+                <option value="{{item.id_type_materiel}}">{{item.origine_materiel}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary"  value ="Ajouter">
+
+    </div>
+</form>

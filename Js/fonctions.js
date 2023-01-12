@@ -126,7 +126,8 @@ function pageAddMat() {
       request: "pageAddMat",
     },
     success: function (response) {
-      $("#page").html(response);
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
     },
     error: function () {
       alert("Error !");
@@ -142,6 +143,24 @@ function pageModifMat(id) {
     data: {
       request: "pageModifMat",
       id: id,
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function pageAddTypeMat() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageAddTypeMat",
     },
     success: function (response) {
       $(".modal-content").html(response);
@@ -186,6 +205,8 @@ function addMat() {
     },
     success: function (response) {
       console.log(response);
+      changeMat(1);
+      $("#modal").modal("hide");
     },
     error: function () {
       alert("Error !");
@@ -206,6 +227,7 @@ function modifMat() {
       description: $("#Description").val(),
       caution: $("#Caution").val(),
       enable: $("#Enable").val(),
+      type: $("#TypeMat").val(),
     },
     success: function (response) {
       console.log(response);
@@ -229,8 +251,8 @@ function addTypeMat() {
       icon: $("#Icon").val(),
     },
     success: function (response) {
-      location.reload();
       changeMat(1);
+      $("#modal").modal("hide");
     },
     error: function () {
       alert("Error !");

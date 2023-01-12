@@ -107,17 +107,14 @@ class Materiel
 
     public function updateMat()
     {
-        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `nom_materiel`=:nom, `description`=:description, `caution`=:caution, `enable`=:enable WHERE `id_materiels`= :id");
+        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `nom_materiel`=:nom, `description`=:description, `caution`=:caution, `enable`=:enable, `id_type_materiel`=:TypeMat WHERE `id_materiels`= :id");
         $requete->bindValue(':id', $this->id);
         $requete->bindValue(':nom', $this->nom);
         $requete->bindValue(':description', $this->description);
         $requete->bindValue(':caution', $this->caution);
         $requete->bindValue(':enable', $this->enable);
-        error_log($this->id);
-        error_log($this->nom);
-        error_log($this->description);
-        error_log($this->caution);
-        error_log($this->enable);
+        $requete->bindValue(':TypeMat', $this->id_type_mat); 
+        
         $requete->execute();
     }
 
