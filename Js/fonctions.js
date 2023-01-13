@@ -246,8 +246,8 @@ function demandeMat() {
     data: {
       request: "demandeMat",
       id: JSON.stringify(id_check_s),
-      date_debut: $("#date_debut").val(),
-      date_fin: $("#date_fin").val(),
+      date_debut: $("#dropper").attr('data-dd-opt-range-start'),
+      date_fin: $("#dropper").attr('data-dd-opt-range-end'),
     },
     success: function () {
       pageDemande();
@@ -306,8 +306,8 @@ function chargeMatDemande(type) {
     data: {
       request: "gestionMatDemande",
       type: type,
-      date_debut: $("#date_debut").val(),
-      date_fin: $("#date_fin").val(),
+      date_debut: $("#dropper").attr('data-dd-opt-range-start'),
+      date_fin: $("#dropper").attr('data-dd-opt-range-end'),
     },
     success: function (response) {
       $("#myTabContent").html(response);
@@ -336,6 +336,3 @@ function pageDemande() {
   });
 }
 
-function dateRecup() {
-  pageMatDemande($("#date_debut").val(), $("#date_fin").val());
-}

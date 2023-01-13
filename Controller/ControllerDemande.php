@@ -16,10 +16,14 @@ switch ($_POST['request']) {
     case 'demandeMat':
 
         if (isset($_POST['id']) && isset($_POST['date_debut']) && isset($_POST['date_fin'])) {
+            $order   = '/';
+            $replace = '-';
+            $date_debut = str_replace($order, $replace, $_POST['date_debut']);
+            $date_fin = str_replace($order, $replace, $_POST['date_fin']);
             $id = json_decode($_POST['id']);
             $demande = new Commande(0);
-            $demande->setDate_debut($_POST['date_debut']);
-            $demande->setDate_fin($_POST['date_fin']);
+            $demande->setDate_debut($date_debut);
+            $demande->setDate_fin($date_fin);
             $demande->setRestitute(0);
             $demande->insertCom($_SESSION['id'], $id);
 

@@ -25,7 +25,11 @@ switch ($_POST['request']) {
 
     case 'gestionMatDemande':
         $resultNum = Materiel::sqlCount($_POST['type']);
-        $type = Materiel::selectIdTypeMatDemande($_POST['type'], $_POST['date_debut'], $_POST['date_fin']);
+        $order   = '/';
+        $replace = '-';
+        $date_debut = str_replace($order, $replace, $_POST['date_debut']);
+        $date_fin = str_replace($order, $replace, $_POST['date_fin']);
+        $type = Materiel::selectIdTypeMatDemande($_POST['type'], $date_debut, $date_fin);
 
 
         echo json_encode($twig->render('gestion_mat_demande.html.twig', array(

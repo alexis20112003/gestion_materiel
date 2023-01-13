@@ -49,8 +49,10 @@ switch ($_POST['request']) {
 
     case 'pageMatDemande':
         $icon = Materiel::TypeMat();
-        $date_debut = $_POST['date_debut'];
-        $date_fin = $_POST['date_fin'];
+        $order   = '/';
+        $replace = '-';
+        $date_debut = str_replace($order, $replace, $_POST['date_debut']);
+        $date_fin = str_replace($order, $replace, $_POST['date_fin']);
         echo json_encode($twig->render('matDemande.html.twig', array(
             "icon" => $icon,
             "date_debut" => $date_debut,
