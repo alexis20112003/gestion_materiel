@@ -30,19 +30,19 @@
 									</li>
 								{% endfor %}
 								<li onclick="pageGestionMat();">
-									<a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+									<a href="" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
 										<i class="fs-4 bi-speedometer2"></i>
 										<span class="ms-1 d-none d-sm-inline">Inventaire Materiel</span>
 									</a>
 								</li>
-								<li>
-									<a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+								<li onclick="pageDemande();">
+									<a href="" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
 										<i class="fs-4 bi-speedometer2"></i>
 										<span class="ms-1 d-none d-sm-inline">Demandes et Attributions</span>
 									</a>
 								</li>
 								<li onclick="pageGestionCompte();">
-									<a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+									<a href="" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
 										<i class="fs-4 bi-speedometer2"></i>
 										<span class="ms-1 d-none d-sm-inline">Gestion des Comptes</span>
 									</a>
@@ -82,7 +82,7 @@
 									<li onclick="pageGestionMat();">
 										<a class="dropdown-item" href="">Inventaire Materiel</a>
 									</li>
-									<li>
+									<li onclick="pageDemande();">
 										<a class="dropdown-item" href="">Demandes et Attributions</a>
 									</li>
 									<li>
@@ -91,9 +91,8 @@
 								{% endif %}
 								{% if user.getStatut != "admin" and user.getStatut != "super_admin" %}
 									<li onclick="pageDemande();">
-										<a href="" class="nav-link px-0 align-middle">
-											<i class="fs-4 bi-table"></i>
-											<span class="ms-1 d-none d-sm-inline">Demandes</span>
+										<a class="dropdown-item" href="">
+											Demandes
 										</a>
 									</li>
 									<li>
