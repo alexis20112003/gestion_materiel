@@ -56,7 +56,7 @@ switch ($_POST['request']) {
         $replace = '-';
         $date_debut = str_replace($order, $replace, $_POST['date_debut']);
         $date_fin = str_replace($order, $replace, $_POST['date_fin']);
-        error_log($date_debut);
+        error_log($date_debut + ' page Mat Demande');
         echo json_encode($twig->render('matDemande.html.twig', array(
             "icon" => $icon,
             "date_debut" => $date_debut,
