@@ -98,9 +98,7 @@ function changeUser(type) {
 }
 
 function pageGestionMat() {
-  $(document).ready(function () {
-    changeMat(1);
-  });
+  changeMat(1);
   $.ajax({
     url: "../controller/ControllerRoute.php",
     dataType: "json",
