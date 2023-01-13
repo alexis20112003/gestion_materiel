@@ -5,9 +5,7 @@ class Materiel
 
     private $id;
 
-
     private $nom;
-
 
     private $description;
 
@@ -124,8 +122,8 @@ class Materiel
         $requete->bindValue(':description', $this->description);
         $requete->bindValue(':caution', $this->caution);
         $requete->bindValue(':enable', $this->enable);
-        $requete->bindValue(':TypeMat', $this->id_type_mat); 
-        
+        $requete->bindValue(':TypeMat', $this->id_type_mat);
+
         $requete->execute();
     }
 
