@@ -1,0 +1,53 @@
+<form action="javascript:modifMat();">
+	<div class="modal-header">
+		<h1 class="modal-title fs-5" id="ModifMatLabel">Afficher mat</h1>
+		<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+	</div>
+	<div class="modal-body">
+		<div>
+			<div class="mb-3">
+				<input
+					type="text"
+					class="form-control invisible"
+					id="id"
+					value={{materiel.id}} readonly
+					/>
+					<label for="nom" class="form-label">Nom</label>
+					<input
+					type="text"
+					class="form-control"
+					id="Nom"
+					value={{materiel.nom}} readonly
+					/>
+					<label for="description" class="form-label">Description</label>
+					<input
+					type="text"
+					class="form-control"
+					id="Description"
+					value={{materiel.description}} readonly
+					/>
+					<label for="caution" class="form-label">Caution</label>
+					<input
+					type="text"
+					class="form-control"
+					id="Caution"
+					value={{materiel.caution}} readonly
+					/>
+					<label for="enable" class="form-label">Enable</label>
+					<input
+					type="text"
+					class="form-control"
+					id="Enable"
+					value={{materiel.enable}} readonly
+					/>
+			
+		</div>
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+	</div>
+
+	
+</form>

@@ -150,7 +150,6 @@ function pageGestionProfile() {
   });
 }
 
-
 function pageAddMat() {
   $.ajax({
     url: "../controller/ControllerRoute.php",
@@ -160,7 +159,64 @@ function pageAddMat() {
       request: "pageAddMat",
     },
     success: function (response) {
-      $("#page").html(response);
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function pageModifMat(id) {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageModifMat",
+      id: id,
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function pageAddTypeMat() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageAddTypeMat",
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function pageAfficherMat(id) {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageAfficherMat",
+      id: id,
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
     },
     error: function () {
       alert("Error !");
@@ -182,7 +238,34 @@ function addMat() {
     },
     success: function (response) {
       console.log(response);
-      pageGestionMat();
+      changeMat(1);
+      $("#modal").modal("hide");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function modifMat() {
+  console.log("aaa");
+  $.ajax({
+    url: "../controller/ControllerAddMat.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "modifMat",
+      id: $("#id").val(),
+      nom: $("#Nom").val(),
+      description: $("#Description").val(),
+      caution: $("#Caution").val(),
+      enable: $("#Enable").val(),
+      type: $("#TypeMat").val(),
+    },
+    success: function (response) {
+      console.log(response);
+      changeMat(1);
+      $("#modal").modal("hide");
     },
     error: function () {
       alert("Error !");
@@ -201,7 +284,8 @@ function addTypeMat() {
       icon: $("#Icon").val(),
     },
     success: function (response) {
-      pageGestionMat();
+      changeMat(1);
+      $("#modal").modal("hide");
     },
     error: function () {
       alert("Error !");
@@ -235,7 +319,7 @@ function deleteMat() {
 function demandeMat() {
   id_check_s = [];
   $("input.checkbox_check").each(function () {
-    if ($(this).is(':checked')) {
+    if ($(this).is(":checked")) {
       id_check_s.push($(this).val());
     }
   });
@@ -246,15 +330,15 @@ function demandeMat() {
     data: {
       request: "demandeMat",
       id: JSON.stringify(id_check_s),
-      date_debut: $("#dropper").attr('data-dd-opt-range-start'),
-      date_fin: $("#dropper").attr('data-dd-opt-range-end'),
+      date_debut: $("#dropper").attr("data-dd-opt-range-start"),
+      date_fin: $("#dropper").attr("data-dd-opt-range-end"),
     },
     success: function () {
       pageDemande();
     },
     error: function () {
       alert("Error !");
-    }
+    },
   });
 }
 
@@ -293,7 +377,6 @@ function pageMatDemande(date_debut, date_fin) {
     },
     error: function () {
       alert("Error !");
-
     },
   });
 }
@@ -306,14 +389,13 @@ function chargeMatDemande(type) {
     data: {
       request: "gestionMatDemande",
       type: type,
-      date_debut: $("#dropper").attr('data-dd-opt-range-start'),
-      date_fin: $("#dropper").attr('data-dd-opt-range-end'),
+      date_debut: $("#dropper").attr("data-dd-opt-range-start"),
+      date_fin: $("#dropper").attr("data-dd-opt-range-end"),
     },
     success: function (response) {
       $("#myTabContent").html(response);
     },
     error: function () {
-
       alert("Error !");
     },
   });
@@ -335,4 +417,3 @@ function pageDemande() {
     },
   });
 }
-

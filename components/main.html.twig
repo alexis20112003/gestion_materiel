@@ -22,7 +22,7 @@
 							{% if user.getStatut == "admin" or user.getStatut == "super_admin" %}
 								{% for site in sites %}
 									<li class="nav-item">
-										<a href="#" class="nav-link align-middle px-0">
+										<a href="" class="nav-link align-middle px-0">
 											<i class="fs-4 bi-house"></i>
 											<span class="ms-1 d-none d-sm-inline">Site
 												{{site.site}}</span>
@@ -51,13 +51,13 @@
 							{% if user.getStatut != "admin" and user.getStatut != "super_admin" %}
 
 								<li onclick="pageDemande();">
-									<a href="#" class="nav-link px-0 align-middle">
+									<a href="" class="nav-link px-0 align-middle">
 										<i class="fs-4 bi-table"></i>
 										<span class="ms-1 d-none d-sm-inline">Demandes</span>
 									</a>
 								</li>
 								<li>
-									<a href="#" class="nav-link px-0 align-middle">
+									<a href="" class="nav-link px-0 align-middle">
 										<i class="fs-4 bi-table"></i>
 										<span class="ms-1 d-none d-sm-inline">Contacter Administrateur</span>
 									</a>
@@ -66,7 +66,7 @@
 						</ul>
 						<hr>
 						<div class="d-block d-sm-none">
-							<a href="#" class="d-flex align-items-center text-dark text-decoration-none border border-2 border-dark rounded" id="dropdownMenuUser" data-bs-toggle="dropdown" aria-expanded="false">
+							<a href="" class="d-flex align-items-center text-dark text-decoration-none border border-2 border-dark rounded" id="dropdownMenuUser" data-bs-toggle="dropdown" aria-expanded="false">
 								<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-list" viewbox="0 0 16 16">
 									<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
 								</svg>
@@ -74,27 +74,27 @@
 							<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownMenuUser">
 								{% if user.getStatut == "admin" or user.getStatut == "super_admin" %}
 									<li>
-										<a class="dropdown-item" href="#">Site Bastia</a>
+										<a class="dropdown-item" href="">Site Bastia</a>
 									</li>
 									<li>
-										<a class="dropdown-item" href="#">Site Ajaccio</a>
+										<a class="dropdown-item" href="">Site Ajaccio</a>
 									</li>
 									<li onclick="pageGestionMat();">
-										<a class="dropdown-item" href="#">Inventaire Materiel</a>
+										<a class="dropdown-item" href="">Inventaire Materiel</a>
 									</li>
 									<li>
-										<a class="dropdown-item" href="#">Demandes et Attributions</a>
+										<a class="dropdown-item" href="">Demandes et Attributions</a>
 									</li>
 									<li>
-										<a class="dropdown-item" href="#">Gestion des Comptes</a>
+										<a class="dropdown-item" href="">Gestion des Comptes</a>
 									</li>
 								{% endif %}
 								{% if user.getStatut != "admin" and user.getStatut != "super_admin" %}
 									<li>
-										<a class="dropdown-item" href="#">Demandes</a>
+										<a class="dropdown-item" href="">Demandes</a>
 									</li>
 									<li>
-										<a class="dropdown-item" href="#">Contacter Administrateur</a>
+										<a class="dropdown-item" href="">Contacter Administrateur</a>
 									</li>
 								{% endif %}
 
@@ -102,7 +102,7 @@
 						</div>
 						<hr>
 						<div class="dropdown pb-4">
-							<a href="#" class="d-flex align-items-center text-decoration-none text-white dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+							<a href="" class="d-flex align-items-center text-decoration-none text-white dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 								<img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle ">
 								<span class="d-none d-sm-inline mx-1">{{user.nom}}
 									{% if user.statut == "eleve" %}
@@ -112,13 +112,13 @@
 							</a>
 							<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
 								<li onclick="pageGestionProfile();">
-									<a class="dropdown-item" href="#">Profile</a>
+									<a class="dropdown-item" href="">Profile</a>
 								</li>
 								<li>
 									<hr class="dropdown-divider">
 								</li>
 								<li onclick="deconnexion();">
-									<a class="dropdown-item" href="#">Deconnexion</a>
+									<a class="dropdown-item" href="">Deconnexion</a>
 								</li>
 							</ul>
 						</div>

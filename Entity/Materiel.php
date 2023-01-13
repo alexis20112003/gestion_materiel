@@ -64,6 +64,16 @@ class Materiel
         $this->caution = $caution;
     }
 
+    public function getEnable()
+    {
+        return $this->enable;
+    }
+
+    public function setEnable($enable)
+    {
+        $this->enable = $enable;
+    }
+
     public function getId_type_mat()
     {
         return $this->id_type_mat;
@@ -91,7 +101,7 @@ class Materiel
         $requete->bindValue(':id', $this->id);
         $requete->execute();
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $result = $requete->fetch(PDO::FETCH_ASSOC);
         if ($data = $result) {
 
             $this->nom = $data['nom_materiel'];
@@ -108,11 +118,14 @@ class Materiel
 
     public function updateMat()
     {
-        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `nom_materiel`=:nom, `description`=:description, WHERE `id_materiels`= :id");
+        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `nom_materiel`=:nom, `description`=:description, `caution`=:caution, `enable`=:enable, `id_type_materiel`=:TypeMat WHERE `id_materiels`= :id");
         $requete->bindValue(':id', $this->id);
         $requete->bindValue(':nom', $this->nom);
         $requete->bindValue(':description', $this->description);
-
+        $requete->bindValue(':caution', $this->caution);
+        $requete->bindValue(':enable', $this->enable);
+        $requete->bindValue(':TypeMat', $this->id_type_mat); 
+        
         $requete->execute();
     }
 
@@ -123,6 +136,17 @@ class Materiel
         $requete->execute();
 
         $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public  static function selecIdMat()
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_materiels`= :id ");
+        $requete->bindValue(':id', $id);
+        $requete->execute();
+
+        $result = $requete->fetch(PDO::FETCH_ASSOC);
 
         return $result;
     }

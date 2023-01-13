@@ -43,6 +43,7 @@ switch ($_POST['request']) {
         break;
 
     case 'deconnexion':
+
         session_destroy();
         echo json_encode(0);
         break;
@@ -60,9 +61,38 @@ switch ($_POST['request']) {
         )));
 
         break;
-
     case 'pageDemande':
         echo json_encode($twig->render('demande.html.twig', array()));
 
         break;
+    
+    case 'pageModifMat':
+        $materiel = new Materiel($_POST['id']);
+        $TypeMat =  Materiel::TypeMat();
+        echo json_encode($twig->render('modifMat.html.twig', array(
+            "materiel" => $materiel,
+            "TypeMat" => $TypeMat
+        )
+        ));
+
+        break;
+    
+    case 'pageAfficherMat':
+    
+        $materiel = new Materiel($_POST['id']);
+        echo json_encode($twig->render('afficherMat.html.twig', array(
+            "materiel" => $materiel
+        )
+        ));
+
+        break;
+    
+    case 'pageAddTypeMat':
+        echo json_encode($twig->render('addTypeMat.html.twig', array(
+        )
+        ));
+
+        break;
+        
+        
 }
