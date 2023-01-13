@@ -64,7 +64,7 @@ switch ($_POST['request']) {
 
         break;
     case 'pageDemande':
-        echo json_encode($twig->render('demande.html.twig', array()));
+        echo json_encode($twig->render('demande.html.twig'));
 
         break;
     
@@ -78,6 +78,14 @@ switch ($_POST['request']) {
         ));
 
         break;
+        case 'pageAddMat':
+
+            $TypeMat =  Materiel::TypeMat();
+                echo json_encode($twig->render('addMat.html.twig',array(
+                    'TypeMat' => $TypeMat)
+                ));
+                
+                break;
     
     case 'pageAfficherMat':
     

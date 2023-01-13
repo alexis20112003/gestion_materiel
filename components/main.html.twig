@@ -51,13 +51,13 @@
 							{% if user.getStatut != "admin" and user.getStatut != "super_admin" %}
 
 								<li onclick="pageDemande();">
-									<a href="" class="nav-link px-0 align-middle">
+									<a href="#submenu1" class="nav-link px-0 align-middle">
 										<i class="fs-4 bi-table"></i>
 										<span class="ms-1 d-none d-sm-inline">Demandes</span>
 									</a>
 								</li>
 								<li>
-									<a href="" class="nav-link px-0 align-middle">
+									<a href="#submenu1" class="nav-link px-0 align-middle">
 										<i class="fs-4 bi-table"></i>
 										<span class="ms-1 d-none d-sm-inline">Contacter Administrateur</span>
 									</a>
@@ -90,8 +90,8 @@
 									</li>
 								{% endif %}
 								{% if user.getStatut != "admin" and user.getStatut != "super_admin" %}
-									<li>
-										<a class="dropdown-item" href="">Demandes</a>
+									<li onclick="pageDemande();">
+										<a class="dropdown-item" href="#submenu1">Demandes</a>
 									</li>
 									<li>
 										<a class="dropdown-item" href="">Contacter Administrateur</a>
@@ -112,7 +112,7 @@
 							</a>
 							<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
 								<li onclick="pageGestionProfile();">
-									<a class="dropdown-item" href="">Profile</a>
+									<a class="dropdown-item" href="#submenu1">Profile</a>
 								</li>
 								<li>
 									<hr class="dropdown-divider">
@@ -126,7 +126,7 @@
 				</div>
 				<div class="updatePage col-9 col-lg-10" id="page">
 					{% block body %}
-						{% include "profile.html" %}
+						{% include "profile.html.twig" %}
 					{% endblock %}
 				</div>
 			</div>
