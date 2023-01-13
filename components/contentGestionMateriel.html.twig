@@ -16,10 +16,10 @@
 				<tbody>
 					{% for item in type %}
 						<tr>
-							<th onclick="pageAfficherMat({{item.id_materiels}}) ;"><i class="fa-solid fa-eye"></i></th>
+							<th onclick="modalAfficherMateriel({{item.id_materiels}}) ;"><i class="fa-solid fa-eye"></i></th>
 							<td>{{item.nom_materiel}}</td>
 							<td>{{item.description}}</td>
-							<td  onclick="pageModifMat({{item.id_materiels}}) ;" ><i class="fa-solid fa-pencil" ></i></td>
+							<td  onclick="modalUpdateMateriel({{item.id_materiels}}) ;" ><i class="fa-solid fa-pencil" ></i></td>
 							<td>
 								<input class="checkbox_check form-check-input" type="checkbox" value="{{item.id_materiels}}" id="flexCheckDefault">
 							</td>

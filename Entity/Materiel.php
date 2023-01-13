@@ -13,7 +13,7 @@ class Materiel
 
     private $enable;
 
-    private $id_type_mat;
+    private $id_type_materiel;
 
 
     public function __construct($id)
@@ -73,14 +73,14 @@ class Materiel
         $this->enable = $enable;
     }
 
-    public function getId_type_mat()
+    public function getId_type_materiel()
     {
-        return $this->id_type_mat;
+        return $this->id_type_materiel;
     }
 
-    public function setId_type_mat($id_type_mat)
+    public function setId_type_materiel($id_type_materiel)
     {
-        $this->id_type_mat = $id_type_mat;
+        $this->id_type_materiel = $id_type_materiel;
     }
 
     private function getFromDatabase()
@@ -99,26 +99,26 @@ class Materiel
 
             $this->caution = $data['caution'];
 
-            $this->id_type_mat = $data['id_type_materiel'];
+            $this->id_type_materiel = $data['id_type_materiel'];
 
             $this->enable = $data['enable'];
         }
     }
 
-    public function updateMat()
+    public function updateMateriel()
     {
-        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `nom_materiel`=:nom, `description`=:description, `caution`=:caution, `enable`=:enable, `id_type_materiel`=:TypeMat WHERE `id_materiels`= :id");
+        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `nom_materiel`=:nom, `description`=:description, `caution`=:caution, `enable`=:enable, `id_type_materiel`=:typeMateriel WHERE `id_materiels`= :id");
         $requete->bindValue(':id', $this->id);
         $requete->bindValue(':nom', $this->nom);
         $requete->bindValue(':description', $this->description);
         $requete->bindValue(':caution', $this->caution);
         $requete->bindValue(':enable', $this->enable);
-        $requete->bindValue(':TypeMat', $this->id_type_mat);
+        $requete->bindValue(':typeMateriel', $this->id_type_materiel);
 
         $requete->execute();
     }
 
-    public  static function selectAllMat()
+    public  static function selectAllMateriel()
     {
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels`");
 
@@ -129,7 +129,7 @@ class Materiel
         return $result;
     }
 
-    public static function selectIdTypeMat($id)
+    public static function selectIdTypeMateriel($id)
     {
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_type_materiel` = :id");
         $requete->bindValue(':id', $id);
@@ -200,7 +200,7 @@ class Materiel
         return $result["nb"];
     }
 
-    public static function TypeMat()
+    public static function typeMateriel()
     {
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `type_materiel`");
 
@@ -211,21 +211,21 @@ class Materiel
         return $result;
     }
 
-    public  function deleteMat()
+    public  function deleteMateriel()
     {
         $requete = $GLOBALS['database']->prepare("DELETE FROM `materiels` WHERE `id_materiels`= :id");
         $requete->bindValue(':id', $this->id);
         $requete->execute();
     }
 
-    public  function insertMat()
+    public  function insertMateriel()
     {
         if ($this->id == 0) {
             $requete = $GLOBALS['database']->prepare("INSERT INTO `materiels` (`nom_materiel`, `description`, `caution`, `id_type_materiel`) VALUES (:nom, :description, :caution, :id)");
             $requete->bindValue(':nom', $this->nom);
             $requete->bindValue(':description', $this->description);
             $requete->bindValue(':caution', $this->caution);
-            $requete->bindValue(':id', $this->id_type_mat);
+            $requete->bindValue(':id', $this->id_type_materiel);
 
 
             $requete->execute();

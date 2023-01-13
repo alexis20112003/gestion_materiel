@@ -1,6 +1,6 @@
-<form action="javascript:addMat();" method="post">
+<form action="javascript:addMateriel();" method="post">
 	<div class="modal-header">
-		<h1 class="modal-title fs-5" id="ModifMatLabel">Ajouter mat</h1>
+		<h1 class="modal-title fs-5" id="ModifMatLabel">Ajouter materiel</h1>
 		<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
 	</div>
     </div>
@@ -12,8 +12,8 @@
         <label for="inputCaution" class="form-label">Caution</label>
         <input type="number" class="form-control" id="Caution" aria-describedby="nomHelp"/>
         <label for="EmailUpdate" class="form-label">Type Materiel</label>
-        <select class="form-select" name="Type_Mat" id="TypeMat">
-            {% for item in TypeMat %}
+        <select class="form-select" name="type_Materiel" id="typeMateriel">
+            {% for item in typeMateriel %}
                 <option value="{{item.id_type_materiel}}">{{item.origine_materiel}}</option>
             {% endfor %}
         </select>

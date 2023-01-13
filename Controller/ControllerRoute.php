@@ -14,11 +14,11 @@ $render = new \Twig\Loader\FilesystemLoader('../components/');
 $twig = new \Twig\Environment($render);
 
 switch ($_POST['request']) {
-    case 'pageGestionMat':
+    case 'contentGestionMateriel':
 
-        $icon = Materiel::TypeMat();
+        $icon = Materiel::typeMateriel();
 
-        echo json_encode($twig->render('gestion_mat_onglet.html.twig', array(
+        echo json_encode($twig->render('contentGestionMateriel.html.twig', array(
             "icon" => $icon
         )));
 
@@ -45,7 +45,7 @@ switch ($_POST['request']) {
         break;
 
     case 'pageMatDemande':
-        $icon = Materiel::TypeMat();
+        $icon = Materiel::typeMateriel();
         $order   = '/';
         $replace = '-';
         $date_debut = str_replace($order, $replace, $_POST['date_debut']);
@@ -63,35 +63,35 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'pageModifMat':
+    case 'modalUpdateMateriel':
         $materiel = new Materiel($_POST['id']);
-        $TypeMat =  Materiel::TypeMat();
+        $typeMateriel =  Materiel::typeMateriel();
         echo json_encode($twig->render(
-            'modifMat.html.twig',
+            'modalUpdatemateriel.html.twig',
             array(
                 "materiel" => $materiel,
-                "TypeMat" => $TypeMat
+                "typeMateriel" => $typeMateriel
             )
         ));
 
         break;
-    case 'pageAddMat':
+    case 'modalAddMateriel':
 
-        $TypeMat =  Materiel::TypeMat();
+        $typeMateriel =  Materiel::typeMateriel();
         echo json_encode($twig->render(
-            'addMat.html.twig',
+            'modalAddMateriel.html.twig',
             array(
-                'TypeMat' => $TypeMat
+                'typeMateriel' => $typeMateriel
             )
         ));
 
         break;
 
-    case 'pageAfficherMat':
+    case 'modalDetailMateriel':
 
         $materiel = new Materiel($_POST['id']);
         echo json_encode($twig->render(
-            'afficherMat.html.twig',
+            'modalDetailMateriel.html.twig',
             array(
                 "materiel" => $materiel
             )
@@ -99,9 +99,9 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'pageAddTypeMat':
+    case 'modalAddTypeMateriel':
         echo json_encode($twig->render(
-            'addTypeMat.html.twig',
+            'modalAddTypeMateriel.html.twig',
             array()
         ));
 

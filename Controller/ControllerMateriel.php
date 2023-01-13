@@ -14,8 +14,8 @@ switch ($_POST['request']) {
             $materiel->setNom($_POST['nom']);
             $materiel->setDescription($_POST['description']);
             $materiel->setCaution($_POST['caution']);
-            $materiel->setId_type_mat($_POST['type']);
-            $materiel->insertMat();
+            $materiel->setId_type_materiel($_POST['type']);
+            $materiel->insertMateriel();
 
             $responce = $_POST['nom'] . ' ' . $_POST['description'] . ' ' . $_POST['caution'] . ' ' . $_POST['type'];
         }
@@ -47,7 +47,7 @@ switch ($_POST['request']) {
             $id = json_decode($_POST['id']);
             foreach ($id as $value) {
                 $materiel = new Materiel($value);
-                $materiel->deleteMat();
+                $materiel->deleteMateriel();
             }
             $responce = $id;
         }
@@ -55,21 +55,15 @@ switch ($_POST['request']) {
         echo json_encode($responce);
 
         break;
-<<<<<<< Updated upstream:Controller/ControllerAddMat.php
-
-    case 'modifMat':
-
-=======
     
     case 'updateMateriel':
         
->>>>>>> Stashed changes:Controller/ControllerMateriel.php
         $materiel = new Materiel($_POST['id']);
         $materiel->setNom($_POST['nom']);
         $materiel->setDescription($_POST['description']);
         $materiel->setCaution($_POST['caution']);
         $materiel->setEnable($_POST['enable']);
-        $materiel->updateMat();
+        $materiel->updateMateriel();
 
 
         echo json_encode(1);
@@ -77,29 +71,14 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'gestionMat':
+    case 'contentGestionMateriel':
         $resultNum = Materiel::sqlCount($_POST['type']);
-        $type = Materiel::selectIdTypeMat($_POST['type']);
-        echo json_encode($twig->render('gestion_mat.html.twig', array(
+        $type = Materiel::selectIdTypeMateriel($_POST['type']);
+        echo json_encode($twig->render('contentGestionMateriel.html.twig', array(
             "type" => $type,
             "resultNum" => $resultNum,
         )));
 
         break;
 
-    case 'gestionMatDemande':
-        $resultNum = Materiel::sqlCount($_POST['type']);
-        $order   = '/';
-        $replace = '-';
-        $date_debut = str_replace($order, $replace, $_POST['date_debut']);
-        $date_fin = str_replace($order, $replace, $_POST['date_fin']);
-        $type = Materiel::selectIdTypeMatDemande($_POST['type'], $date_debut, $date_fin);
-
-
-        echo json_encode($twig->render('gestion_mat_demande.html.twig', array(
-            "type" => $type,
-            "resultNum" => $resultNum,
-        )));
-
-        break;
-}
+    }

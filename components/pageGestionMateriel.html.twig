@@ -2,7 +2,7 @@
 	<div>
 		<h3>Inventaire Materiel</h3>
 		<!-- sqlcount pour la pagination -->
-		<bouton onclick="pageAddMat();" class="btn btn-primary" >add mat </bouton>
+		<bouton onclick="modalAddMateriel;" class="btn btn-primary" >add mat </bouton>
 		<!-- mettre variable qui prend +1 a chaque boucle en twig -->
 
 
@@ -11,27 +11,27 @@
 				{% for item in icon %}
 					{% if item == icon[0] %}
 
-						<li class="nav-item" onclick="changeMat({{item.id_type_materiel}});">
+						<li class="nav-item" onclick="loadMateriel({{item.id_type_materiel}});">
 							<a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
 								<i class="{{item.icon}}"></i>
 								{{item.origine_materiel}}</a>
 						</li>
 					{% else %}
-						<li class="nav-item" onclick="changeMat({{item.id_type_materiel}});">
+						<li class="nav-item" onclick="loadMateriel({{item.id_type_materiel}});">
 							<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
 								<i class="{{item.icon}}"></i>
 								{{item.origine_materiel}}</a>
 						</li>
 					{% endif %}
 				{% endfor %}
-				<li class="nav-item" onclick="pageAddTypeMat();">
+				<li class="nav-item" onclick="modalAddTypeMateriel();">
 					<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
 						<i class="fa-solid fa-plus"></i>
 						add
 					</a>
 				</li>
 			</ul>
-			<form action="javascript:deleteMat();">
+			<form action="javascript:deleteMateriel();">
 				<div class="tab-content" id="myTabContent">
 					{% for item in icon %}
 						{% if item == icon[0] %}
