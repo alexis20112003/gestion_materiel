@@ -351,7 +351,7 @@ function demandeMat() {
     dataType: "json",
     type: "POST",
     data: {
-      request: "demandeMat",
+      request: "insertDemandeMateriel",
       id: JSON.stringify(id_check_s),
       date_debut: $("#dropper").attr("data-dd-opt-range-start"),
       date_fin: $("#dropper").attr("data-dd-opt-range-end"),
@@ -421,14 +421,14 @@ function deconnexion() {
   });
 }
 
-function pageMatDemande(date_debut, date_fin) {
-  chargeMatDemande(1);
+function ongletsMaterielDemande(date_debut, date_fin) {
+  chargeMaterielDemande(1);
   $.ajax({
     url: "../controller/ControllerRoute.php",
     dataType: "json",
     type: "POST",
     data: {
-      request: "pageMatDemande",
+      request: "ongletsMaterielDemande",
       date_debut: date_debut,
       date_fin: date_fin,
     },
@@ -441,13 +441,13 @@ function pageMatDemande(date_debut, date_fin) {
   });
 }
 
-function chargeMatDemande(type) {
+function chargeMaterielDemande(type) {
   $.ajax({
-    url: "../controller/ControllerTypeMat.php",
+    url: "../controller/ControllerDemande.php",
     dataType: "json",
     type: "POST",
     data: {
-      request: "gestionMatDemande",
+      request: "materielDemande",
       type: type,
       date_debut: $("#dropper").attr("data-dd-opt-range-start"),
       date_fin: $("#dropper").attr("data-dd-opt-range-end"),
@@ -461,19 +461,3 @@ function chargeMatDemande(type) {
   });
 }
 
-function pageDemande() {
-  $.ajax({
-    url: "../controller/ControllerRoute.php",
-    dataType: "json",
-    type: "POST",
-    data: {
-      request: "pageDemande",
-    },
-    success: function (response) {
-      $("#page").html(response);
-    },
-    error: function () {
-      alert("Error !");
-    },
-  });
-}

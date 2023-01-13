@@ -94,7 +94,7 @@ class Commande
         }
     }
 
-    public static function selectIdUser($id)
+    public static function selectCommandeIdUser($id)
     {
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `id_utilisateur` = :id");
         $requete->bindValue(':id', $id);
@@ -106,7 +106,7 @@ class Commande
         return $result;
     }
 
-    public  static function selectAllCom()
+    public  static function selectAllCommande()
     {
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`");
 
@@ -117,7 +117,7 @@ class Commande
         return $result;
     }
 
-    public  function deleteCom()
+    public  function deleteCommande()
     {
         $requete = $GLOBALS['database']->prepare("DELETE FROM `commande` WHERE `id_commande` = :id");
         $requete2 = $GLOBALS['database']->prepare("DELETE FROM `commande_material` WHERE `id_commande` = :id");
@@ -129,7 +129,7 @@ class Commande
     }
 
 
-    public  function insertCom($idUser, $id)
+    public  function insertCommande($idUser, $id)
     {
 
         $requete = $GLOBALS['database']->prepare("INSERT INTO `commande` (`id_utilisateur`, `statut`) VALUES (:id, :statut)");

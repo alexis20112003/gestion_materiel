@@ -31,7 +31,7 @@ var date_fin = (end.y + '-' + end.m + '-' + end.d);
 var field = (start.d + '-' + start.m + '-' + start.y + " // " + end.d + '-' + end.m + '-' + end.y);
 
 $("#dropper").val(field);
-pageMatDemande($("#dropper").attr('data-dd-opt-range-start'), $("#dropper").attr('data-dd-opt-range-end'));
+ongletsMaterielDemande($("#dropper").attr('data-dd-opt-range-start'), $("#dropper").attr('data-dd-opt-range-end'));
 console.log(date_debut + ' to ' + date_fin);
 }
 });

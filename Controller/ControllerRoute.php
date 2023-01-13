@@ -18,7 +18,7 @@ switch ($_POST['request']) {
 
         $icon = Materiel::TypeMat();
 
-        echo json_encode($twig->render('gestion_mat_onglet.html.twig', array(
+        echo json_encode($twig->render('pageGestionMateriel.html.twig', array(
             "icon" => $icon
         )));
 
@@ -44,14 +44,14 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'pageMatDemande':
+    case 'ongletsMaterielDemande':
         $icon = Materiel::TypeMat();
         $order   = '/';
         $replace = '-';
         $date_debut = str_replace($order, $replace, $_POST['date_debut']);
         $date_fin = str_replace($order, $replace, $_POST['date_fin']);
         error_log($date_debut + ' page Mat Demande');
-        echo json_encode($twig->render('matDemande.html.twig', array(
+        echo json_encode($twig->render('ongletsDemandeUser.html.twig', array(
             "icon" => $icon,
             "date_debut" => $date_debut,
             "date_fin" => $date_fin
@@ -59,7 +59,7 @@ switch ($_POST['request']) {
 
         break;
     case 'pageDemande':
-        echo json_encode($twig->render('demande.html.twig'));
+        echo json_encode($twig->render('pageDemandeUser.html.twig'));
 
         break;
 

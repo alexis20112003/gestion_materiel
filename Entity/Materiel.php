@@ -141,7 +141,7 @@ class Materiel
         return $result;
     }
 
-    public static function selectIdTypeMatDemande($id, $date_debut, $date_fin)
+    public static function selectIdTypeMaterielDemande($id, $date_debut, $date_fin)
     {
 
         $list = array();
@@ -176,9 +176,9 @@ class Materiel
 
 
 
-        foreach ($result as $key => $mat) {
-            if (!in_array($mat['id_materiels'], $list_not_dispo)) {
-                array_push($list, $mat);
+        foreach ($result as $key => $materiel) {
+            if (!in_array($materiel['id_materiels'], $list_not_dispo)) {
+                array_push($list, $materiel);
             }
         }
 
