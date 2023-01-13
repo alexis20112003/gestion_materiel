@@ -18,7 +18,7 @@ switch ($_POST['request']) {
 
         $icon = Materiel::TypeMat();
 
-        echo json_encode($twig->render('gestion_mat.html.twig', array(
+        echo json_encode($twig->render('gestion_mat_onglet.html.twig', array(
             "icon" => $icon
         )));
 
@@ -33,7 +33,7 @@ switch ($_POST['request']) {
         break;
 
     case 'deconnexion':
-        
+
         session_destroy();
         echo json_encode(0);
         break;
