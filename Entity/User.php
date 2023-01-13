@@ -10,7 +10,7 @@ class User
 
 	private $prenom;
 
-	private $mail;
+	private $email;
 
 	private $pass;
 
@@ -26,7 +26,9 @@ class User
 
 		$this->id = $id;
 
-		$this->getFromDatabase();
+		if($id != 0){
+			$this->getFromDatabase();
+		}
 	}
 
 	/**
@@ -97,26 +99,26 @@ class User
 	}
 
 	/**
-	 * Get the user mail
+	 * Get the user email
 	 *
 	 * @return string
 	 */
-	public function getMail()
+	public function getEmail()
 	{
-		return $this->mail;
+		return $this->email;
 	}
 
 
 	/**
-	 * Set the user mail
+	 * Set the user email
 	 *
-	 * @param string $mail 
+	 * @param string $email 
 	 *
 	 * @return void	
 	 */
-	public function setMail($mail)
+	public function setEmail($email)
 	{
-		$this->mail = $mail;
+		$this->email = $email;
 	}
 
 	/**
@@ -173,6 +175,18 @@ class User
 	public function setEnable($enable)
 	{
 		$this->enable = $enable;
+	}
+
+	public static function randomPassword() {
+		$alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+		$pass = array(); //le pass est une liste
+		$alphaLength = strlen($alphabet) - 1;
+		for ($i = 0; $i < 8; $i++) {
+			$n = rand(0, $alphaLength);
+			$pass[] = $alphabet[$n];
+		}
+		return implode($pass); //renvoi le pass en string
+
 	}
 
 	private function getFromDatabase()
@@ -273,6 +287,33 @@ class User
 
         return array_reverse($result);
     }
+	
+	public static function selectSites()
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `site`");
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+	public static function selectUserSite($id)
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `site`
+		INNER JOIN `utilisateur_site` ON `site`.`id_site` = `utilisateur_site`.`id_site`
+		INNER JOIN `utilisateur` ON `utilisateur_site`.`id_utilisateur` = `utilisateur`.`id_utilisateur`
+		WHERE `utilisateur`.`id_utilisateur` = :id");
+
+		$requete->bindValue(':id', $id);
+
+        $requete->execute();
+
+        $result = $requete->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
 
 	public static function userCount($id)
     {
@@ -292,12 +333,14 @@ class User
 
 	public function register($site, $status)
 	{
+
 		if ($this->id == 0) {
-			$requete = $GLOBALS['database']->prepare("INSERT INTO `utilisateur` (`nom`, `prenom`, `email`, `password`) VALUES (:nom, :prenom, :mail, :pass)");
+			$requete = $GLOBALS['database']->prepare("INSERT INTO `utilisateur` (`nom`, `prenom`, `email`, `password`, `promo`) VALUES (:nom, :prenom, :email, :pass, :promo)");
 			$requete->bindValue(':nom', $this->nom);
 			$requete->bindValue(':prenom', $this->prenom);
-			$requete->bindValue(':mail', $this->mail);
+			$requete->bindValue(':email', $this->email);
 			$requete->bindValue(':pass', $this->pass);
+		
 			$requete->bindValue(':promo', $this->promo);
 
 			if ($requete->execute()) {

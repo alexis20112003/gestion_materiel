@@ -27,9 +27,11 @@ switch ($_POST['request']) {
     case 'pageGestionCompte':
 
         $onglet = User::typeUser();
+        $user = new User($_SESSION["id"]);
 
         echo json_encode($twig->render('gestion_compte_onglet.html.twig', array(
-            "onglet" => $onglet
+            "onglet" => $onglet,
+            "user" => $user
         )));
 
         break;
