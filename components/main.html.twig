@@ -35,7 +35,7 @@
 										<span class="ms-1 d-none d-sm-inline">Inventaire Materiel</span>
 									</a>
 								</li>
-								<li onclick="pageDemande();">
+								<li>
 									<a href="" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
 										<i class="fs-4 bi-speedometer2"></i>
 										<span class="ms-1 d-none d-sm-inline">Demandes et Attributions</span>
@@ -82,7 +82,7 @@
 									<li onclick="pageGestionMat();">
 										<a class="dropdown-item" href="">Inventaire Materiel</a>
 									</li>
-									<li onclick="pageDemande();">
+									<li>
 										<a class="dropdown-item" href="">Demandes et Attributions</a>
 									</li>
 									<li>
@@ -91,9 +91,7 @@
 								{% endif %}
 								{% if user.getStatut != "admin" and user.getStatut != "super_admin" %}
 									<li onclick="pageDemande();">
-										<a class="dropdown-item" href="">
-											Demandes
-										</a>
+										<a class="dropdown-item" href="">Demandes</a>
 									</li>
 									<li>
 										<a class="dropdown-item" href="">Contacter Administrateur</a>
