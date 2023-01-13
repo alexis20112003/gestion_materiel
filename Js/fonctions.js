@@ -200,8 +200,10 @@ function addUser() {
       email: $("#Email").val(),
       promo: $("#Promo").val(),
       statut: $("#Statut").val(),
+      site: $("#Site").val(),
     },
     success: function (response) {
+      $("#modal").modal("hide");
       console.log(response);
     },
     error: function () {

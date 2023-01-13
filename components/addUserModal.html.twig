@@ -1,4 +1,4 @@
-<form action="javascript:addUser();">
+<form action="javascript:addUser();" id="addUserForm">
     <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Ajouter un utilisateur</h1>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
@@ -12,7 +12,8 @@
         <input type="email" class="form-control" id="Email" aria-describedby="emailHelp"/>
          <label for="inputPromo" class="form-label">Promo</label>
         <input type="text" class="form-control" id="Promo" aria-describedby="promoHelp"/>
-        <select class="form-select" name="Type_Mat" id="Statut">
+        <label for="selectStatut" class="form-label">Statut</label>
+        <select class="form-select" name="user_statut" id="Statut">
             {% for item in role %}
                 {% if user.statut == "super_admin" %}
                     <option value={{item.id_type}}>{{ item.statut | capitalize}}</option>
@@ -26,10 +27,20 @@
 
             {% endfor %}
         </select>
+        <label for="selectSite" class="form-label mt-2">Site</label>
+        <select class="form-select" name="sites" id="Site">
+            {% if user.statut == "super_admin" %}
+                {% for item in sites %}
+                    <option value={{item.id_site}}>{{ item.site | capitalize}}</option>
+                {% endfor %}
+            {% else %}
+                <option value={{userSite.id_type}}>{{ userSite.site  | capitalize}}</option>
+            {% endif %}        
+        </select>
         
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" data-dismiss="modal">submit</button>
+        <button type="submit" class="btn btn-primary" form="addUserForm">submit</button>
     </div>
 </form>

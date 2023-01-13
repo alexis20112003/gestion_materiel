@@ -28,27 +28,39 @@ switch ($_POST['request']) {
 
         $user = new User($_SESSION["id"]);
         $role = User::typeUser();
+        $sites = User::selectSites();
+        $userSite = User::selectUserSite($_SESSION["id"]);
             echo json_encode($twig->render('addUserModal.html.twig', array(
                 "user" => $user,
-                "role" => $role)));
+                "role" => $role,
+                "sites" => $sites,
+                "userSite" => $userSite
+            )));
             
             break;
 
     case 'addUser':
 
-        if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['promo']) && isset($_POST['statut'])) {
+        if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['statut']) && !empty($_POST['site'])) {
             $user = new User(0);
+            $randPass = User::randomPassword();
+            $site = $_POST['site'];
+            $statut = $_POST['statut'];
             $user->setNom($_POST['nom']);
             $user->setPrenom($_POST['prenom']);
             $user->setEmail($_POST['email']);
-            $user->setPromo($_POST['promo']);
-            $user->setStatut($_POST['statut']);
-            $user->insertMat();
+		    $user->setPass($randPass);
+            if (!empty($_POST['promo'])){
+                $user->setPromo($_POST['promo']);
+            }
+            $user->register($site,$statut);
 
-            $responce = $_POST['nom'] . ' ' . $_POST['description'] . ' ' . $_POST['caution'] . ' ' . $_POST['type'];
+            $response = $_POST['nom'] . ' ' . $_POST['prenom'] . ' ' . $_POST['email'] . ' ' . $_POST['promo'] . ' ' . $randPass;
+        }else{
+            $response = "Vide";
         }
 
-        echo json_encode($responce);
+        echo json_encode($response);
 
         break;
 
@@ -57,7 +69,7 @@ switch ($_POST['request']) {
         $user = new User($_POST["id"]);
       
             echo json_encode($twig->render('updateUserModal.html.twig', array(
-                "user" => $user,
+                "user" => $user        
                 )));
             
             break;
