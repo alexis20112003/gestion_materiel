@@ -11,9 +11,10 @@ class Materiel
 
     private $caution;
 
+    private $enable;
+
     private $id_type_mat;
 
-    private $enable;
 
     public function __construct($id)
     {
@@ -82,16 +83,6 @@ class Materiel
         $this->id_type_mat = $id_type_mat;
     }
 
-    public function getEnable()
-    {
-        return $this->enable;
-    }
-
-    public function setEnable($enable)
-    {
-        $this->enable = $enable;
-    }
-
     private function getFromDatabase()
     {
 
@@ -134,17 +125,6 @@ class Materiel
         $requete->execute();
 
         $result = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
-    }
-
-    public  static function selecIdMat()
-    {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_materiels`= :id ");
-        $requete->bindValue(':id', $id);
-        $requete->execute();
-
-        $result = $requete->fetch(PDO::FETCH_ASSOC);
 
         return $result;
     }
