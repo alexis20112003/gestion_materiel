@@ -7,7 +7,7 @@ $GLOBALS['database'] = $db->mysqlConnexion();
 session_start();
 
 switch ($_POST['request']) {
-    case 'addMat':
+    case 'addMateriel':
 
         if (isset($_POST['nom']) && isset($_POST['description']) && isset($_POST['type']) && isset($_POST['caution'])) {
             $materiel = new Materiel(0);
@@ -24,7 +24,7 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'addTypeMat':
+    case 'addTypeMateriel':
 
         if (isset($_POST['nom']) && isset($_POST['icon'])) {
 
@@ -41,7 +41,7 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'deleteMat':
+    case 'deleteMateriel':
 
         if (isset($_POST['id'])) {
             $id = json_decode($_POST['id']);
@@ -55,9 +55,15 @@ switch ($_POST['request']) {
         echo json_encode($responce);
 
         break;
+<<<<<<< Updated upstream:Controller/ControllerAddMat.php
 
     case 'modifMat':
 
+=======
+    
+    case 'updateMateriel':
+        
+>>>>>>> Stashed changes:Controller/ControllerMateriel.php
         $materiel = new Materiel($_POST['id']);
         $materiel->setNom($_POST['nom']);
         $materiel->setDescription($_POST['description']);
@@ -68,6 +74,32 @@ switch ($_POST['request']) {
 
         echo json_encode(1);
 
+
+        break;
+
+    case 'gestionMat':
+        $resultNum = Materiel::sqlCount($_POST['type']);
+        $type = Materiel::selectIdTypeMat($_POST['type']);
+        echo json_encode($twig->render('gestion_mat.html.twig', array(
+            "type" => $type,
+            "resultNum" => $resultNum,
+        )));
+
+        break;
+
+    case 'gestionMatDemande':
+        $resultNum = Materiel::sqlCount($_POST['type']);
+        $order   = '/';
+        $replace = '-';
+        $date_debut = str_replace($order, $replace, $_POST['date_debut']);
+        $date_fin = str_replace($order, $replace, $_POST['date_fin']);
+        $type = Materiel::selectIdTypeMatDemande($_POST['type'], $date_debut, $date_fin);
+
+
+        echo json_encode($twig->render('gestion_mat_demande.html.twig', array(
+            "type" => $type,
+            "resultNum" => $resultNum,
+        )));
 
         break;
 }

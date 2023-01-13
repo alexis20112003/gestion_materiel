@@ -24,7 +24,7 @@ switch ($_POST['request']) {
             
             break;
 
-    case 'addUserModal':
+    case 'modalAddUser':
 
         $user = new User($_SESSION["id"]);
         $role = User::typeUser();
@@ -64,7 +64,7 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'updateUserModal':
+    case 'modalUpdateUser':
 
         $user = new User($_POST["id"]);
       

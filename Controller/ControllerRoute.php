@@ -44,12 +44,6 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'deconnexion':
-
-        session_destroy();
-        echo json_encode(0);
-        break;
-
     case 'pageMatDemande':
         $icon = Materiel::TypeMat();
         $order   = '/';

@@ -13,7 +13,7 @@ $render = new \Twig\Loader\FilesystemLoader('../components/');
 $twig = new \Twig\Environment($render);
 
 switch ($_POST['request']) {
-    case 'demandeMat':
+    case 'demandeMateriel':
 
         if (isset($_POST['id']) && isset($_POST['date_debut']) && isset($_POST['date_fin'])) {
             $order   = '/';
@@ -31,6 +31,21 @@ switch ($_POST['request']) {
             $responce = $id;
         }
         echo json_encode($responce);
+
+        break;
+    case 'gestionMatDemande':
+        $resultNum = Materiel::sqlCount($_POST['type']);
+        $order   = '/';
+        $replace = '-';
+        $date_debut = str_replace($order, $replace, $_POST['date_debut']);
+        $date_fin = str_replace($order, $replace, $_POST['date_fin']);
+        $type = Materiel::selectIdTypeMatDemande($_POST['type'], $date_debut, $date_fin);
+
+
+        echo json_encode($twig->render('gestion_mat_demande.html.twig', array(
+            "type" => $type,
+            "resultNum" => $resultNum,
+        )));
 
         break;
 }

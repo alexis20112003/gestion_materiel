@@ -6,7 +6,7 @@ $GLOBALS['database'] = $db->mysqlConnexion();
 
 switch($_POST['request'])
 {
-case 'connect':
+case 'connexion':
 
   session_start();
 
@@ -39,7 +39,7 @@ case 'connect':
 
 break;
 
-case 'update_user':
+case 'changePassword':
 
   session_start();
 
@@ -58,5 +58,12 @@ case 'update_user':
   echo json_encode(array("error"=>$error, "msg"=>$msg, "statut"=>$statut));
 
 break;
+
+case 'deconnexion':
+
+  session_destroy();
+  echo json_encode(0);
+  break;
+  
 }
     ?>
