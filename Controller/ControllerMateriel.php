@@ -55,15 +55,9 @@ switch ($_POST['request']) {
         echo json_encode($responce);
 
         break;
-<<<<<<< Updated upstream:Controller/ControllerAddMat.php
-
-    case 'modifMat':
-
-=======
     
     case 'updateMateriel':
         
->>>>>>> Stashed changes:Controller/ControllerMateriel.php
         $materiel = new Materiel($_POST['id']);
         $materiel->setNom($_POST['nom']);
         $materiel->setDescription($_POST['description']);

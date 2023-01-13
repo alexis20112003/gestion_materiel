@@ -29,7 +29,7 @@ switch ($_POST['request']) {
         $onglet = User::typeUser();
         $user = new User($_SESSION["id"]);
 
-        echo json_encode($twig->render('gestion_compte_onglet.html.twig', array(
+        echo json_encode($twig->render('pageGestionCompte.html.twig', array(
             "onglet" => $onglet,
             "user" => $user
         )));
@@ -38,7 +38,7 @@ switch ($_POST['request']) {
 
     case 'pageGestionProfile':
         $user = new User($_SESSION["id"]);
-        echo json_encode($twig->render('gestion_profile.html.twig', array(
+        echo json_encode($twig->render('pageGestionProfile.html.twig', array(
             "user" => $user
         )));
 

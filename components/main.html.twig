@@ -10,6 +10,8 @@
 		<script type="text/javascript" src="../Js/datedropper-javascript.js"></script>
 		<script type="text/javascript" src="../Js/datedropper-javascript-lang-FR.js"></script>
 		<script type="text/javascript" src="../Js/fonctions.js"></script>
+		<script type="text/javascript" src="../Js/fonctionsPage.js"></script>
+		<script type="text/javascript" src="../Js/modals.js"></script>
 	</head>
 	<body>
 		<div class="container-fluid" id="menuAdmin">
@@ -85,7 +87,7 @@
 									<li>
 										<a class="dropdown-item" href="">Demandes et Attributions</a>
 									</li>
-									<li>
+									<li onclick="pageGestionCompte();">
 										<a class="dropdown-item" href="">Gestion des Comptes</a>
 									</li>
 								{% endif %}
@@ -126,7 +128,7 @@
 				</div>
 				<div class="updatePage col-9 col-lg-10" id="page">
 					{% block body %}
-						{% include "profile.html.twig" %}
+						{% include "pageGestionProfile.html.twig" %}
 					{% endblock %}
 				</div>
 			</div>
