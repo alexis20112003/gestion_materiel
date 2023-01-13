@@ -107,6 +107,7 @@ function pageGestionMat() {
       request: "pageGestionMat",
     },
     success: function (response) {
+      changeMat(1);
       $("#page").html(response);
     },
     error: function () {
