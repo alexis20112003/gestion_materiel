@@ -183,7 +183,6 @@ class Materiel
         }
 
 
-        error_log(json_encode($list));
 
 
         return $list;

@@ -20,6 +20,7 @@ switch ($_POST['request']) {
             $replace = '-';
             $date_debut = str_replace($order, $replace, $_POST['date_debut']);
             $date_fin = str_replace($order, $replace, $_POST['date_fin']);
+            error_log($date_debut + 'demandeMat');
             $id = json_decode($_POST['id']);
             $demande = new Commande(0);
             $demande->setDate_debut($date_debut);

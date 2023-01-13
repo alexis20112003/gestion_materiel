@@ -46,7 +46,6 @@ switch ($_POST['request']) {
         if (isset($_POST['id'])) {
             $id = json_decode($_POST['id']);
             foreach ($id as $value) {
-                error_log($value);
                 $materiel = new Materiel($value);
                 $materiel->deleteMat();
             }
@@ -56,16 +55,16 @@ switch ($_POST['request']) {
         echo json_encode($responce);
 
         break;
-    
+
     case 'modifMat':
-        
+
         $materiel = new Materiel($_POST['id']);
         $materiel->setNom($_POST['nom']);
         $materiel->setDescription($_POST['description']);
         $materiel->setCaution($_POST['caution']);
         $materiel->setEnable($_POST['enable']);
         $materiel->updateMat();
-        
+
 
         echo json_encode(1);
 

@@ -56,6 +56,7 @@ switch ($_POST['request']) {
         $replace = '-';
         $date_debut = str_replace($order, $replace, $_POST['date_debut']);
         $date_fin = str_replace($order, $replace, $_POST['date_fin']);
+        error_log($date_debut);
         echo json_encode($twig->render('matDemande.html.twig', array(
             "icon" => $icon,
             "date_debut" => $date_debut,
@@ -67,42 +68,48 @@ switch ($_POST['request']) {
         echo json_encode($twig->render('demande.html.twig'));
 
         break;
-    
+
     case 'pageModifMat':
         $materiel = new Materiel($_POST['id']);
         $TypeMat =  Materiel::TypeMat();
-        echo json_encode($twig->render('modifMat.html.twig', array(
-            "materiel" => $materiel,
-            "TypeMat" => $TypeMat
-        )
+        echo json_encode($twig->render(
+            'modifMat.html.twig',
+            array(
+                "materiel" => $materiel,
+                "TypeMat" => $TypeMat
+            )
         ));
 
         break;
-        case 'pageAddMat':
+    case 'pageAddMat':
 
-            $TypeMat =  Materiel::TypeMat();
-                echo json_encode($twig->render('addMat.html.twig',array(
-                    'TypeMat' => $TypeMat)
-                ));
-                
-                break;
-    
+        $TypeMat =  Materiel::TypeMat();
+        echo json_encode($twig->render(
+            'addMat.html.twig',
+            array(
+                'TypeMat' => $TypeMat
+            )
+        ));
+
+        break;
+
     case 'pageAfficherMat':
-    
+
         $materiel = new Materiel($_POST['id']);
-        echo json_encode($twig->render('afficherMat.html.twig', array(
-            "materiel" => $materiel
-        )
+        echo json_encode($twig->render(
+            'afficherMat.html.twig',
+            array(
+                "materiel" => $materiel
+            )
         ));
 
         break;
-    
+
     case 'pageAddTypeMat':
-        echo json_encode($twig->render('addTypeMat.html.twig', array(
-        )
+        echo json_encode($twig->render(
+            'addTypeMat.html.twig',
+            array()
         ));
 
         break;
-        
-        
 }

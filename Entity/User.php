@@ -26,7 +26,7 @@ class User
 
 		$this->id = $id;
 
-		if($id != 0){
+		if ($id != 0) {
 			$this->getFromDatabase();
 		}
 	}
@@ -177,7 +177,8 @@ class User
 		$this->enable = $enable;
 	}
 
-	public static function randomPassword() {
+	public static function randomPassword()
+	{
 		$alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 		$pass = array(); //le pass est une liste
 		$alphaLength = strlen($alphabet) - 1;
@@ -204,7 +205,7 @@ class User
 
 		$this->prenom = $user['prenom'];
 
-		$this->mail = $user['email'];
+		$this->email = $user['email'];
 
 		$this->pass = $user['password'];
 
@@ -263,72 +264,72 @@ class User
 		return $response;
 	}
 	public static function selectIdTypeUser($id)
-    {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
+	{
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
 		INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
         INNER JOIN `type` ON `utilisateur_type`.`id_type` = `type`.`id_type`
 		WHERE `type`.`id_type` = :id");
-		
-        $requete->bindValue(':id', $id);
 
-        $requete->execute();
+		$requete->bindValue(':id', $id);
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+		$requete->execute();
 
-        return $result;
-    }
+		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+		return $result;
+	}
 	public static function typeUser()
-    {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `type`");
+	{
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `type`");
 
-        $requete->execute();
+		$requete->execute();
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-        return array_reverse($result);
-    }
-	
+		return array_reverse($result);
+	}
+
 	public static function selectSites()
-    {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `site`");
+	{
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `site`");
 
-        $requete->execute();
+		$requete->execute();
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result;
-    }
+		return $result;
+	}
 	public static function selectUserSite($id)
-    {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `site`
+	{
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `site`
 		INNER JOIN `utilisateur_site` ON `site`.`id_site` = `utilisateur_site`.`id_site`
 		INNER JOIN `utilisateur` ON `utilisateur_site`.`id_utilisateur` = `utilisateur`.`id_utilisateur`
 		WHERE `utilisateur`.`id_utilisateur` = :id");
 
 		$requete->bindValue(':id', $id);
 
-        $requete->execute();
+		$requete->execute();
 
-        $result = $requete->fetch(PDO::FETCH_ASSOC);
+		$result = $requete->fetch(PDO::FETCH_ASSOC);
 
-        return $result;
-    }
+		return $result;
+	}
 
 
 	public static function userCount($id)
-    {
-        $requete = $GLOBALS['database']->prepare("SELECT COUNT(*) as nb FROM `utilisateur` 
+	{
+		$requete = $GLOBALS['database']->prepare("SELECT COUNT(*) as nb FROM `utilisateur` 
 		INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
         INNER JOIN `type` ON `utilisateur_type`.`id_type` = `type`.`id_type`
         WHERE `type`.`id_type` = :id");
-        $requete->bindValue(':id', $id);
+		$requete->bindValue(':id', $id);
 
-        $requete->execute();
+		$requete->execute();
 
-        $result = $requete->fetch(PDO::FETCH_ASSOC);
+		$result = $requete->fetch(PDO::FETCH_ASSOC);
 
-        return $result["nb"];
-    }
+		return $result["nb"];
+	}
 
 
 	public function register($site, $status)
@@ -340,7 +341,7 @@ class User
 			$requete->bindValue(':prenom', $this->prenom);
 			$requete->bindValue(':email', $this->email);
 			$requete->bindValue(':pass', $this->pass);
-		
+
 			$requete->bindValue(':promo', $this->promo);
 
 			if ($requete->execute()) {
@@ -366,7 +367,7 @@ class User
 		$requete = $GLOBALS['database']->prepare("UPDATE `utilisateur` SET `nom`=:nom, `prenom`=:prenom, `email`= :mail, WHERE `id_utilisateur`= :id");
 		$requete->bindValue(':nom', $this->nom);
 		$requete->bindValue(':prenom', $this->prenom);
-		$requete->bindValue(':mail', $this->mail);
+		$requete->bindValue(':mail', $this->email);
 		$requete->bindValue(':id', $this->id);
 
 		$requete->execute();
