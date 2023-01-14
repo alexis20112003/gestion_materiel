@@ -11,4 +11,4 @@ $render = new \Twig\Loader\FilesystemLoader('../components/');
 
 $twig = new \Twig\Environment($render);
 
-echo $twig->render('connexion.html.twig');
+echo $twig->render('pageAccueil.html.twig');

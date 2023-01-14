@@ -1,10 +1,10 @@
 function connect() {
   $.ajax({
-    url: "../controller/connect.php",
+    url: "../controller/ControllerConnect.php",
     dataType: "json",
     type: "POST",
     data: {
-      request: "connect",
+      request: "connexion",
       mail: $("#EmailConnexion").val(),
       password: $("#PasswordConnexion").val(),
     },
@@ -247,7 +247,7 @@ function deleteMateriel() {
     },
   });
 }
-function demandeMat() {
+function insertDemandeMateriel(date_debut, date_fin) {
   id_check_s = [];
   $("input.checkbox_check").each(function () {
     if ($(this).is(":checked")) {
@@ -261,8 +261,8 @@ function demandeMat() {
     data: {
       request: "insertDemandeMateriel",
       id: JSON.stringify(id_check_s),
-      date_debut: $("#dropper").attr("data-dd-opt-range-start"),
-      date_fin: $("#dropper").attr("data-dd-opt-range-end"),
+      date_debut: date_debut,
+      date_fin: date_fin,
     },
     success: function () {
       pageDemande();
@@ -330,9 +330,8 @@ function deconnexion() {
 }
 
 function ongletsMaterielDemande(date_debut, date_fin) {
-  chargeMaterielDemande(1);
   $.ajax({
-    url: "../controller/ControllerRoute.php",
+    url: "../controller/ControllerDemande.php",
     dataType: "json",
     type: "POST",
     data: {
@@ -342,6 +341,7 @@ function ongletsMaterielDemande(date_debut, date_fin) {
     },
     success: function (response) {
       $("#result_demande").html(response);
+      chargeMaterielDemande(1, date_debut, date_fin);
     },
     error: function () {
       alert("Error !");
@@ -349,7 +349,7 @@ function ongletsMaterielDemande(date_debut, date_fin) {
   });
 }
 
-function chargeMaterielDemande(type) {
+function chargeMaterielDemande(type, date_debut, date_fin) {
   $.ajax({
     url: "../controller/ControllerDemande.php",
     dataType: "json",
@@ -357,8 +357,8 @@ function chargeMaterielDemande(type) {
     data: {
       request: "materielDemande",
       type: type,
-      date_debut: $("#dropper").attr("data-dd-opt-range-start"),
-      date_fin: $("#dropper").attr("data-dd-opt-range-end"),
+      date_debut: date_debut,
+      date_fin: date_fin,
     },
     success: function (response) {
       $("#myTabContent").html(response);

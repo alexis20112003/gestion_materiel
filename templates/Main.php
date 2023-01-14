@@ -23,7 +23,7 @@ $preparedSql->execute();
 $sites = $preparedSql->fetchAll(PDO::FETCH_ASSOC);
 
 
-echo $twig->render('main.html.twig', array(
+echo $twig->render('page.html.twig', array(
   "user" => $user,
   "sites" => $sites,
 ));
