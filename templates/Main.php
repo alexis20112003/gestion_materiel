@@ -18,8 +18,8 @@ $preparedSql->execute();
 $sites = $preparedSql->fetchAll(PDO::FETCH_ASSOC);
 
 
-echo $twig->render('main.html.twig', array(
+echo $twig->render('header.html.twig').$twig->render('main.html.twig', array(
   "user" => $user,
   "sites" => $sites,
 ));
-echo $twig->render('header.html.twig');
+

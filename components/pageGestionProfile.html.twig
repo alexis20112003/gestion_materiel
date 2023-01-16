@@ -1,60 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="row">
-      <div class="col-9 rounded-pill profileBanner position-relative mt-2 ms-4">
-        <img
-          class="imgProfile img-fluid rounded-circle border border-2 border-dark position-absolute"
-          src="../assets/aflokkat.png"
-        />
-      </div>
+<body>
+  <div class="row">
+    <div class="col-9 rounded-pill profileBanner position-relative mt-2 ms-4">
+      <img
+        class="imgProfile img-fluid rounded-circle border border-2 border-dark position-absolute"
+        src="../assets/aflokkat.png"
+      />
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col-4">
-        <div class="row mt-5 mt-md-3 mt-lg-5">
-          <div
-            class="col-12 col-lg-6 mt-lg-5 profileText d-flex justify-content-between"
-          >
-            <span class="boldText">Nom:</span>
-            {{user.nom}}
-          </div>
-          <div
-            class="col-12 col-lg-6 ps-1 mt-3 mt-lg-5 profileText d-flex justify-content-between"
-          >
-            <span class="boldText">Prenom:</span>
-            {{user.prenom}}
-          </div>
-        </div>
-
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-4">
+      <div class="row mt-5 mt-md-3 mt-lg-5">
         <div
-          class="col mt-5 d-flex justify-content-evenly ps-3 pe-5 profileText"
+          class="col-12 col-lg-6 mt-lg-5 profileText d-flex justify-content-between"
         >
-          <span class="boldText">E-mail:</span> {{user.email}}
+          <span class="boldText">Nom:</span>
+          {{user.nom}}
         </div>
+        <div
+          class="col-12 col-lg-6 ps-1 mt-3 mt-lg-5 profileText d-flex justify-content-between"
+        >
+          <span class="boldText">Prenom:</span>
+          {{user.prenom}}
+        </div>
+      </div>
 
-        <div class="row mt-5">
-          <div
-            class="col-12 col-lg-6 profileText d-flex justify-content-between"
-          >
-            <span class="boldText">Statut:</span>
-            {{user.statut}}
-          </div>
-          <div
-            class="col-12 col-lg-6 ps-1 mt-3 mt-lg-0 profileText d-flex justify-content-between"
-          >
-            <span class="boldText">Promo:</span>
-            {{user.promo}}
-          </div>
+      <div
+        class="col mt-5 d-flex justify-content-evenly ps-3 pe-5 profileText"
+      >
+        <span class="boldText">E-mail:</span> {{user.email}}
+      </div>
+
+      <div class="row mt-5">
+        <div
+          class="col-12 col-lg-6 profileText d-flex justify-content-between"
+        >
+          <span class="boldText">Statut:</span>
+          {{user.statut}}
+        </div>
+        <div
+          class="col-12 col-lg-6 ps-1 mt-3 mt-lg-0 profileText d-flex justify-content-between"
+        >
+          <span class="boldText">Promo:</span>
+          {{user.promo}}
         </div>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+</body>
+
