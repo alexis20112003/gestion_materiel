@@ -226,7 +226,7 @@ function ongletsMaterielDemande(date_debut, date_fin) {
   });
 }
 
-function demandeMat() {
+function insertDemandeMateriel(date_debut, date_fin) {
   id_check_s = [];
   $("input.checkbox_check").each(function () {
     if ($(this).is(":checked")) {
@@ -240,8 +240,8 @@ function demandeMat() {
     data: {
       request: "insertDemandeMateriel",
       id: JSON.stringify(id_check_s),
-      date_debut: $("#dropper").attr("data-dd-opt-range-start"),
-      date_fin: $("#dropper").attr("data-dd-opt-range-end"),
+      date_debut: date_debut,
+      date_fin: date_fin,
     },
     success: function () {
       pageDemande();
