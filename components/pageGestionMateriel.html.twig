@@ -2,7 +2,7 @@
 	<div>
 		<h3>Inventaire Materiel</h3>
 		<!-- sqlcount pour la pagination -->
-		<bouton onclick="modalAddMateriel;" class="btn btn-primary" >add mat </bouton>
+		<bouton onclick="modalAddMateriel();" class="btn btn-primary" >add mat </bouton>
 		<!-- mettre variable qui prend +1 a chaque boucle en twig -->
 
 
@@ -48,7 +48,7 @@
 		</div>
 	</div>
 
-	<div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 

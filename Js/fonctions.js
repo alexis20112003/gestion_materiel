@@ -75,15 +75,17 @@ function update_user() {
 }
 
 function loadMateriel(type) {
+  console.log("aaa");
   $.ajax({
     url: "../controller/ControllerMateriel.php",
     dataType: "json",
     type: "POST",
     data: {
-      request: "gestionMateriel",
+      request: "loadMateriel",
       type: type,
     },
     success: function (response) {
+      console.log("bbb");
       $("#myTabContent").html(response);
     },
     error: function () {
@@ -116,7 +118,6 @@ function addMateriel() {
 }
 
 function updateMateriel() {
-  console.log("aaa");
   $.ajax({
     url: "../controller/ControllerMateriel.php",
     dataType: "json",

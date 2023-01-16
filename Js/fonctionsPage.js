@@ -96,7 +96,6 @@ function pageDemande() {
 }
 
 function pageGestionMateriel() {
-  loadMateriel(1);
   $.ajax({
     url: "../controller/ControllerRoute.php",
     dataType: "json",
@@ -105,8 +104,8 @@ function pageGestionMateriel() {
       request: "pageGestionMateriel",
     },
     success: function (response) {
-      loadMateriel(1);
       $("#page").html(response);
+      loadMateriel(1);
     },
     error: function () {
       alert("Error !");

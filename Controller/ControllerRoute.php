@@ -14,11 +14,11 @@ $render = new \Twig\Loader\FilesystemLoader('../components/');
 $twig = new \Twig\Environment($render);
 
 switch ($_POST['request']) {
-    case 'contentGestionMateriel':
+    case 'pageGestionMateriel':
 
         $icon = Materiel::typeMateriel();
 
-        echo json_encode($twig->render('contentGestionMateriel.html.twig', array(
+        echo json_encode($twig->render('pageGestionMateriel.html.twig', array(
             "icon" => $icon
         )));
 
