@@ -207,9 +207,8 @@ function chargeMaterielDemande(type, date_debut, date_fin) {
 }
 
 function ongletsMaterielDemande(date_debut, date_fin) {
-  chargeMaterielDemande(1);
   $.ajax({
-    url: "../controller/ControllerRoute.php",
+    url: "../controller/ControllerDemande.php",
     dataType: "json",
     type: "POST",
     data: {
@@ -219,6 +218,7 @@ function ongletsMaterielDemande(date_debut, date_fin) {
     },
     success: function (response) {
       $("#result_demande").html(response);
+      chargeMaterielDemande(1, date_debut, date_fin);
     },
     error: function () {
       alert("Error !");
