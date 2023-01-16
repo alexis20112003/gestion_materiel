@@ -186,7 +186,7 @@ function addTypeMateriel() {
   });
 }
 
-function chargeMaterielDemande(type) {
+function chargeMaterielDemande(type, date_debut, date_fin) {
   $.ajax({
     url: "../controller/ControllerDemande.php",
     dataType: "json",
@@ -194,8 +194,8 @@ function chargeMaterielDemande(type) {
     data: {
       request: "materielDemande",
       type: type,
-      date_debut: $("#dropper").attr("data-dd-opt-range-start"),
-      date_fin: $("#dropper").attr("data-dd-opt-range-end"),
+      date_debut: date_debut,
+      date_fin: date_fin,
     },
     success: function (response) {
       $("#myTabContent").html(response);
