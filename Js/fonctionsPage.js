@@ -10,10 +10,6 @@ function connexion() {
     },
     success: function (response) {
       if (response["status"] === "connected" && response["session"]) {
-        iziToast.success({
-          title: "Valide",
-          message: response["msg"],
-        });
         window.location.href = "Main.php";
       }
       if (response["status"] != "connected" || !response["session"]) {
