@@ -3,9 +3,8 @@
 	<div class="input-group mt-3">
 		<input id="dropper" type="text" data-dd-opt-min-date="" data-dd-opt-format="y-mm-dd" data-dd-opt-disabled-week-days="0,6" data-dd-opt-expandable="true" data-dd-opt-start-from-monday="true">
 	</div>
-</form>
-<script>
-	const date = new Date();
+	<script>
+		const date = new Date();
 
 let day = date.getDate();
 let month = date.getMonth() + 1;
@@ -25,15 +24,16 @@ startFromMonday: true,
 onRangeSet: function (range) {
 var start = range.a;
 var end = range.b;
-var date_debut = (start.y + '-' + start.m + '-' + start.d);
-var date_fin = (end.y + '-' + end.m + '-' + end.d);
+var date_debut = (start.y + '-' + start.mm + '-' + start.dd);
+var date_fin = (end.y + '-' + end.mm + '-' + end.dd);
 
-var field = (start.d + '-' + start.m + '-' + start.y + " // " + end.d + '-' + end.m + '-' + end.y);
+var field = (start.dd + '-' + start.mm + '-' + start.y + " // " + end.dd + '-' + end.mm + '-' + end.y);
 
 $("#dropper").val(field);
-ongletsMaterielDemande($("#dropper").attr('data-dd-opt-range-start'), $("#dropper").attr('data-dd-opt-range-end'));
-console.log(date_debut + ' to ' + date_fin);
+// console.log($("#dropper").attr("data-dd-opt-range-start") + ' // ' + $("#dropper").attr("data-dd-opt-range-end"));
+ongletsMaterielDemande(date_debut, date_fin);
 }
 });
-</script>
-<div id="result_demande"></div>{% endblock %}
+	</script>
+	<div id="result_demande"></div>
+{% endblock %}
