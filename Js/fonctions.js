@@ -1,3 +1,46 @@
+function loadUser(type) {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "loadUser",
+      type: type,
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function addUser() {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "addUser",
+      nom: $("#Nom").val(),
+      prenom: $("#Prenom").val(),
+      email: $("#Email").val(),
+      promo: $("#Promo").val(),
+      statut: $("#Statut").val(),
+      site: $("#Site").val(),
+    },
+    success: function (response) {
+      $("#modal").modal("hide");
+      loadUser(4);
+      console.log(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
 function update_user() {
   $.ajax({
     url: "../controller/connect.php",
@@ -38,23 +81,6 @@ function loadMateriel(type) {
     type: "POST",
     data: {
       request: "gestionMateriel",
-      type: type,
-    },
-    success: function (response) {
-      $("#myTabContent").html(response);
-    },
-    error: function () {
-      alert("Error !");
-    },
-  });
-}
-function loadUser(type) {
-  $.ajax({
-    url: "../controller/ControllerCompte.php",
-    dataType: "json",
-    type: "POST",
-    data: {
-      request: "loadUser",
       type: type,
     },
     success: function (response) {
@@ -115,24 +141,23 @@ function updateMateriel() {
   });
 }
 
-function addUser() {
+function deleteMateriel() {
+  id_check_s = [];
+  $("input.checkbox_check").each(function () {
+    if ($(this).is(":checked")) {
+      id_check_s.push($(this).val());
+    }
+  });
   $.ajax({
-    url: "../controller/ControllerCompte.php",
+    url: "../controller/ControllerMateriel.php",
     dataType: "json",
     type: "POST",
     data: {
-      request: "addUser",
-      nom: $("#Nom").val(),
-      prenom: $("#Prenom").val(),
-      email: $("#Email").val(),
-      promo: $("#Promo").val(),
-      statut: $("#Statut").val(),
-      site: $("#Site").val(),
+      request: "deleteMateriel",
+      id: JSON.stringify(id_check_s),
     },
-    success: function (response) {
-      $("#modal").modal("hide");
-      loadUser(4);
-      console.log(response);
+    success: function () {
+      location.reload();
     },
     error: function () {
       alert("Error !");
@@ -160,54 +185,26 @@ function addTypeMateriel() {
   });
 }
 
-function deleteMateriel() {
-  id_check_s = [];
-  $("input.checkbox_check").each(function () {
-    if ($(this).is(":checked")) {
-      id_check_s.push($(this).val());
-    }
-  });
-  $.ajax({
-    url: "../controller/ControllerMateriel.php",
-    dataType: "json",
-    type: "POST",
-    data: {
-      request: "deleteMateriel",
-      id: JSON.stringify(id_check_s),
-    },
-    success: function () {
-      location.reload();
-    },
-    error: function () {
-      alert("Error !");
-    },
-  });
-}
-function demandeMat() {
-  id_check_s = [];
-  $("input.checkbox_check").each(function () {
-    if ($(this).is(":checked")) {
-      id_check_s.push($(this).val());
-    }
-  });
+function chargeMaterielDemande(type) {
   $.ajax({
     url: "../controller/ControllerDemande.php",
     dataType: "json",
     type: "POST",
     data: {
-      request: "insertDemandeMateriel",
-      id: JSON.stringify(id_check_s),
+      request: "materielDemande",
+      type: type,
       date_debut: $("#dropper").attr("data-dd-opt-range-start"),
       date_fin: $("#dropper").attr("data-dd-opt-range-end"),
     },
-    success: function () {
-      pageDemande();
+    success: function (response) {
+      $("#myTabContent").html(response);
     },
     error: function () {
       alert("Error !");
     },
   });
 }
+
 function ongletsMaterielDemande(date_debut, date_fin) {
   chargeMaterielDemande(1);
   $.ajax({
@@ -228,19 +225,25 @@ function ongletsMaterielDemande(date_debut, date_fin) {
   });
 }
 
-function chargeMaterielDemande(type) {
+function demandeMat() {
+  id_check_s = [];
+  $("input.checkbox_check").each(function () {
+    if ($(this).is(":checked")) {
+      id_check_s.push($(this).val());
+    }
+  });
   $.ajax({
     url: "../controller/ControllerDemande.php",
     dataType: "json",
     type: "POST",
     data: {
-      request: "materielDemande",
-      type: type,
+      request: "insertDemandeMateriel",
+      id: JSON.stringify(id_check_s),
       date_debut: $("#dropper").attr("data-dd-opt-range-start"),
       date_fin: $("#dropper").attr("data-dd-opt-range-end"),
     },
-    success: function (response) {
-      $("#myTabContent").html(response);
+    success: function () {
+      pageDemande();
     },
     error: function () {
       alert("Error !");

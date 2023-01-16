@@ -58,6 +58,7 @@ function pageGestionCompte() {
     },
     success: function (response) {
       $("#page").html(response);
+      loadUser(4);
     },
     error: function () {
       alert("Error !");
