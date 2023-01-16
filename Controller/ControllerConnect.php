@@ -4,11 +4,11 @@ require_once ('../Entity/User.php');
 $db = new Database();
 $GLOBALS['database'] = $db->mysqlConnexion(); 
 
+session_start();
+
 switch($_POST['request'])
 {
 case 'connexion':
-
-  session_start();
 
     $error = 0;
     $status = "";
@@ -40,8 +40,6 @@ case 'connexion':
 break;
 
 case 'changePassword':
-
-  session_start();
 
     $error = 0;
     $statut = 0;

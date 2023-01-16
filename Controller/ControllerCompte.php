@@ -13,10 +13,10 @@ $render = new \Twig\Loader\FilesystemLoader('../components/');
 $twig = new \Twig\Environment($render);
 
 switch ($_POST['request']) {
-    case 'gestionCompte':
+    case 'loadUser':
         
             $typeUser = User::selectIdTypeUser($_POST['type']);
-            echo json_encode($twig->render('gestion_compte.html.twig', array(
+            echo json_encode($twig->render('contentGestionCompte.html.twig', array(
                 "typeUser" => $typeUser,
                
             )));
@@ -30,7 +30,7 @@ switch ($_POST['request']) {
         $role = User::typeUser();
         $sites = User::selectSites();
         $userSite = User::selectUserSite($_SESSION["id"]);
-            echo json_encode($twig->render('addUserModal.html.twig', array(
+            echo json_encode($twig->render('modalAddUser.html.twig', array(
                 "user" => $user,
                 "role" => $role,
                 "sites" => $sites,
@@ -40,7 +40,12 @@ switch ($_POST['request']) {
             break;
 
     case 'addUser':
-
+            error_log($_POST['nom']);
+            error_log($_POST['prenom']);
+            error_log($_POST['email']);
+            error_log($_POST['statut']);
+            error_log($_POST['site']);
+            error_log( $_POST['promo']);
         if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['statut']) && !empty($_POST['site'])) {
             $user = new User(0);
             $randPass = User::randomPassword();
@@ -68,7 +73,7 @@ switch ($_POST['request']) {
 
         $user = new User($_POST["id"]);
       
-            echo json_encode($twig->render('updateUserModal.html.twig', array(
+            echo json_encode($twig->render('modalUpdateUser.html.twig', array(
                 "user" => $user        
                 )));
             

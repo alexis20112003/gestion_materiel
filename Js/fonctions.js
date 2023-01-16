@@ -1,34 +1,3 @@
-function connect() {
-  $.ajax({
-    url: "../controller/connect.php",
-    dataType: "json",
-    type: "POST",
-    data: {
-      request: "connect",
-      mail: $("#EmailConnexion").val(),
-      password: $("#PasswordConnexion").val(),
-    },
-    success: function (response) {
-      if (response["status"] === "connected" && response["session"]) {
-        iziToast.success({
-          title: "Valide",
-          message: response["msg"],
-        });
-        window.location.href = "Main.php";
-      }
-      if (response["status"] != "connected" || !response["session"]) {
-        iziToast.error({
-          title: "Caution",
-          message: response["msg"],
-        });
-      }
-    },
-    error: function () {
-      alert("Error !");
-    },
-  });
-}
-
 function update_user() {
   $.ajax({
     url: "../controller/connect.php",
@@ -79,51 +48,17 @@ function loadMateriel(type) {
     },
   });
 }
-function changeUser(type) {
+function loadUser(type) {
   $.ajax({
     url: "../controller/ControllerCompte.php",
     dataType: "json",
     type: "POST",
     data: {
-      request: "gestionCompte",
+      request: "loadUser",
       type: type,
     },
     success: function (response) {
       $("#myTabContent").html(response);
-    },
-    error: function () {
-      alert("Error !");
-    },
-  });
-}
-
-function pageGestionCompte() {
-  $.ajax({
-    url: "../controller/ControllerRoute.php",
-    dataType: "json",
-    type: "POST",
-    data: {
-      request: "pageGestionCompte",
-    },
-    success: function (response) {
-      $("#page").html(response);
-    },
-    error: function () {
-      alert("Error !");
-    },
-  });
-}
-
-function pageGestionProfile() {
-  $.ajax({
-    url: "../controller/ControllerRoute.php",
-    dataType: "json",
-    type: "POST",
-    data: {
-      request: "pageGestionProfile",
-    },
-    success: function (response) {
-      $("#page").html(response);
     },
     error: function () {
       alert("Error !");
@@ -196,6 +131,7 @@ function addUser() {
     },
     success: function (response) {
       $("#modal").modal("hide");
+      loadUser(4);
       console.log(response);
     },
     error: function () {
@@ -272,63 +208,6 @@ function demandeMat() {
     },
   });
 }
-
-function addUserModal() {
-  $.ajax({
-    url: "../controller/ControllerCompte.php",
-    dataType: "json",
-    type: "POST",
-    data: {
-      request: "addUserModal",
-    },
-    success: function (response) {
-      $(".modal-content").html(response);
-      $("#modal").modal("show");
-    },
-    error: function () {
-      alert("Error !");
-    },
-  });
-}
-
-function updateUserModal(id) {
-  $.ajax({
-    url: "../controller/ControllerCompte.php",
-    dataType: "json",
-    type: "POST",
-    data: {
-      request: "updateUserModal",
-      id: id,
-    },
-    success: function (response) {
-      $(".modal-content").html(response);
-      $("#modal").modal("show");
-    },
-    error: function () {
-      alert("Error !");
-    },
-  });
-}
-
-function deconnexion() {
-  $.ajax({
-    url: "../controller/ControllerRoute.php",
-    dataType: "json",
-    type: "POST",
-    data: {
-      request: "deconnexion",
-    },
-    success: function (response) {
-      if (!response["session"]) {
-        window.location.href = "Accueil.php";
-      }
-    },
-    error: function () {
-      alert("Error !");
-    },
-  });
-}
-
 function ongletsMaterielDemande(date_debut, date_fin) {
   chargeMaterielDemande(1);
   $.ajax({
@@ -368,4 +247,3 @@ function chargeMaterielDemande(type) {
     },
   });
 }
-
