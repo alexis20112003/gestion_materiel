@@ -34,6 +34,7 @@ function loadAllUser() {
 }
 
 function addUser() {
+  statut = $("#Statut").val();
   $.ajax({
     url: "../controller/ControllerCompte.php",
     dataType: "json",
@@ -48,9 +49,14 @@ function addUser() {
       site: $("#Site").val(),
     },
     success: function (response) {
+      if (response["reussite"] == 1) {
+        iziToast.success({
+          title: "Valide",
+          message: response["msg"],
+        });
+      }
       $("#modal").modal("hide");
-      loadUser(4);
-      console.log(response);
+      loadUser(statut);
     },
     error: function () {
       alert("Error !");
@@ -58,18 +64,19 @@ function addUser() {
   });
 }
 
-function update_user() {
+function updateUser(userId) {
+  type = $("#typeUser").val();
   $.ajax({
-    url: "../controller/connect.php",
+    url: "../controller/ControllerCompte.php",
     dataType: "json",
     type: "POST",
     data: {
-      request: "update_user",
-      nom: $("#NomUpdate").val(),
-      prenom: $("#PrenomUpdate").val(),
-      mail: $("#EmailConnexion").val(),
-      passwordConfirme: $("#PasswordConfirme").val(),
-      password: $("#PasswordUpdate").val(),
+      request: "updateUser",
+      userId: userId,
+      nom: $("#Nom").val(),
+      prenom: $("#Prenom").val(),
+      email: $("#Email").val(),
+      enable: $("#enableUser").val(),
     },
     success: function (response) {
       if (response["statut"] == 1) {
@@ -78,12 +85,8 @@ function update_user() {
           message: response["msg"],
         });
       }
-      if (response["statut"] == 0) {
-        iziToast.error({
-          title: "Caution",
-          message: response["msg"],
-        });
-      }
+      $("#modal").modal("hide");
+      loadUser(type);
     },
     error: function () {
       alert("Error !");
