@@ -13,6 +13,16 @@ $twig = new \Twig\Environment($render);
 
 
 switch ($_POST['request']) {
+
+    case 'loadMateriel':
+        $type = Materiel::selectIdTypeMateriel($_POST['type']);
+        echo json_encode($twig->render('contentGestionMateriel.html.twig', array(
+            "type" => $type,
+            
+        )));
+
+        break;
+        
     case 'addMateriel':
 
         if (isset($_POST['nom']) && isset($_POST['description']) && isset($_POST['type']) && isset($_POST['caution'])) {
@@ -77,12 +87,48 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'loadMateriel':
-        $type = Materiel::selectIdTypeMateriel($_POST['type']);
-        echo json_encode($twig->render('contentGestionMateriel.html.twig', array(
-            "type" => $type,
-            
-        )));
+    case 'modalUpdateMateriel':
+        $materiel = new Materiel($_POST['id']);
+        $typeMateriel =  Materiel::typeMateriel();
+        echo json_encode($twig->render(
+            'modalUpdatemateriel.html.twig',
+            array(
+                "materiel" => $materiel,
+                "typeMateriel" => $typeMateriel
+            )
+        ));
+
+        break;
+
+    case 'modalAddMateriel':
+
+        $typeMateriel =  Materiel::typeMateriel();
+        echo json_encode($twig->render(
+            'modalAddMateriel.html.twig',
+            array(
+                'typeMateriel' => $typeMateriel
+            )
+        ));
+
+        break;
+
+    case 'modalDetailMateriel':
+
+        $materiel = new Materiel($_POST['id']);
+        echo json_encode($twig->render(
+            'modalDetailMateriel.html.twig',
+            array(
+                "materiel" => $materiel
+            )
+        ));
+
+        break;
+
+    case 'modalAddTypeMateriel':
+        echo json_encode($twig->render(
+            'modalAddTypeMateriel.html.twig',
+            array()
+        ));
 
         break;
 }

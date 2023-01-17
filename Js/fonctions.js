@@ -75,7 +75,6 @@ function update_user() {
 }
 
 function loadMateriel(type) {
-  console.log("aaa");
   $.ajax({
     url: "../controller/ControllerMateriel.php",
     dataType: "json",
@@ -85,7 +84,6 @@ function loadMateriel(type) {
       type: type,
     },
     success: function (response) {
-      console.log("bbb");
       $("#myTabContent").html(response);
     },
     error: function () {

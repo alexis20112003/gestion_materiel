@@ -62,48 +62,16 @@ switch ($_POST['request']) {
         echo json_encode($twig->render('pageDemandeUser.html.twig'));
 
         break;
+    
+    case 'pageSuiviMateriel':
 
-    case 'modalUpdateMateriel':
-        $materiel = new Materiel($_POST['id']);
-        $typeMateriel =  Materiel::typeMateriel();
-        echo json_encode($twig->render(
-            'modalUpdatemateriel.html.twig',
-            array(
-                "materiel" => $materiel,
-                "typeMateriel" => $typeMateriel
-            )
-        ));
+        $icon = Materiel::typeMateriel();
 
-        break;
-    case 'modalAddMateriel':
-
-        $typeMateriel =  Materiel::typeMateriel();
-        echo json_encode($twig->render(
-            'modalAddMateriel.html.twig',
-            array(
-                'typeMateriel' => $typeMateriel
-            )
-        ));
+        echo json_encode($twig->render('pageSuiviMateriel.html.twig', array(
+            "icon" => $icon
+        )));
 
         break;
 
-    case 'modalDetailMateriel':
 
-        $materiel = new Materiel($_POST['id']);
-        echo json_encode($twig->render(
-            'modalDetailMateriel.html.twig',
-            array(
-                "materiel" => $materiel
-            )
-        ));
-
-        break;
-
-    case 'modalAddTypeMateriel':
-        echo json_encode($twig->render(
-            'modalAddTypeMateriel.html.twig',
-            array()
-        ));
-
-        break;
 }
