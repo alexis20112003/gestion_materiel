@@ -16,6 +16,23 @@ function loadUser(type) {
   });
 }
 
+function loadAllUser() {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "loadAllUser",
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
 function addUser() {
   $.ajax({
     url: "../controller/ControllerCompte.php",
@@ -82,6 +99,22 @@ function loadMateriel(type) {
     data: {
       request: "loadMateriel",
       type: type,
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+function loadAllMateriel() {
+  $.ajax({
+    url: "../controller/ControllerMateriel.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "loadAllMateriel",
     },
     success: function (response) {
       $("#myTabContent").html(response);

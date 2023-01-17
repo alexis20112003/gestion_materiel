@@ -23,6 +23,15 @@ switch ($_POST['request']) {
 
         break;
         
+    case 'loadAllMateriel':
+        $type = Materiel::selectAllMateriel();
+        echo json_encode($twig->render('contentSuiviMateriel.html.twig', array(
+            "type" => $type,
+            
+        )));
+
+        break;
+        
     case 'addMateriel':
 
         if (isset($_POST['nom']) && isset($_POST['description']) && isset($_POST['type']) && isset($_POST['caution'])) {

@@ -23,7 +23,17 @@ switch ($_POST['request']) {
         
             
             break;
+            
+    case 'loadAllUser':
 
+        $typeUser = User::selectAllUser();
+        echo json_encode($twig->render('contentSuiviUser.html.twig', array(
+            "typeUser" => $typeUser,
+            
+        )));
+    
+        
+        break;
     case 'modalAddUser':
 
         $user = new User($_SESSION["id"]);

@@ -140,6 +140,7 @@ function pageSuiviMateriel() {
     },
     success: function (response) {
       $("#page").html(response);
+      loadAllUser();
     },
     error: function () {
       alert("Error !");

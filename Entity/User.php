@@ -263,6 +263,18 @@ class User
 
 		return $response;
 	}
+
+	public  static function selectAllUser()
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`");
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
 	public static function selectIdTypeUser($id)
 	{
 		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
