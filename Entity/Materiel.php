@@ -156,13 +156,13 @@ class Materiel
 
 
         $requete2 = $GLOBALS['database']->prepare("SELECT *, `materiels`.`id_materiels` AS idMat FROM `materiels`
-        INNER JOIN `commande_material` ON `commande_material`.`id_materiels` = `materiels`.`id_materiels`
-        INNER JOIN `commande` ON `commande`.`id_commande` = `commande_material`.`id_commande`
+        INNER JOIN `commande_materiel` ON `commande_materiel`.`id_materiels` = `materiels`.`id_materiels`
+        INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
         WHERE `id_type_materiel`= :id
-        AND (`commande_material`.`date_debut`  BETWEEN :date_debut AND :date_fin
-        OR `commande_material`.`date_fin`  BETWEEN :date_debut AND :date_fin
-        AND :date_debut  BETWEEN `commande_material`.`date_debut` AND `commande_material`.`date_fin`
-        OR :date_fin  BETWEEN `commande_material`.`date_debut` AND `commande_material`.`date_fin`)
+        AND (`commande_materiel`.`date_debut`  BETWEEN :date_debut AND :date_fin
+        OR `commande_materiel`.`date_fin`  BETWEEN :date_debut AND :date_fin
+        AND :date_debut  BETWEEN `commande_materiel`.`date_debut` AND `commande_materiel`.`date_fin`
+        OR :date_fin  BETWEEN `commande_materiel`.`date_debut` AND `commande_materiel`.`date_fin`)
         AND `commande`.`statut` = 1");
         $requete2->bindValue(':id', $id);
 

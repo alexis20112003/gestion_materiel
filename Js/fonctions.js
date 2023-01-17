@@ -244,7 +244,7 @@ function insertDemandeMateriel(date_debut, date_fin) {
       date_fin: date_fin,
     },
     success: function () {
-      pageDemande();
+      location.reload();
     },
     error: function () {
       alert("Error !");

@@ -120,7 +120,7 @@ class Commande
     public  function deleteCommande()
     {
         $requete = $GLOBALS['database']->prepare("DELETE FROM `commande` WHERE `id_commande` = :id");
-        $requete2 = $GLOBALS['database']->prepare("DELETE FROM `commande_material` WHERE `id_commande` = :id");
+        $requete2 = $GLOBALS['database']->prepare("DELETE FROM `commande_materiel` WHERE `id_commande` = :id");
         $requete->bindValue(':id', $this->id);
         $requete2->bindValue(':id', $this->id);
 
@@ -140,7 +140,7 @@ class Commande
         foreach ($id as $value) {
 
 
-            $requete2 = $GLOBALS['database']->prepare("INSERT INTO `commande_material` (`id_commande`, `id_materiels`, `date_debut`, `date_fin`, `restitute`) VALUES (:id, :id_mat, :date_debut, :date_fin, :restitute)");
+            $requete2 = $GLOBALS['database']->prepare("INSERT INTO `commande_materiel` (`id_commande`, `id_materiels`, `date_debut`, `date_fin`, `restitute`) VALUES (:id, :id_mat, :date_debut, :date_fin, :restitute)");
             $requete2->bindValue(':id', $lastid);
             $requete2->bindValue(':id_mat', $value);
             $requete2->bindValue(':date_debut', $this->date_debut);

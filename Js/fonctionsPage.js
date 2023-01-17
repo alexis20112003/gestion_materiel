@@ -112,3 +112,20 @@ function pageGestionMateriel() {
     },
   });
 }
+
+function pageDemandeNotification() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageDemandeNotification",
+    },
+    success: function (response) {
+      $("#page").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
