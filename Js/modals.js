@@ -36,7 +36,7 @@ function modalUpdateUser(id) {
 }
 function modalAddMateriel() {
   $.ajax({
-    url: "../controller/ControllerRoute.php",
+    url: "../controller/ControllerMateriel.php",
     dataType: "json",
     type: "POST",
     data: {
@@ -54,7 +54,7 @@ function modalAddMateriel() {
 
 function modalUpdateMateriel(id) {
   $.ajax({
-    url: "../controller/ControllerRoute.php",
+    url: "../controller/ControllerMateriel.php",
     dataType: "json",
     type: "POST",
     data: {
@@ -73,7 +73,7 @@ function modalUpdateMateriel(id) {
 
 function modalAddTypeMateriel() {
   $.ajax({
-    url: "../controller/ControllerRoute.php",
+    url: "../controller/ControllerMateriel.php",
     dataType: "json",
     type: "POST",
     data: {
@@ -91,7 +91,7 @@ function modalAddTypeMateriel() {
 
 function modalDetailMateriel(id) {
   $.ajax({
-    url: "../controller/ControllerRoute.php",
+    url: "../controller/ControllerMateriel.php",
     dataType: "json",
     type: "POST",
     data: {

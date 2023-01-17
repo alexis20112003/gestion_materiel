@@ -129,3 +129,20 @@ function pageDemandeNotification() {
     },
   });
 }
+
+function pageSuiviMateriel() {
+  $.ajax({
+    url: "../controller/ControllerRoute.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "pageSuiviMateriel",
+    },
+    success: function (response) {
+      $("#page").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
