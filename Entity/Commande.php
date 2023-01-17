@@ -94,10 +94,12 @@ class Commande
         }
     }
 
-    public static function selectCommandeIdUser($id)
+    public static function selectCommandeStatut()
     {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `id_utilisateur` = :id");
-        $requete->bindValue(':id', $id);
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
+		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
+        INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
+        WHERE `commande`.`statut` = 0;");
 
         $requete->execute();
 
@@ -106,9 +108,10 @@ class Commande
         return $result;
     }
 
-    public  static function selectAllCommande()
+    public  static function selectAllCommande($id)
     {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `id_utilisateur` = :id");
+        $requete->bindValue(':id', $id);
 
         $requete->execute();
 
@@ -150,5 +153,23 @@ class Commande
 
             $requete2->execute();
         }
+    }
+
+    public  function refuseDemandeMateriel($id)
+    {
+
+        $requete = $GLOBALS['database']->prepare("UPDATE `commande` SET `statut` = :statut WHERE `id_commande` = :id");
+        $requete->bindValue(':id', $id);
+        $requete->bindValue(':statut', 2);
+        $requete->execute();
+    }
+
+    public  function acceptDemandeMateriel($id)
+    {
+
+        $requete = $GLOBALS['database']->prepare("UPDATE `commande` SET `statut` = :statut WHERE `id_commande` = :id");
+        $requete->bindValue(':id', $id);
+        $requete->bindValue(':statut', 1);
+        $requete->execute();
     }
 }

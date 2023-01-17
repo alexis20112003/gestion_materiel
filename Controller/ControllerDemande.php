@@ -50,4 +50,20 @@ switch ($_POST['request']) {
         )));
 
         break;
+
+    case 'refuseDemandeMateriel':
+        $demande = new Commande(0);
+        $demande->refuseDemandeMateriel($_POST['id']);
+        $responce = 'c bon';
+        echo json_encode($responce);
+
+        break;
+
+    case 'acceptDemandeMateriel':
+        $demande = new Commande(0);
+        $demande->acceptDemandeMateriel($_POST['id']);
+        $responce = 'c bon';
+        echo json_encode($responce);
+
+        break;
 }

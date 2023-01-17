@@ -1,0 +1,170 @@
+<div class="group">
+	{% for item in demande %}
+		<div class="card">
+			<div class="card-info">
+				<div class="card-avatar"></div>
+				<div class="card-title">{{item.prenom}}
+					{{item.nom}}</div>
+				<div class="card-subtitle">{{item.id_materiels}}
+					//
+					{{item.date_debut}}
+					{{item.date_fin}}</div>
+			</div>
+			<ul class="card-social">
+				<button onclick="refuseDemandeMateriel({{item.id_commande}});" class="x">
+					<li class="card-social__item">
+						<i class="fa-solid fa-x"></i>
+					</li>
+				</button>
+				<button onclick="acceptDemandeMateriel({{item.id_commande}});" class="check">
+					<li class="card-social__item">
+						<i class="fa-solid fa-check"></i>
+					</li>
+				</button>
+			</ul>
+		</div>
+	{% endfor %}
+</div>
+
+
+<style>
+
+	button.check {
+		padding: 12.5px 30px;
+		border: 0;
+		border-radius: 100px;
+		background-color: #0AAE57;
+		color: #ffffff;
+		font-weight: Bold;
+		transition: all 0.5s;
+		-webkit-transition: all 0.5s;
+	}
+
+	button.check:hover {
+		background-color: #05984A;
+		box-shadow: 0 0 20px #6fc5ff50;
+	}
+
+	button.check:active {
+		background-color: #3d94cf;
+		transition: all 0.25s;
+		-webkit-transition: all 0.25s;
+		box-shadow: none;
+	}
+	button.x {
+		padding: 12.5px 30px;
+		border: 0;
+		border-radius: 100px;
+		background-color: #EA171A;
+		color: #ffffff;
+		font-weight: Bold;
+		transition: all 0.5s;
+		-webkit-transition: all 0.5s;
+	}
+
+	button.x:hover {
+		background-color: #C80D10;
+		box-shadow: 0 0 20px #6fc5ff50;
+	}
+
+	button.x:active {
+		background-color: #3d94cf;
+		transition: all 0.25s;
+		-webkit-transition: all 0.25s;
+		box-shadow: none;
+	}
+
+	.group {
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+	}
+	.card {
+		margin-top: 1.5rem;
+		width: 190px;
+		height: 254px;
+		background: #f5f5f5;
+		padding: 2rem 1.5rem;
+		transition: box-shadow 0.3s ease, transform 0.2s ease;
+	}
+
+	.card-info {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		transition: transform 0.2s ease, opacity 0.2s ease;
+	}
+
+	/*Image*/
+	.card-avatar {
+		--size: 60px;
+		background: linear-gradient(to top, #f1e1c1 0%, #fcbc97 100%);
+		width: var(--size);
+		height: var(--size);
+		border-radius: 50%;
+		transition: transform 0.2s ease;
+		margin-bottom: 1rem;
+	}
+
+
+	/*Card footer*/
+	.card-social {
+		transform: translateY(200%);
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		width: 80%;
+		opacity: 0;
+		transition: transform 0.2s ease, opacity 0.2s ease;
+	}
+
+	.card-social__item {
+		list-style: none;
+	}
+
+	.fa-solid {
+		display: block;
+		height: 18px;
+		width: 18px;
+		fill: #515F65;
+		cursor: pointer;
+		transition: fill 0.2s ease, transform 0.2s ease;
+	}
+
+	/*Text*/
+	.card-title {
+		color: #333;
+		font-size: 1.5em;
+		font-weight: 600;
+		line-height: 2rem;
+	}
+
+	.card-subtitle {
+		color: #859ba8;
+		font-size: 0.8em;
+	}
+
+	/*Hover*/
+	.card:hover {
+		box-shadow: 0 8px 50px #23232333;
+	}
+
+	.card:hover .card-info {
+		transform: translateY(-5%);
+	}
+
+	.card:hover .card-social {
+		transform: translateY(100%);
+		opacity: 1;
+	}
+
+	.fa-solid:hover {
+		fill: #232323;
+		transform: scale(1.2);
+	}
+
+	.card-avatar:hover {
+		transform: scale(1.1);
+	}
+</style>

@@ -3,6 +3,7 @@ require_once('../vendor/autoload.php');
 require_once('../Entity/Database.php');
 require_once '../Entity/Materiel.php';
 require_once '../Entity/User.php';
+require_once '../Entity/Commande.php';
 $db = new Database();
 $GLOBALS['database'] = $db->mysqlConnexion();
 
@@ -108,7 +109,10 @@ switch ($_POST['request']) {
         break;
 
     case 'pageNotificationDemande':
-        echo json_encode($twig->render('pageNotificationDemande.html.twig', array()));
+        $demande = Commande::selectCommandeStatut();
+        echo json_encode($twig->render('pageNotificationDemande.html.twig', array(
+            'demande' => $demande,
+        )));
 
         break;
 }

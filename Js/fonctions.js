@@ -251,3 +251,39 @@ function insertDemandeMateriel(date_debut, date_fin) {
     },
   });
 }
+
+function refuseDemandeMateriel(id) {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "refuseDemandeMateriel",
+      id: id
+    },
+    success: function () {
+      pageNotificationDemande();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function acceptDemandeMateriel(id) {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "acceptDemandeMateriel",
+      id: id
+    },
+    success: function () {
+      pageNotificationDemande();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
