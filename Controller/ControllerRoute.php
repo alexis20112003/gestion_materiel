@@ -106,4 +106,9 @@ switch ($_POST['request']) {
         ));
 
         break;
+
+    case 'pageNotificationDemande':
+        echo json_encode($twig->render('pageNotificationDemande.html.twig', array()));
+
+        break;
 }

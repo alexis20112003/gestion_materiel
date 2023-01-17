@@ -50,9 +50,4 @@ switch ($_POST['request']) {
         )));
 
         break;
-
-    case 'pageDemandeNotification':
-        echo json_encode($twig->render('ongletsDemandeUser.html.twig', array()));
-
-        break;
 }
