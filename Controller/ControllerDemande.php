@@ -17,7 +17,6 @@ switch ($_POST['request']) {
     case 'insertDemandeMateriel':
 
         if (isset($_POST['id']) && isset($_POST['date_debut']) && isset($_POST['date_fin'])) {
-            error_log($date_debut + 'demandeMat');
             $id = json_decode($_POST['id']);
             $demande = new Commande(0);
             $demande->setDate_debut($_POST['date_debut']);

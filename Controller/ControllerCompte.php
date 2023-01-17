@@ -15,7 +15,7 @@ $twig = new \Twig\Environment($render);
 switch ($_POST['request']) {
     case 'loadUser':
         
-            $typeUser = User::selectIdTypeUser($_POST['type']);
+            $typeUser = User::selectUserbyType($_POST['type']);
             echo json_encode($twig->render('contentGestionCompte.html.twig', array(
                 "typeUser" => $typeUser,
                
@@ -40,12 +40,10 @@ switch ($_POST['request']) {
             break;
 
     case 'addUser':
-            error_log($_POST['nom']);
-            error_log($_POST['prenom']);
-            error_log($_POST['email']);
-            error_log($_POST['statut']);
-            error_log($_POST['site']);
-            error_log( $_POST['promo']);
+
+        $reussite = 0;
+        $msg = "";
+
         if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['statut']) && !empty($_POST['site'])) {
             $user = new User(0);
             $randPass = User::randomPassword();
@@ -59,23 +57,45 @@ switch ($_POST['request']) {
                 $user->setPromo($_POST['promo']);
             }
             $user->register($site,$statut);
-
-            $response = $_POST['nom'] . ' ' . $_POST['prenom'] . ' ' . $_POST['email'] . ' ' . $_POST['promo'] . ' ' . $randPass;
-        }else{
-            $response = "Vide";
+            $reussite = 1;
+            $msg = "Nouvel Utilisateur Ajouté";    
         }
 
-        echo json_encode($response);
+        echo json_encode(array("msg" => $msg, "reussite" => $reussite));
 
         break;
 
     case 'modalUpdateUser':
 
         $user = new User($_POST["id"]);
+        $typeUser = User::selectTypebyUser($_POST["id"]);
       
             echo json_encode($twig->render('modalUpdateUser.html.twig', array(
-                "user" => $user        
+                "user" => $user,
+                "typeUser" => $typeUser,        
                 )));
             
             break;
+
+    case 'updateUser':
+
+        $statut = 0;
+        $msg = "";
+      
+        if (isset($_POST['userId']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['enable'])) {
+            $user = new User($_POST['userId']);
+            $user->setNom($_POST['nom']);
+            $user->setPrenom($_POST['prenom']);
+            $user->setEmail($_POST['email']);
+            $user->setEnable($_POST['enable']);
+            $user->updateUser();
+            $response = $_POST['nom'] . ' ' . $_POST['prenom'] . ' ' . $_POST['email'] . ' ' . $_POST['enable'];
+            $statut = 1;
+            $msg = "Informations mises à jour";
+        }
+
+        echo json_encode(array("msg" => $msg, "statut" => $statut));
+
+    break;
+    
 }

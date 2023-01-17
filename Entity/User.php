@@ -263,7 +263,7 @@ class User
 
 		return $response;
 	}
-	public static function selectIdTypeUser($id)
+	public static function selectUserbyType($id)
 	{
 		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
 		INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
@@ -275,6 +275,21 @@ class User
 		$requete->execute();
 
 		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+		return $result;
+	}
+	public static function selectTypebyUser($id)
+	{
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `type`
+		INNER JOIN `utilisateur_type` ON `type`.`id_type` = `utilisateur_type`.`id_type`
+        INNER JOIN `utilisateur` ON `utilisateur_type`.`id_utilisateur` = `utilisateur`.`id_utilisateur`
+		WHERE `utilisateur`.`id_utilisateur` = :id");
+
+		$requete->bindValue(':id', $id);
+
+		$requete->execute();
+
+		$result = $requete->fetch(PDO::FETCH_ASSOC);
 
 		return $result;
 	}
@@ -362,14 +377,15 @@ class User
 		}
 	}
 
-	public function updateAll()
+	public function updateUser()
 	{
-		$requete = $GLOBALS['database']->prepare("UPDATE `utilisateur` SET `nom`=:nom, `prenom`=:prenom, `email`= :mail, WHERE `id_utilisateur`= :id");
+		$requete = $GLOBALS['database']->prepare("UPDATE `utilisateur` SET `nom`=:nom, `prenom`=:prenom, `email`= :email, `enable`=:enable WHERE `id_utilisateur`= :userId");
 		$requete->bindValue(':nom', $this->nom);
 		$requete->bindValue(':prenom', $this->prenom);
-		$requete->bindValue(':mail', $this->email);
-		$requete->bindValue(':id', $this->id);
-
+		$requete->bindValue(':email', $this->email);
+		$requete->bindValue(':enable', $this->enable);
+		$requete->bindValue(':userId', $this->id);
+	
 		$requete->execute();
 	}
 }

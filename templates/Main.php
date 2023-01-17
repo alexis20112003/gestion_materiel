@@ -8,7 +8,6 @@ $GLOBALS['database'] = $db->mysqlConnexion();
 session_start();
 
 $render = new \Twig\Loader\FilesystemLoader('../components/');
-
 $twig = new \Twig\Environment($render);
 
 $user = new User($_SESSION["id"]);
