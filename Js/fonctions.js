@@ -33,6 +33,23 @@ function loadAllUser() {
   });
 }
 
+function loadDisabledUser() {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "loadDisabledUser",
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
 function addUser() {
   statut = $("#Statut").val();
   $.ajax({
@@ -86,7 +103,12 @@ function updateUser(userId) {
         });
       }
       $("#modal").modal("hide");
-      loadUser(type);
+      if ($("#ongletInactif").hasClass("active")) {
+        console.log("oui");
+        loadDisabledUser();
+      } else {
+        loadUser(type);
+      }
     },
     error: function () {
       alert("Error !");

@@ -32,6 +32,10 @@
 						{% endif %}
 					{% endif %}
 				{% endfor %}
+				<li class="nav-item" onclick="loadDisabledUser();">
+							<a class="nav-link" id="ongletInactif" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+								Inactifs</a>
+						</li>
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				{% for item in onglet %}
@@ -41,6 +45,7 @@
 						{% block liste %}{% endblock %}
 					{% endif %}
 				{% endfor %}
+
 			</div>
 		</div>
 		<!-- Modal -->

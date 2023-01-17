@@ -12,6 +12,7 @@
 			<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
 				<tbody>
 					{% for item in typeUser %}
+						{% if item.enable == 0 %}
 						<tr>
 							<th scope="row"></th>
 							<td>{{item.nom}}</td>
@@ -19,6 +20,7 @@
 							<td>{{item.promo}}</td>
 							<td onclick="modalUpdateUser({{item.id_utilisateur}});"><i class="fa-solid fa-pencil"></i></td>
 						</tr>
+						{% endif %}
 					{% endfor %}
 				</tbody>
 			</div>
@@ -40,6 +42,7 @@
 			<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
 				<tbody>
 					{% for item in typeUser %}
+						{% if item.enable == 0 %}
 						<tr>
 							<th scope="row"></th>
 							<td>{{item.nom}}</td>
@@ -47,6 +50,7 @@
 							<td>{{item.promo}}</td>
 							<td onclick="modalUpdateUser({{item.id_utilisateur}});"><i class="fa-solid fa-pencil"></i></td>
 						</tr>
+						{% endif %}
 					{% endfor %}
 				</tbody>
 			</div>

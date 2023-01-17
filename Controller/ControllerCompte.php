@@ -34,6 +34,18 @@ switch ($_POST['request']) {
     
         
         break;
+
+    case 'loadDisabledUser':
+
+        $disabledUser = User::selectDisabledUser();
+        echo json_encode($twig->render('contentDisabledUser.html.twig', array(
+            "disabledUser" => $disabledUser,
+            
+        )));
+    
+        
+        break;
+
     case 'modalAddUser':
 
         $user = new User($_SESSION["id"]);

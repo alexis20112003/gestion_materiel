@@ -275,6 +275,20 @@ class User
         return $result;
     }
 
+	public  static function selectDisabledUser()
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
+		INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
+		INNER JOIN `type` ON `utilisateur_type`.`id_type` = `type`.`id_type`
+		WHERE `utilisateur`.`enable` = 1");
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
 	
 	public static function selectUserbyType($id)
 	{

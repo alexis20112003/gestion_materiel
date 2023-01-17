@@ -328,14 +328,12 @@
 }
 
 .iziToast > .iziToast-body .iziToast-icon.ico-error {
-  background: url(../../../public/build/images/iziToast/error.svg) no-repeat 50%
-    50%;
+  background: url(../Assets/check-solid.svg) no-repeat 50% 50%;
   background-size: 80%;
 }
 
 .iziToast > .iziToast-body .iziToast-icon.ico-success {
-  background: url(../../../public/build/images/iziToast/success.svg) no-repeat
-    50% 50%;
+  background: url(../Assets/check-solid.svg) no-repeat 50% 50%;
   background-size: 85%;
 }
 
