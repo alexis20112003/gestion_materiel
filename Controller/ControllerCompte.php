@@ -26,9 +26,9 @@ switch ($_POST['request']) {
             
     case 'loadAllUser':
 
-        $typeUser = User::selectAllUser();
+        $allUser = User::selectAllUser();
         echo json_encode($twig->render('contentSuiviUser.html.twig', array(
-            "typeUser" => $typeUser,
+            "allUser" => $allUser,
             
         )));
     
