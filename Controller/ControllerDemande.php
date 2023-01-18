@@ -51,6 +51,30 @@ switch ($_POST['request']) {
 
         break;
 
+    case 'NotificationDemande':
+        $demande = Commande::selectCommandeStatut();
+        echo json_encode($twig->render('contentNotificationDemande.html.twig', array(
+            'demande' => $demande,
+        )));
+
+        break;
+
+    case 'NotificationGive':
+        $demande = Commande::selectCommandeGive();
+        echo json_encode($twig->render('contentNotificationGive.html.twig', array(
+            'demande' => $demande,
+        )));
+
+        break;
+
+    case 'NotificationRecover':
+        $demande = Commande::selectCommandeRecover();
+        echo json_encode($twig->render('contentNotificationRecover.html.twig', array(
+            'demande' => $demande,
+        )));
+
+        break;
+
     case 'refuseDemandeMateriel':
         $demande = new Commande(0);
         $demande->refuseDemandeMateriel($_POST['id']);

@@ -110,6 +110,39 @@ class Commande
         return $result;
     }
 
+    public static function selectCommandeGive()
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
+		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
+		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
+        INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
+        WHERE CURRENT_DATE =`commande_materiel`.`date_debut`
+        AND `commande`.`statut` = 1;");
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public static function selectCommandeRecover()
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
+		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
+		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
+        INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
+        WHERE CURRENT_DATE =`commande_materiel`.`date_fin`
+        AND `commande`.`statut` = 1
+        AND `commande_materiel`.`restitute` = 1;");
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
     public  static function selectAllCommande($id)
     {
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `id_utilisateur` = :id");

@@ -123,6 +123,7 @@ function pageNotificationDemande() {
     },
     success: function (response) {
       $("#page").html(response);
+      NotificationDemande();
     },
     error: function () {
       alert("Error !");

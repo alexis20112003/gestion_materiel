@@ -287,3 +287,54 @@ function acceptDemandeMateriel(id) {
     },
   });
 }
+
+function NotificationDemande() {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "NotificationDemande",
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function NotificationGive() {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "NotificationGive",
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function NotificationRecover() {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "NotificationRecover",
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}

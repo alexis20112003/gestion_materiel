@@ -109,10 +109,7 @@ switch ($_POST['request']) {
         break;
 
     case 'pageNotificationDemande':
-        $demande = Commande::selectCommandeStatut();
-        echo json_encode($twig->render('pageNotificationDemande.html.twig', array(
-            'demande' => $demande,
-        )));
+        echo json_encode($twig->render('pageNotificationDemande.html.twig', array()));
 
         break;
 }
