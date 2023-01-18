@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="detailSuivi">Afficher suivi</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">utilisateur</th>		
+                <th scope="col">date début</th>
+                <th scope="col">date fin</th>
+                <th scope="col">rendu</th>
+            </tr>
+        </thead>
+        <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
+            <tbody>
+                {% for item in materiel %}
+                    <tr>
+                        <td>{{item.prenom}} {{item.nom}}</td>
+                        <td>{{item.date_debut}}</td>
+                        <td>{{item.date_fin}}</td>
+                        {% if item.restitute == 0 %}
+                            <td>non rendu</td>
+                        {% endif %}
+                        {% if item.restitute == 1 %}
+                            <td>rendu</td>
+                        {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </div>
+	</table>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+</div>
+
+

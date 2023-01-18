@@ -233,4 +233,19 @@ class Materiel
             $requete->execute();
         }
     }
+    public static function selectCommandeIdMateriel($id)
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`
+        INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande` 
+        INNER JOIN `utilisateur` ON `commande`.`id_utilisateur` = `utilisateur`.`id_utilisateur`
+        INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
+        WHERE `commande_materiel`.`id_materiels` = :id");
+        $requete->bindValue(':id', $id);
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
 }

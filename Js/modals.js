@@ -107,3 +107,22 @@ function modalDetailMateriel(id) {
     },
   });
 }
+
+function modalDetailSuivi(id) {
+  $.ajax({
+    url: "../controller/ControllerMateriel.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "modalDetailSuivi",
+      id: id,
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
