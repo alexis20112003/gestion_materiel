@@ -97,9 +97,11 @@ class Commande
     public static function selectCommandeStatut()
     {
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
+		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
 		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
         INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
-        WHERE `commande`.`statut` = 0;");
+        WHERE (CURRENT_DATE < `commande_materiel`.`date_debut` OR CURRENT_DATE =`commande_materiel`.`date_debut`) 
+        AND `commande`.`statut` = 0;");
 
         $requete->execute();
 
