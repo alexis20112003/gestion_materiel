@@ -3,6 +3,7 @@ require_once('../vendor/autoload.php');
 require_once('../Entity/Database.php');
 require_once '../Entity/Materiel.php';
 require_once '../Entity/User.php';
+require_once '../Entity/Commande.php';
 $db = new Database();
 $GLOBALS['database'] = $db->mysqlConnexion();
 
@@ -70,6 +71,11 @@ switch ($_POST['request']) {
         echo json_encode($twig->render('pageSuiviMateriel.html.twig', array(
             "icon" => $icon
         )));
+
+        break;
+
+    case 'pageNotificationDemande':
+        echo json_encode($twig->render('pageNotificationDemande.html.twig', array()));
 
         break;
 

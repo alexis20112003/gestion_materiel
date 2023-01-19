@@ -113,16 +113,17 @@ function pageGestionMateriel() {
   });
 }
 
-function pageDemandeNotification() {
+function pageNotificationDemande() {
   $.ajax({
     url: "../controller/ControllerRoute.php",
     dataType: "json",
     type: "POST",
     data: {
-      request: "pageDemandeNotification",
+      request: "pageNotificationDemande",
     },
     success: function (response) {
       $("#page").html(response);
+      NotificationDemande();
     },
     error: function () {
       alert("Error !");

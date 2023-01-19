@@ -307,3 +307,126 @@ function insertDemandeMateriel(date_debut, date_fin) {
     },
   });
 }
+
+function refuseDemandeMateriel(id) {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "refuseDemandeMateriel",
+      id: id
+    },
+    success: function () {
+      pageNotificationDemande();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function acceptDemandeMateriel(id) {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "acceptDemandeMateriel",
+      id: id
+    },
+    success: function () {
+      pageNotificationDemande();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function updateDemandeGive(id) {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "updateDemandeGive",
+      id: id
+    },
+    success: function () {
+      pageNotificationDemande();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function updateDemandeRecover(id) {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "updateDemandeRecover",
+      id: id
+    },
+    success: function () {
+      pageNotificationDemande();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function NotificationDemande() {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "NotificationDemande",
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function NotificationGive() {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "NotificationGive",
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function NotificationRecover() {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "NotificationRecover",
+    },
+    success: function (response) {
+      $("#myTabContent").html(response);
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}

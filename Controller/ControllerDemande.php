@@ -51,8 +51,59 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'pageDemandeNotification':
-        echo json_encode($twig->render('ongletsDemandeUser.html.twig', array()));
+    case 'NotificationDemande':
+        $demande = Commande::selectCommandeStatut();
+        echo json_encode($twig->render('contentNotificationDemande.html.twig', array(
+            'demande' => $demande,
+        )));
+
+        break;
+
+    case 'NotificationGive':
+        $demande = Commande::selectCommandeGive();
+        echo json_encode($twig->render('contentNotificationGive.html.twig', array(
+            'demande' => $demande,
+        )));
+
+        break;
+
+    case 'NotificationRecover':
+        $demande = Commande::selectCommandeRecover();
+        echo json_encode($twig->render('contentNotificationRecover.html.twig', array(
+            'demande' => $demande,
+        )));
+
+        break;
+
+    case 'updateDemandeGive':
+        $demande = new Commande(0);
+        $demande->updateDemandeGive($_POST['id']);
+        $responce = 'c bon';
+        echo json_encode($responce);
+
+        break;
+
+    case 'updateDemandeRecover':
+        $demande = new Commande(0);
+        $demande->updateDemandeRecover($_POST['id']);
+        $responce = 'c bon';
+        echo json_encode($responce);
+
+        break;
+
+    case 'refuseDemandeMateriel':
+        $demande = new Commande(0);
+        $demande->refuseDemandeMateriel($_POST['id']);
+        $responce = 'c bon';
+        echo json_encode($responce);
+
+        break;
+
+    case 'acceptDemandeMateriel':
+        $demande = new Commande(0);
+        $demande->acceptDemandeMateriel($_POST['id']);
+        $responce = 'c bon';
+        echo json_encode($responce);
 
         break;
 }

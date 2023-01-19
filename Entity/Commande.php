@@ -94,10 +94,14 @@ class Commande
         }
     }
 
-    public static function selectCommandeIdUser($id)
+    public static function selectCommandeStatut()
     {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `id_utilisateur` = :id");
-        $requete->bindValue(':id', $id);
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
+		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
+		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
+        INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
+        WHERE (CURRENT_DATE < `commande_materiel`.`date_debut` OR CURRENT_DATE =`commande_materiel`.`date_debut`) 
+        AND `commande`.`statut` = 0;");
 
         $requete->execute();
 
@@ -106,9 +110,44 @@ class Commande
         return $result;
     }
 
-    public  static function selectAllCommande()
+    public static function selectCommandeGive()
     {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
+		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
+		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
+        INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
+        WHERE CURRENT_DATE =`commande_materiel`.`date_debut`
+        AND `commande`.`statut` = 1
+        AND `commande_materiel`.`restitute` = 0;");
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public static function selectCommandeRecover()
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
+		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
+		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
+        INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
+        WHERE (CURRENT_DATE =`commande_materiel`.`date_fin` OR CURRENT_DATE >`commande_materiel`.`date_fin`)
+        AND `commande`.`statut` = 1
+        AND `commande_materiel`.`restitute` = 1;");
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public  static function selectAllCommande($id)
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande` WHERE `id_utilisateur` = :id");
+        $requete->bindValue(':id', $id);
 
         $requete->execute();
 
@@ -150,5 +189,41 @@ class Commande
 
             $requete2->execute();
         }
+    }
+
+    public  function updateDemandeGive($id)
+    {
+
+        $requete = $GLOBALS['database']->prepare("UPDATE `commande_materiel` SET `restitute` = :restitute WHERE `id_commande` = :id");
+        $requete->bindValue(':id', $id);
+        $requete->bindValue(':restitute', 1);
+        $requete->execute();
+    }
+
+    public  function updateDemandeRecover($id)
+    {
+
+        $requete = $GLOBALS['database']->prepare("UPDATE `commande_materiel` SET `restitute` = :restitute WHERE `id_commande` = :id");
+        $requete->bindValue(':id', $id);
+        $requete->bindValue(':restitute', 2);
+        $requete->execute();
+    }
+
+    public  function refuseDemandeMateriel($id)
+    {
+
+        $requete = $GLOBALS['database']->prepare("UPDATE `commande` SET `statut` = :statut WHERE `id_commande` = :id");
+        $requete->bindValue(':id', $id);
+        $requete->bindValue(':statut', 2);
+        $requete->execute();
+    }
+
+    public  function acceptDemandeMateriel($id)
+    {
+
+        $requete = $GLOBALS['database']->prepare("UPDATE `commande` SET `statut` = :statut WHERE `id_commande` = :id");
+        $requete->bindValue(':id', $id);
+        $requete->bindValue(':statut', 1);
+        $requete->execute();
     }
 }
