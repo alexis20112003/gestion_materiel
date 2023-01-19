@@ -20,6 +20,10 @@ class User
 
 	private $enable;
 
+	private $img_profile;
+
+	private $img_banniere;
+
 
 	public function __construct($id)
 	{
@@ -177,6 +181,28 @@ class User
 		$this->enable = $enable;
 	}
 
+	public function getImg_Profile()
+	{
+		return $this->img_profile;
+	}
+	
+	public function setImg_Profile($img_profile)
+	{
+		$this->img_profile = $img_profile;
+	}
+
+	public function getImg_Banniere()
+	{
+		return $this->img_banniere;
+	}
+
+	public function setImg_Banniere($img_banniere)
+	{
+		$this->img_banniere = $img_banniere;
+	}
+
+
+
 	public static function randomPassword()
 	{
 		$alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -214,6 +240,10 @@ class User
 		$this->statut = $user['statut'];
 
 		$this->enable = $user['enable'];
+
+		$this->img_profile = $user['img_profile'];
+
+		$this->img_banniere = $user['img_banniere'];
 	}
 
 
@@ -242,26 +272,19 @@ class User
 		return $is_exist;
 	}
 
-	public static function getUserByLogin($email)
+	public static function selectUserById($id)
 	{
-
-		$response = array();
 
 		$requete = $GLOBALS['database']->prepare("SELECT * 
 		FROM `utilisateur` 
-		WHERE `email` = :email ");
-		$requete->bindValue(':email', $email);
+		WHERE `id_utilisateur` = :id ");
+		$requete->bindValue(':id', $id);
 
 		$requete->execute();
 
-		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
+		$result = $requete->fetch(PDO::FETCH_ASSOC);
 
-		if ($data = $result) {
-
-			$response = $data;
-		}
-
-		return $response;
+		return $result;
 	}
 
 	public  static function selectAllUser()
@@ -415,4 +438,5 @@ class User
 	
 		$requete->execute();
 	}
+	
 }

@@ -44,7 +44,9 @@
 
 .profileBanner {
   min-height: 200;
-  background-color: black;
+  min-width: 300;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .imgProfile {
