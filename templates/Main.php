@@ -23,6 +23,6 @@ if (isset($_SESSION['id'])) {
     "sites" => $sites,
   ));
 } else {
-
-  echo $twig->render('header.html.twig') . $twig->render('pageAccueil.html.twig');
+  header('Location: Accueil.php');
+  exit;
 }

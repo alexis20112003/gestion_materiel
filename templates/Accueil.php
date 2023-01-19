@@ -5,4 +5,12 @@ $render = new \Twig\Loader\FilesystemLoader('../components/');
 
 $twig = new \Twig\Environment($render);
 
-echo $twig->render('header.html.twig').$twig->render('pageAccueil.html.twig');
+session_start();
+
+
+if (isset($_SESSION['id'])) {
+    header('Location: Main.php');
+    exit;
+} else {
+    echo $twig->render('header.html.twig') . $twig->render('pageAccueil.html.twig');
+}
