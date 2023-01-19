@@ -12,7 +12,7 @@
 				<tbody>
 					{% for item in allUser %}
 						<tr>
-							<th onclick=""><i class="fa-solid fa-eye"></i></th>
+							<th onclick="modalSuiviUser({{item.id_utilisateur}})"><i class="fa-solid fa-eye"></i></th>
 							<td>{{item.nom}}</td>
 							<td>{{item.prenom}}</td>
 							<td>{{item.promo}}</td>

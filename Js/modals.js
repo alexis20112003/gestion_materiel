@@ -108,13 +108,33 @@ function modalDetailMateriel(id) {
   });
 }
 
-function modalDetailSuivi(id) {
+function modalSuiviMateriel(id) {
   $.ajax({
     url: "../controller/ControllerMateriel.php",
     dataType: "json",
     type: "POST",
     data: {
-      request: "modalDetailSuivi",
+      request: "modalSuiviMateriel",
+      id: id,
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+      console.log("aaa");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function modalSuiviUser(id) {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "modalSuiviUser",
       id: id,
     },
     success: function (response) {

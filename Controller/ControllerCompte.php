@@ -99,6 +99,7 @@ switch ($_POST['request']) {
             
             break;
 
+
     case 'updateUser':
 
         $statut = 0;
@@ -120,4 +121,18 @@ switch ($_POST['request']) {
 
     break;
     
+
+    
+    case 'modalSuiviUser':
+
+        $user = User::selectCommandeIdUser($_POST['id']);
+        echo json_encode($twig->render(
+            'modalSuiviUser.html.twig',
+            array(
+                "user" => $user
+            )
+        ));
+
+        break;
+
 }
