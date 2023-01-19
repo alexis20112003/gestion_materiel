@@ -132,7 +132,7 @@ class Commande
 		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
 		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
         INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
-        WHERE CURRENT_DATE =`commande_materiel`.`date_fin`
+        WHERE (CURRENT_DATE =`commande_materiel`.`date_fin` OR CURRENT_DATE >`commande_materiel`.`date_fin`)
         AND `commande`.`statut` = 1
         AND `commande_materiel`.`restitute` = 1;");
 

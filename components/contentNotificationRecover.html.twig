@@ -10,13 +10,11 @@
 					//
 					{{item.date_debut}}
 					{{item.date_fin}}</div>
+				<div class="card-subtitle">caution :
+					{{item.caution}}
+				</div>
 			</div>
 			<ul class="card-social">
-				<button onclick="" class="x">
-					<li class="card-social__item">
-						<i class="fa-solid fa-x"></i>
-					</li>
-				</button>
 				<button onclick="" class="check">
 					<li class="card-social__item">
 						<i class="fa-solid fa-check"></i>
@@ -46,28 +44,6 @@
 	}
 
 	button.check:active {
-		background-color: #3d94cf;
-		transition: all 0.25s;
-		-webkit-transition: all 0.25s;
-		box-shadow: none;
-	}
-	button.x {
-		padding: 12.5px 30px;
-		border: 0;
-		border-radius: 100px;
-		background-color: #EA171A;
-		color: #ffffff;
-		font-weight: Bold;
-		transition: all 0.5s;
-		-webkit-transition: all 0.5s;
-	}
-
-	button.x:hover {
-		background-color: #C80D10;
-		box-shadow: 0 0 20px #6fc5ff50;
-	}
-
-	button.x:active {
 		background-color: #3d94cf;
 		transition: all 0.25s;
 		-webkit-transition: all 0.25s;
@@ -137,7 +113,7 @@
 		color: #333;
 		font-size: 1.5em;
 		font-weight: 600;
-		line-height: 2rem;
+		line-height: 1.5rem;
 	}
 
 	.card-subtitle {
