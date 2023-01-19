@@ -45,20 +45,6 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'pageMatDemande':
-        $icon = Materiel::typeMateriel();
-        $order   = '/';
-        $replace = '-';
-        $date_debut = str_replace($order, $replace, $_POST['date_debut']);
-        $date_fin = str_replace($order, $replace, $_POST['date_fin']);
-        error_log($date_debut + ' page Mat Demande');
-        echo json_encode($twig->render('ongletsDemandeUser.html.twig', array(
-            "icon" => $icon,
-            "date_debut" => $date_debut,
-            "date_fin" => $date_fin
-        )));
-
-        break;
     case 'pageDemande':
         echo json_encode($twig->render('pageDemandeUser.html.twig'));
 
