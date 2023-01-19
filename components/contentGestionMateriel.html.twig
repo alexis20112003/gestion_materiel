@@ -14,7 +14,7 @@
 				<tbody>
 					{% for item in type %}
 						<tr>
-							<th onclick="modalAfficherMateriel({{item.id_materiels}}) ;"><i class="fa-solid fa-eye"></i></th>
+							<th onclick="modalDetailMateriel({{item.id_materiels}}) ;"><i class="fa-solid fa-eye"></i></th>
 							<td>{{item.nom_materiel}}</td>
 							<td>{{item.description}}</td>
 							<td  onclick="modalUpdateMateriel({{item.id_materiels}}) ;" ><i class="fa-solid fa-pencil" ></i></td>
