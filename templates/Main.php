@@ -17,8 +17,12 @@ $preparedSql->execute();
 $sites = $preparedSql->fetchAll(PDO::FETCH_ASSOC);
 
 
-echo $twig->render('header.html.twig').$twig->render('main.html.twig', array(
-  "user" => $user,
-  "sites" => $sites,
-));
+if (isset($_SESSION['id'])) {
+  echo $twig->render('header.html.twig') . $twig->render('main.html.twig', array(
+    "user" => $user,
+    "sites" => $sites,
+  ));
+} else {
 
+  echo $twig->render('header.html.twig') . $twig->render('pageAccueil.html.twig');
+}
