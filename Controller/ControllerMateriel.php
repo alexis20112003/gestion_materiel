@@ -24,9 +24,9 @@ switch ($_POST['request']) {
         break;
         
     case 'loadAllMateriel':
-        $type = Materiel::selectAllMateriel();
+        $allMateriel = Materiel::selectAllMateriel();
         echo json_encode($twig->render('contentSuiviMateriel.html.twig', array(
-            "type" => $type,
+            "allMateriel" => $allMateriel,
             
         )));
 
@@ -140,4 +140,19 @@ switch ($_POST['request']) {
         ));
 
         break;
+
+    case 'modalDetailSuivi':
+
+        $materiel = Materiel::selectCommandeIdMateriel($_POST['id']);
+        echo json_encode($twig->render(
+            'modalDetailSuivi.html.twig',
+            array(
+                "materiel" => $materiel
+            )
+        ));
+
+        break;
+    
+         
 }
+
