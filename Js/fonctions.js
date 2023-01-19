@@ -288,6 +288,42 @@ function acceptDemandeMateriel(id) {
   });
 }
 
+function updateDemandeGive(id) {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "updateDemandeGive",
+      id: id
+    },
+    success: function () {
+      pageNotificationDemande();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function updateDemandeRecover(id) {
+  $.ajax({
+    url: "../controller/ControllerDemande.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "updateDemandeRecover",
+      id: id
+    },
+    success: function () {
+      pageNotificationDemande();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
 function NotificationDemande() {
   $.ajax({
     url: "../controller/ControllerDemande.php",

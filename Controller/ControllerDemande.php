@@ -75,6 +75,22 @@ switch ($_POST['request']) {
 
         break;
 
+    case 'updateDemandeGive':
+        $demande = new Commande(0);
+        $demande->updateDemandeGive($_POST['id']);
+        $responce = 'c bon';
+        echo json_encode($responce);
+
+        break;
+
+    case 'updateDemandeRecover':
+        $demande = new Commande(0);
+        $demande->updateDemandeRecover($_POST['id']);
+        $responce = 'c bon';
+        echo json_encode($responce);
+
+        break;
+
     case 'refuseDemandeMateriel':
         $demande = new Commande(0);
         $demande->refuseDemandeMateriel($_POST['id']);

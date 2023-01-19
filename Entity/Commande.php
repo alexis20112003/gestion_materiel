@@ -117,7 +117,8 @@ class Commande
 		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
         INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
         WHERE CURRENT_DATE =`commande_materiel`.`date_debut`
-        AND `commande`.`statut` = 1;");
+        AND `commande`.`statut` = 1
+        AND `commande_materiel`.`restitute` = 0;");
 
         $requete->execute();
 
@@ -188,6 +189,24 @@ class Commande
 
             $requete2->execute();
         }
+    }
+
+    public  function updateDemandeGive($id)
+    {
+
+        $requete = $GLOBALS['database']->prepare("UPDATE `commande_materiel` SET `restitute` = :restitute WHERE `id_commande` = :id");
+        $requete->bindValue(':id', $id);
+        $requete->bindValue(':restitute', 1);
+        $requete->execute();
+    }
+
+    public  function updateDemandeRecover($id)
+    {
+
+        $requete = $GLOBALS['database']->prepare("UPDATE `commande_materiel` SET `restitute` = :restitute WHERE `id_commande` = :id");
+        $requete->bindValue(':id', $id);
+        $requete->bindValue(':restitute', 2);
+        $requete->execute();
     }
 
     public  function refuseDemandeMateriel($id)
