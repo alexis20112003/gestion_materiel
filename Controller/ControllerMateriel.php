@@ -141,11 +141,11 @@ switch ($_POST['request']) {
 
         break;
 
-    case 'modalDetailSuivi':
+    case 'modalSuiviMateriel':
 
         $materiel = Materiel::selectCommandeIdMateriel($_POST['id']);
         echo json_encode($twig->render(
-            'modalDetailSuivi.html.twig',
+            'modalSuiviMateriel.html.twig',
             array(
                 "materiel" => $materiel
             )

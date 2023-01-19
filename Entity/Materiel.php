@@ -239,7 +239,8 @@ class Materiel
         INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande` 
         INNER JOIN `utilisateur` ON `commande`.`id_utilisateur` = `utilisateur`.`id_utilisateur`
         INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
-        WHERE `commande_materiel`.`id_materiels` = :id");
+        WHERE `commande_materiel`.`id_materiels` = :id 
+        AND (`commande`.`statut` = 1 OR `commande`.`statut` = 2)");
         $requete->bindValue(':id', $id);
 
         $requete->execute();
