@@ -62,7 +62,7 @@ switch ($_POST['request']) {
         echo json_encode($twig->render('pageDemandeUser.html.twig'));
 
         break;
-    
+
     case 'pageSuiviMateriel':
 
         $icon = Materiel::typeMateriel();
@@ -73,5 +73,8 @@ switch ($_POST['request']) {
 
         break;
 
+    case 'pageNotificationDemande':
+        echo json_encode($twig->render('pageNotificationDemande.html.twig', array()));
 
+        break;
 }
