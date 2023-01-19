@@ -120,6 +120,18 @@ switch ($_POST['request']) {
         echo json_encode(array("msg" => $msg, "statut" => $statut));
 
     break;
+
+    case 'loadProfilePage' :
+
+        $user = new User($_POST["id"]);
+      
+            echo json_encode($twig->render('modalUpdateUser.html.twig', array(
+                "user" => $user,
+                      
+                )));
+            
+            break;
+
     
 
     
