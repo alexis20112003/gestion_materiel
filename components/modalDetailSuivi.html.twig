@@ -21,9 +21,13 @@
                         {% if item.restitute == 0 %}
                             <td>non rendu</td>
                         {% endif %}
+                        {% if item.restitute == 2 %}
+                            <td>non rendu</td>
+                        {% endif %}
                         {% if item.restitute == 1 %}
                             <td>rendu</td>
                         {% endif %}
+
                         </td>
                     </tr>
                 {% endfor %}
