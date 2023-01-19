@@ -123,11 +123,10 @@ switch ($_POST['request']) {
     case 'loadProfilePage' :
 
         $user = new User($_POST["id"]);
-        // $userInfo = User::selectUserById($_POST["id"]);
       
             echo json_encode($twig->render('modalUpdateUser.html.twig', array(
                 "user" => $user,
-                // "userInfo" => $userInfo,        
+                      
                 )));
             
             break;
