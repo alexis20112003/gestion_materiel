@@ -40,7 +40,7 @@ switch ($_POST['request']) {
     case 'pageGestionProfile':
         $user = new User($_SESSION["id"]);
         echo json_encode($twig->render('pageGestionProfile.html.twig', array(
-            "user" => $user
+            "user" => $user,
         )));
 
         break;
