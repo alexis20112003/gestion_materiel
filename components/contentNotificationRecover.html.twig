@@ -3,7 +3,7 @@
 	{% for item in demande %}
 		<div class="card">
 			<div class="card-info">
-				<div class="card-avatar"></div>
+				<div><img src="{{item.img_profile}}"class="rounded-circle card-avatar"></div>
 				<div class="card-title">{{item.prenom}}
 					{{item.nom}}</div>
 				<div class="card-subtitle">{{item.nom_materiel}}
@@ -52,7 +52,7 @@
 
 	.group {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-evenly;
 		flex-wrap: wrap;
 	}
 	.card {
