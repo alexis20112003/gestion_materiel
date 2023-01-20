@@ -14,6 +14,8 @@ class Commande
 
     private $restitute;
 
+    private $date_restitute;
+
     public function __construct($id)
     {
         $this->id = $id;
@@ -71,6 +73,16 @@ class Commande
         $this->restitute = $restitute;
     }
 
+    public function getDate_restitute()
+    {
+        return $this->date_restitute;
+    }
+
+    public function setDate_restitute($date_restitute)
+    {
+        $this->date_restitute = $date_restitute;
+    }
+
     private function getFromDatabase()
     {
 
@@ -91,6 +103,8 @@ class Commande
             $this->date_fin = $data['date_fin'];
 
             $this->restitute = $data['restitute'];
+
+            $this->date_restitute = $data['date_restitute'];
         }
     }
 
@@ -203,7 +217,7 @@ class Commande
     public  function updateDemandeRecover($id)
     {
 
-        $requete = $GLOBALS['database']->prepare("UPDATE `commande_materiel` SET `restitute` = :restitute WHERE `id_commande` = :id");
+        $requete = $GLOBALS['database']->prepare("UPDATE `commande_materiel` SET `restitute` = :restitute, `date_restitute` = CURRENT_TIMESTAMP WHERE `id_commande` = :id");
         $requete->bindValue(':id', $id);
         $requete->bindValue(':restitute', 2);
         $requete->execute();
