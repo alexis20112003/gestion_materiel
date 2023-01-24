@@ -11,7 +11,7 @@ function modalAddUser() {
       $("#modal").modal("show");
     },
     error: function () {
-      alert("Error !");
+      alert("Error 2");
     },
   });
 }
