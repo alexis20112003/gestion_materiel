@@ -1,7 +1,8 @@
 <?php
 require_once('../vendor/autoload.php');
 require_once('../Entity/Database.php');
-require_once '../Entity/User.php';
+require_once('../Entity/User.php');
+require_once('../Entity/Mailer.php');
 $db = new Database();
 $GLOBALS['database'] = $db->mysqlConnexion();
 
@@ -12,7 +13,27 @@ $render = new \Twig\Loader\FilesystemLoader('../components/');
 
 $twig = new \Twig\Environment($render);
 
+$reussite = 0;
+$msg = "";
+
+function formTest($array, $pieces = [])
+{
+    if (count($array) > 0) {
+        foreach ($array as $k => $v) {
+            if (!in_array($k, $pieces) || empty($v)) {
+                return false;
+            }
+        }
+    } else {
+        return false;
+    }
+
+    return true;
+} 
+
+
 switch ($_POST['request']) {
+
     case 'loadUser':
         
             $typeUser = User::selectUserbyType($_POST['type']);
@@ -62,25 +83,27 @@ switch ($_POST['request']) {
             break;
 
     case 'addUser':
-
-        $reussite = 0;
-        $msg = "";
-
         if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['statut']) && !empty($_POST['site'])) {
             $user = new User(0);
-            $randPass = User::randomPassword();
+            $mail = new Mailer;
+            $userPassword = User::randomPassword();
+            $emailModel = 'emailSendPassword.html.twig';
+            $userNom = $_POST['nom'];
+            $userPrenom = $_POST['prenom'];
+            $userEmail = $_POST['email'];
             $site = $_POST['site'];
             $statut = $_POST['statut'];
-            $user->setNom($_POST['nom']);
-            $user->setPrenom($_POST['prenom']);
-            $user->setEmail($_POST['email']);
-		    $user->setPass($randPass);
+            $user->setNom($userNom);
+            $user->setPrenom($userPrenom);
+            $user->setEmail($userEmail);
+		    $user->setPass($userPassword);
             if (!empty($_POST['promo'])){
                 $user->setPromo($_POST['promo']);
             }
             $user->register($site,$statut);
+            $msgMail = $mail->sendMailPassword($userEmail, $userNom, $userPrenom, $userPassword, $emailModel);
             $reussite = 1;
-            $msg = "Nouvel Utilisateur Ajouté";    
+            $msg = "Nouvel Utilisateur Ajouté"."<br>".$msgMail;    
         }
 
         echo json_encode(array("msg" => $msg, "reussite" => $reussite));
@@ -101,9 +124,6 @@ switch ($_POST['request']) {
 
 
     case 'updateUser':
-
-        $statut = 0;
-        $msg = "";
       
         if (isset($_POST['userId']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['enable'])) {
             $user = new User($_POST['userId']);

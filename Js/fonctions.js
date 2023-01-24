@@ -11,7 +11,7 @@ function loadUser(type) {
       $("#myTabContent").html(response);
     },
     error: function () {
-      alert("Error !");
+      alert("Error 3");
     },
   });
 }
@@ -76,7 +76,7 @@ function addUser() {
       loadUser(statut);
     },
     error: function () {
-      alert("Error !");
+      alert("Error 1");
     },
   });
 }
@@ -104,7 +104,6 @@ function updateUser(userId) {
       }
       $("#modal").modal("hide");
       if ($("#ongletInactif").hasClass("active")) {
-        console.log("oui");
         loadDisabledUser();
       } else {
         loadUser(type);
@@ -315,7 +314,7 @@ function refuseDemandeMateriel(id) {
     type: "POST",
     data: {
       request: "refuseDemandeMateriel",
-      id: id
+      id: id,
     },
     success: function () {
       pageNotificationDemande();
@@ -333,7 +332,7 @@ function acceptDemandeMateriel(id) {
     type: "POST",
     data: {
       request: "acceptDemandeMateriel",
-      id: id
+      id: id,
     },
     success: function () {
       pageNotificationDemande();
@@ -351,7 +350,7 @@ function updateDemandeGive(id) {
     type: "POST",
     data: {
       request: "updateDemandeGive",
-      id: id
+      id: id,
     },
     success: function () {
       pageNotificationDemande();
@@ -369,7 +368,7 @@ function updateDemandeRecover(id) {
     type: "POST",
     data: {
       request: "updateDemandeRecover",
-      id: id
+      id: id,
     },
     success: function () {
       pageNotificationDemande();
