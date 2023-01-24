@@ -110,18 +110,24 @@ class Commande
 
     public static function selectCommandeStatut()
     {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
+        $list = array();
+
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`
+		INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande`
 		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
-		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
         INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
         WHERE (CURRENT_DATE < `commande_materiel`.`date_debut` OR CURRENT_DATE =`commande_materiel`.`date_debut`) 
         AND `commande`.`statut` = 0;");
 
         $requete->execute();
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $commands = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result;
+        foreach ($commands as $command) {
+            $list[$command['id_commande']][] = $command;
+        }
+
+        return $list;
     }
 
     public static function selectCommandeGive()

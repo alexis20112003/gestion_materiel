@@ -1,14 +1,26 @@
 <div class="group">
-	{% for item in demande %}
+	{% for items in demande %}
 		<div class="card">
 			<div class="card-info">
 				<div class="card-avatar"></div>
-				<div class="card-title">{{item.prenom}}
-					{{item.nom}}</div>
-				<div class="card-subtitle">{{item.nom_materiel}}
-					//
-					{{item.date_debut}}
-					{{item.date_fin}}</div>
+				{% set var = 0 %}
+				{% for item in items %}
+					{% if var == 0 %}
+						<div class="card-title">{{item.prenom}}
+							{{item.nom}}</div>
+						{% else %}
+
+					{% endif %}
+					{% if var == 0 %}
+						<div class="card-subtitle">
+							{{item.date_debut}}//
+							{{item.date_fin}}
+						</div>
+						{% else %}
+					{% endif %}
+					<div class="card-subtitle">{{item.nom_materiel}}</div>
+					{% set var = 1 %}
+				{% endfor %}
 			</div>
 			<ul class="card-social">
 				<button onclick="refuseDemandeMateriel({{item.id_commande}});" class="x">
@@ -25,8 +37,6 @@
 		</div>
 	{% endfor %}
 </div>
-
-
 <style>
 	button.check {
 		padding: 12.5px 30px;
