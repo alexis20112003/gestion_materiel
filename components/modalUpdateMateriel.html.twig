@@ -1,6 +1,6 @@
 <form action="javascript:updateMateriel();">
 	<div class="modal-header">
-		<h1 class="modal-title fs-5" id="ModifMatLabel">Modif mat</h1>
+		<h1 class="modal-title fs-5" id="ModifMatLabel">Modifier le matériel</h1>
 		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	</div>
 	<div class="modal-body">
@@ -23,21 +23,21 @@
 					type="text"
 					class="form-control"
 					id="Nom"
-					value={{materiel.nom}}
+					value="{{materiel.nom}}"
 					/>
 					<label for="description" class="form-label">Description</label>
 					<input
 					type="text"
 					class="form-control"
 					id="Description"
-					value={{materiel.description}}
+					value="{{materiel.description}}"
 					/>
 					<label for="caution" class="form-label">Caution</label>
 					<input
 					type="text"
 					class="form-control"
 					id="Caution"
-					value={{materiel.caution}}
+					value="{{materiel.caution}}"
 					/>
 					<label for="enable" class="form-label">Enable</label>
 					<input

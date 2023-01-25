@@ -2,6 +2,7 @@
 require_once('../vendor/autoload.php');
 require_once('../Entity/Database.php');
 require_once('../Entity/Materiel.php');
+require_once('../Entity/User.php');
 $db = new Database();
 $GLOBALS['database'] = $db->mysqlConnexion();
 
@@ -123,7 +124,7 @@ switch ($_POST['request']) {
 
     case 'modalDetailMateriel':
 
-        $materiel = new Materiel($_POST['id']);
+        $materiel = Materiel::detailMaterielById($_POST['id']);
         echo json_encode($twig->render(
             'modalDetailMateriel.html.twig',
             array(

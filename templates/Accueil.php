@@ -8,7 +8,7 @@ $twig = new \Twig\Environment($render);
 session_start();
 
 
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id']) and !empty($_SESSION['id'])) {
     header('Location: Main.php');
     exit;
 } else {
