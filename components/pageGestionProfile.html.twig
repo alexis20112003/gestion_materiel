@@ -1,11 +1,11 @@
 <body>
   <div class="row">
     <div class="col-9 rounded-pill bg-image profileBanner position-relative mt-2 ms-4"
-    style="background-image: url({{user.img_banniere}});"><button onclick="updateBanniereProfile();" type="button" class="btn btn-primary btn-circle imgBanniereBtn position-absolute"><i class="fa-solid fa-pencil"></i></button>
+    style="background-image: url({{user.img_banniere}});"><button onclick="modalUpdateBanniereProfile();" type="button" class="btn btn-primary btn-circle imgBanniereBtn position-absolute"><i class="fa-solid fa-pencil"></i></button>
       <img
         class="imgProfile img-fluid rounded-circle border border-2 border-dark position-absolute"
         src="{{user.img_profile}}"
-      /><button onclick="updateImageProfile();" type="button" class="btn btn-primary btn-circle imgProfileBtn position-absolute"><i class="fa-solid fa-pencil"></i></button>
+      /><button onclick="modalUpdateImageProfile();" type="button" class="btn btn-primary btn-circle imgProfileBtn position-absolute"><i class="fa-solid fa-pencil"></i></button>
     </div>
   </div>
 
@@ -49,5 +49,12 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					
+				</div>
+			</div>
+		</div>
 </body>
 

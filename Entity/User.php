@@ -454,5 +454,13 @@ class User
 
         return $result;
     }
+	public function updateImageProfile()
+	{
+		$requete = $GLOBALS['database']->prepare("UPDATE `utilisateur` SET img_profile=:imageProfile WHERE `id_utilisateur`= :id");
+		$requete->bindValue(':imageProfile', $this->img_profile);
+		$requete->bindValue(':id', $this->id);
+	
+		$requete->execute();
+	}
 	
 }

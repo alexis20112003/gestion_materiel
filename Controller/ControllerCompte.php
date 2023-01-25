@@ -14,6 +14,7 @@ $render = new \Twig\Loader\FilesystemLoader('../components/');
 $twig = new \Twig\Environment($render);
 
 $reussite = 0;
+$statut = 0;
 $msg = "";
 
 function formTest($array, $pieces = [])
@@ -166,5 +167,30 @@ switch ($_POST['request']) {
         ));
 
         break;
+
+    case 'modalUpdateImageProfile':
+
+        
+        echo json_encode($twig->render(
+            'modalUpdateImageProfile.html.twig',
+        ));
+
+        break;
+
+    case 'updateImageProfile':
+        error_log($_POST['imageProfile']);
+        if (isset($_POST['imageProfile'])) {
+           
+            $user = new User($_SESSION['id']);
+            $user->setImg_Profile($_POST['imageProfile']);
+            $user->updateImageProfile();
+            $statut = 1;
+            $msg = "Profile mis à jour";
+        }
+
+        echo json_encode(array("msg" => $msg, "statut" => $statut));
+
+    break;
+
 
 }

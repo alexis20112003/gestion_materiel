@@ -429,3 +429,28 @@ function NotificationRecover() {
     },
   });
 }
+
+function updateImageProfile() {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "updateImageProfile",
+      imgProfile: $("#Avatar").val(),
+    },
+    success: function (response) {
+      if (response["reussite"] == 1) {
+        iziToast.success({
+          title: "Valide",
+          message: response["msg"],
+        });
+      }
+      $("#modal").modal("hide");
+      location.reload();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
