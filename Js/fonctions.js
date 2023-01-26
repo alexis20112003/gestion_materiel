@@ -298,7 +298,8 @@ function insertDemandeMateriel(date_debut, date_fin) {
       date_debut: date_debut,
       date_fin: date_fin,
     },
-    success: function () {
+    success: function (response) {
+      console.log(response);
       location.reload();
     },
     error: function () {

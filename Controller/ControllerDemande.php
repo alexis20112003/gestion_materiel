@@ -3,6 +3,8 @@ require_once('../vendor/autoload.php');
 require_once('../Entity/Database.php');
 require_once('../Entity/Commande.php');
 require_once('../Entity/Materiel.php');
+require_once('../Entity/User.php');
+require_once('../Entity/Mailer.php');
 $db = new Database();
 $GLOBALS['database'] = $db->mysqlConnexion();
 
@@ -23,11 +25,17 @@ switch ($_POST['request']) {
             $demande->setDate_fin($_POST['date_fin']);
             $demande->setRestitute(0);
             $demande->insertCommande($_SESSION['id'], $id);
+            $mail = new Mailer;
+            $id_site = User::selectUserSite($_SESSION['id']);
+            $mail_user = User::selectAdminbySite($id_site);
+            $info_commande = 'commande info';
+            // $info_commande = Commande::selectInfoLastCommande();
+            $mail->sendMailNotification($mail_user, $info_commande);
 
-            $responce = $id;
+            $response = $id;
         } else {
         }
-        echo json_encode($responce);
+        echo json_encode($response);
 
         break;
 

@@ -185,7 +185,7 @@ class User
 	{
 		return $this->img_profile;
 	}
-	
+
 	public function setImg_Profile($img_profile)
 	{
 		$this->img_profile = $img_profile;
@@ -288,31 +288,31 @@ class User
 	}
 
 	public  static function selectAllUser()
-    {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`");
+	{
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`");
 
-        $requete->execute();
+		$requete->execute();
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result;
-    }
+		return $result;
+	}
 
 	public  static function selectDisabledUser()
-    {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
+	{
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
 		INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
 		INNER JOIN `type` ON `utilisateur_type`.`id_type` = `type`.`id_type`
 		WHERE `utilisateur`.`enable` = 1");
 
-        $requete->execute();
+		$requete->execute();
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result;
-    }
+		return $result;
+	}
 
-	
+
 	public static function selectUserbyType($id)
 	{
 		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
@@ -327,6 +327,26 @@ class User
 		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
 
 		return $result;
+	}
+
+	public static function selectAdminbySite($id)
+	{
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
+		INNER JOIN `utilisateur_site` ON `utilisateur`.`id_utilisateur` = `utilisateur_site`.`id_utilisateur`
+		INNER JOIN `site` ON `utilisateur_site`.`id_site` = `site`.`id_site`
+		INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
+        INNER JOIN `type` ON `utilisateur_type`.`id_type` = `type`.`id_type`
+		WHERE `type`.`id_type` = 2 
+        AND `utilisateur_site`.`id_site` = :id
+        AND `utilisateur`.`enable` = 0;");
+
+		$requete->bindValue(':id', $id);
+
+		$requete->execute();
+
+		$result = $requete->fetch(PDO::FETCH_ASSOC);
+
+		return $result['email'];
 	}
 	public static function selectTypebyUser($id)
 	{
@@ -377,7 +397,7 @@ class User
 
 		$result = $requete->fetch(PDO::FETCH_ASSOC);
 
-		return $result;
+		return $result['id_site'];
 	}
 
 
@@ -435,24 +455,23 @@ class User
 		$requete->bindValue(':email', $this->email);
 		$requete->bindValue(':enable', $this->enable);
 		$requete->bindValue(':userId', $this->id);
-	
+
 		$requete->execute();
 	}
 	public static function selectCommandeIdUser($id)
-    {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`
+	{
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`
         INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande` 
         INNER JOIN `utilisateur` ON `commande`.`id_utilisateur` = `utilisateur`.`id_utilisateur`
         INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
         WHERE `commande`.`id_utilisateur` = :id
         AND (`commande`.`statut` = 1 OR `commande`.`statut` = 2)");
-        $requete->bindValue(':id', $id);
+		$requete->bindValue(':id', $id);
 
-        $requete->execute();
+		$requete->execute();
 
-        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result;
-    }
-	
+		return $result;
+	}
 }

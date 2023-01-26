@@ -1,0 +1,29 @@
+<body>
+	{# {% for item in info %}
+			{% set var = 0 %}
+			{% if var == 0 %}
+				<p>
+					{{item.nom}}
+					{{item.prenom}}
+					<br/>
+					A fait une demande.
+				</p>
+				<br>
+				<p>
+					Voici le matériel demandé :
+					<br/>
+					{% set var = 1 %}
+				{% endif %}
+				.{{item.nom_materiel}}
+				{% set var = 0 %}
+				{% if var == 0 %}
+				</p>
+				{% set var = 1 %}
+			{% endif %}
+			{% set var = 0 %}
+		{% endfor %} #}
+	<p>Bonjour :
+	</p>
+	<br>
+	<p>{{info}}</p>
+</body>
