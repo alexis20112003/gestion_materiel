@@ -24,12 +24,10 @@ switch ($_POST['request']) {
             $demande->setDate_debut($_POST['date_debut']);
             $demande->setDate_fin($_POST['date_fin']);
             $demande->setRestitute(0);
-            $demande->insertCommande($_SESSION['id'], $id);
+            $info_commande = $demande->insertCommande($_SESSION['id'], $id);
             $mail = new Mailer;
             $id_site = User::selectUserSite($_SESSION['id']);
             $mail_user = User::selectAdminbySite($id_site);
-            $info_commande = 'commande info';
-            // $info_commande = Commande::selectInfoLastCommande();
             $mail->sendMailNotification($mail_user, $info_commande);
 
             $response = $id;
@@ -86,8 +84,8 @@ switch ($_POST['request']) {
     case 'updateDemandeGive':
         $demande = new Commande(0);
         $demande->updateDemandeGive($_POST['id']);
-        $responce = 'c bon';
-        echo json_encode($responce);
+        $response = 'c bon';
+        echo json_encode($response);
 
         break;
 
@@ -102,16 +100,16 @@ switch ($_POST['request']) {
     case 'refuseDemandeMateriel':
         $demande = new Commande(0);
         $demande->refuseDemandeMateriel($_POST['id']);
-        $responce = 'c bon';
-        echo json_encode($responce);
+        $response = 'c bon';
+        echo json_encode($response);
 
         break;
 
     case 'acceptDemandeMateriel':
         $demande = new Commande(0);
         $demande->acceptDemandeMateriel($_POST['id']);
-        $responce = 'c bon';
-        echo json_encode($responce);
+        $response = 'c bon';
+        echo json_encode($response);
 
         break;
 }

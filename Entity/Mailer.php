@@ -47,7 +47,7 @@ class Mailer
         return $message;
     }
 
-    function sendMailNotification($userEmail, $info)
+    public function sendMailNotification($userEmail, $info)
     {
         $render = new \Twig\Loader\FilesystemLoader('../components/');
         $twig = new \Twig\Environment($render);
@@ -75,7 +75,6 @@ class Mailer
             )));
             $mail->send();
             $message = 'Le mail a bien été envoyé.';
-            echo 'Le message a bien été envoyé.';
         } catch (phpmailerException $e) {
             echo $e->errorMessage();
         } catch (Exception $e) {

@@ -130,28 +130,29 @@ class Commande
         return $list;
     }
 
-    public static function selectInfoLastCommande()
-    {
-        $list = array();
+    // public static function selectInfoLastCommande()
+    // {
+    //     $list = array();
 
-        $lastid = $GLOBALS['database']->lastInsertId();
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`
-		INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande`
-		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
-        INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
-        WHERE `commande`.`id_commande` = :id;");
-        $requete->bindValue(':id', $lastid);
+    //     $lastid = $GLOBALS['database']->lastInsertId();
+    //     error_log($lastid);
+    //     $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`
+    // 	INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande`
+    // 	INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
+    //     INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
+    //     WHERE `commande`.`id_commande` = :id;");
+    //     $requete->bindValue(':id', $lastid);
 
-        $requete->execute();
+    //     // $requete->execute();
 
-        $commands = $requete->fetchAll(PDO::FETCH_ASSOC);
+    //     $commands = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($commands as $command) {
-            $list[$command['id_commande']][] = $command;
-        }
+    //     foreach ($commands as $command) {
+    //         $list[$command['id_commande']][] = $command;
+    //     }
 
-        return $list;
-    }
+    //     return $list;
+    // }
 
     public static function selectCommandeGive()
     {
@@ -219,6 +220,23 @@ class Commande
         $requete->bindValue(':statut', 0);
         $requete->execute();
         $lastid = $GLOBALS['database']->lastInsertId();
+        $list = array();
+
+        $requete3 = $GLOBALS['database']->prepare("SELECT * FROM `commande`
+		INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande`
+		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
+        INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
+        WHERE `commande`.`id_commande` = :id;");
+        $requete3->bindValue(':id', $lastid);
+
+        $requete3->execute();
+
+        $commands = $requete3->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($commands as $command) {
+            $list[$command['id_commande']][] = $command;
+        }
+
         foreach ($id as $value) {
 
 
@@ -232,6 +250,7 @@ class Commande
 
             $requete2->execute();
         }
+        return $list;
     }
 
     public  function updateDemandeGive($id)
