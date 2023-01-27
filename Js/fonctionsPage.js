@@ -34,9 +34,8 @@ function deconnexion() {
       request: "deconnexion",
     },
     success: function (response) {
-      if (!response["session"]) {
-        window.location.href = "Accueil.php";
-      }
+      window.location.href =
+        "http://localhost/gestion_materiel/templates/Accueil.php";
     },
     error: function () {
       alert("Error !");

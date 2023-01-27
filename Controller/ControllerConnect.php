@@ -28,6 +28,7 @@ case 'connexion':
 
           $status = "connected";
           $_SESSION["id"] = $user['id_utilisateur'];
+          $_SESSION['id'] = User::encrypt_decrypt('encrypt', $_SESSION['id']);
           $msg = "Connexion réussi";    
         }
       }
@@ -58,8 +59,9 @@ case 'changePassword':
 break;
 
 case 'deconnexion':
-
+  // $_SESSION['id'] = User::encrypt_decrypt('decrypt', $_SESSION['id']);
   session_destroy();
+  error_log("tooooooooooooootttttoooooooooo");
   echo json_encode(0);
   break;
   
