@@ -27,20 +27,25 @@
 }
 
 .mainSideBar {
-  background-image: url(../Assets/SideBarMain.jpg);
+  background-image: url(../Assets/sideBarMain.webp);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .updatePage {
-  background-image: url(../Assets/updateBackground.jpg);
+  background-image: url(../Assets/updateBackground.webp);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-position: top right;
+  background-size: 100% 100vh;
+  max-height: 100vh;
 }
 
 .updatePosition {
   top: 20%;
   left: 40%;
+}
+.tabSize {
+  max-height: 80vh;
 }
 
 .profileBanner {

@@ -178,11 +178,22 @@ switch ($_POST['request']) {
         break;
 
     case 'updateImageProfile':
-        error_log($_POST['imageProfile']);
-        if (isset($_POST['imageProfile'])) {
+
+        if (isset($_FILES)){
            
+            $list_image = [
+                "img_url" => 'gestion_materiel/Assets' .$_FILES['imgProfile']['name'],
+                'img_file' => $_FILES['imgProfile']['tmp_name']
+            ];
+            $list = [
+                'title'=> htmlspecialchars($_FILES['new_file']['name']),
+                'img_url' => $list_image['img_url']
+            ];
+    
+            move_uploaded_file($list_image['img_file'], $list_image['img_url']);
+             
             $user = new User($_SESSION['id']);
-            $user->setImg_Profile($_POST['imageProfile']);
+            $user->setImg_Profile($_POST['imgProfile']);
             $user->updateImageProfile();
             $statut = 1;
             $msg = "Profile mis à jour";
