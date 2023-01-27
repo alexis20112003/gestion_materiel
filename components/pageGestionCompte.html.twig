@@ -1,8 +1,15 @@
 {% block body %}
 	<div>
-		<h3>Gestion des Comptes</h3>
-
-		<button class="btn border border-dark" onclick="modalAddUser();">Ajouter un utilisateur</button>
+		<div class="row">
+			<div class="col-3 pt-4">
+				<h3>Gestion des Comptes</h3>
+			</div>
+			<div class="col-7">
+			</div>
+			<div class="col-2 pt-4">
+				<button class="btn border border-dark" onclick="modalAddUser();">Ajouter un utilisateur</button>
+			</div>
+		</div>
 		<div class="col py-3">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				{% for item in onglet %}
@@ -37,7 +44,7 @@
 								Inactifs</a>
 						</li>
 			</ul>
-			<div class="tab-content" id="myTabContent">
+			<div class="tab-content overflow-auto tabSize" id="myTabContent">
 				{% for item in onglet %}
 					{% if item == onglet[0] %}
 						{% block listeActive %}{% endblock %}

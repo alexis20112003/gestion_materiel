@@ -1,11 +1,16 @@
 {% block body %}
 	<div>
-		<h3>Inventaire Materiel</h3>
-		<!-- sqlcount pour la pagination -->
-		<bouton onclick="modalAddMateriel();" class="btn btn-primary" >Ajouter un materiel</bouton>
-		<!-- mettre variable qui prend +1 a chaque boucle en twig -->
-
-
+	<div class="row">
+			<div class="col-3 pt-4">
+				<h3>Inventaire du Materiel</h3>
+			</div>
+			<div class="col-7">
+			</div>
+			<div class="col-2 pt-4">	
+				<bouton onclick="modalAddMateriel();" class="btn border border-dark" >Nouveau Materiel </bouton>
+			</div>
+		</div>
+	
 		<div class="col py-3">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				{% for item in icon %}
@@ -32,7 +37,7 @@
 				</li>
 			</ul>
 			<form action="javascript:deleteMateriel();">
-				<div class="tab-content" id="myTabContent">
+				<div class="tab-content overflow-auto tabSize" id="myTabContent">
 					{% for item in icon %}
 						{% if item == icon[0] %}
 							{% block listeActive %}{% endblock %}
