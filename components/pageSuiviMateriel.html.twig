@@ -28,15 +28,9 @@
         </a>
       </li>
     </ul>
-    <div class="tab-content overflow-auto tabSize" id="myTabContent">
-					{% for item in icon %}
-						{% if item == icon[0] %}
-							{% block listeActive %}{% endblock %}
-						{% else %}
-							{% block liste %}{% endblock %}
-						{% endif %}
-					{% endfor %}
-				</div>
+    <div class="tab-content overflow-auto tabSize" id="myTabContent">		
+      {% block listeActive %}{% endblock %}
+		</div>
   </div>
 </div>
 
