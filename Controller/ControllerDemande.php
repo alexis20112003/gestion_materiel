@@ -28,6 +28,7 @@ switch ($_POST['request']) {
             $mail = new Mailer;
             $id_site = User::selectUserSite($_SESSION['id']);
             $mail_user = User::selectAdminbySite($id_site);
+            error_log(json_encode($info_commande));
             $mail->sendMailNotification($mail_user, $info_commande);
 
             $response = $id;
