@@ -430,3 +430,34 @@ function NotificationRecover() {
     },
   });
 }
+
+// function updateImageProfile() {
+//   var my_files = $("#imgProfile").get(0).files;
+//   let formData = new FormData();
+//   let element = "imgProfile";
+//   formData.append(element, my_files[0]);
+
+//   $.ajax({
+//     url: "../controller/ControllerProfile.php",
+//     dataType: "json",
+//     type: "POST",
+//     contentType: false,
+//     processData: false,
+//     data: {
+//       imgProfile: formData,
+//     },
+//     success: function (response) {
+//       if (response["reussite"] == 1) {
+//         iziToast.success({
+//           title: "Valide",
+//           message: response["msg"],
+//         });
+//       }
+//       $("#modal").modal("hide");
+//       location.reload();
+//     },
+//     error: function () {
+//       alert("Error !");
+//     },
+//   });
+// }

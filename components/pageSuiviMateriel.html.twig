@@ -7,14 +7,13 @@
 				<a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">User
 				</a>
 			</li>
-
 			<li class="nav-item" onclick="loadAllMateriel();">
 				<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
 					<i></i>Materiel
 				</a>
 			</li>
 		</ul>
-		<div class="tab-content" id="myTabContent"> {% block listeActive %}{% endblock %}
+		<div class="tab-content overflow-auto tabSize" id="myTabContent"> {% block listeActive %}{% endblock %}
 			</div>
 		</div>
 	</div>
@@ -24,3 +23,10 @@
 			<div class="modal-content"></div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+</div>

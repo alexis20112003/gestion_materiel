@@ -146,3 +146,21 @@ function modalSuiviUser(id) {
     },
   });
 }
+
+function modalUpdateImageProfile() {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "modalUpdateImageProfile",
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}

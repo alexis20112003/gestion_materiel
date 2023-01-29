@@ -472,6 +472,34 @@ class User
 
 		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-		return $result;
+        return $result;
+    }
+
+	public static function encrypt_decrypt($action, $string) 
+	{
+		$output = false;
+		$encrypt_method = "AES-256-CBC";
+		$secret_key = "173ce3372e17e8643ee2ccd88bed87b10675dc35e79c69caa6fdb314456d4236";
+		$secret_iv = "d3121dbc664c20f2740841164c5083684c4c2f131ad8483412ab07cfcbbbf380";
+		$key = hash('sha256', $secret_key);
+		$iv = substr(hash('sha256', $secret_iv), 0, 16);
+		if( $action == 'encrypt' ) {
+			$output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
+			$output = base64_encode($output);
+		}
+		else if( $action == 'decrypt' ){
+			$output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
+		}
+		return $output;
 	}
+	
+	public function updateImageProfile()
+	{
+		$requete = $GLOBALS['database']->prepare("UPDATE `utilisateur` SET img_profile=:imageProfile WHERE `id_utilisateur`= :id");
+		$requete->bindValue(':imageProfile', $this->img_profile);
+		$requete->bindValue(':id', $this->id);
+	
+		$requete->execute();
+	}
+	
 }

@@ -249,4 +249,17 @@ class Materiel
 
         return $result;
     }
+    public static function detailMaterielById($id)
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` 
+        INNER JOIN `type_materiel` ON `type_materiel`.`id_type_materiel` = `materiels`.`id_type_materiel`
+        WHERE `id_materiels` = :id");
+        $requete->bindValue(':id', $id);
+
+        $requete->execute();
+
+        $result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
 }

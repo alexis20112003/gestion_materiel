@@ -19,7 +19,7 @@
 			{% endfor %}
 		</ul>
 		<form action="javascript:insertDemandeMateriel('{{date_debut}}', '{{date_fin}}');">
-			<div class="tab-content" id="myTabContent">
+			<div class="tab-content overflow-auto tabSize" id="myTabContent">
 				{% block listeActive %}{% endblock %}
 			</div>
 			<button type="submit">
