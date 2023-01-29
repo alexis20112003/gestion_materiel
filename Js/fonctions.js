@@ -432,20 +432,21 @@ function NotificationRecover() {
 }
 
 function updateImageProfile() {
-  var my_files = $("#imgProfile").get(0).files;
+  var my_files = $("#new_file").get(0).files;
+
   let formData = new FormData();
-  let element = "imgProfile";
+
+  let element = 'new_file';
+
   formData.append(element, my_files[0]);
 
   $.ajax({
     url: "../controller/ControllerProfile.php",
-    dataType: "json",
+    data: formData,
     type: "POST",
     contentType: false,
     processData: false,
-    data: {
-      imgProfile: formData,
-    },
+    dataType: 'json',
     success: function (response) {
       if (response["reussite"] == 1) {
         iziToast.success({

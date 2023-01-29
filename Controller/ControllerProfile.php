@@ -18,19 +18,23 @@ $msg = "";
 
 
 if (isset($_FILES)) {
-    error_log(print_r($_FILES, true));
+    // error_log(print_r($_FILES, true));
     $msg = 'c bon';
     $response = $msg;
-    // $list_image = [
-    //     "img_url" => 'gestion_materiel/Assets/' . $_FILES['new_file']['name'],
-    //     'img_file' => $_FILES['new_file']['tmp_name']
-    // ];
+    $list_image = [
+        "img_url" => '../Assets/image/' . $_FILES['new_file']['name'],
+        'img_file' => $_FILES['new_file']['tmp_name']
+    ];
 
-    // $list = [
-    //     'title' => htmlspecialchars($_FILES['new_file']['name']),
-    //     'img_url' => $list_image['img_url']
-    // ];
+    $list = [
+        'title' => htmlspecialchars($_FILES['new_file']['name']),
+        'img_url' => $list_image['img_url']
+    ];
 
-    // move_uploaded_file($list_image['img_file'], $list_image['img_url']);
+    move_uploaded_file($list_image['img_file'], $list_image['img_url']);
+    $user = new User($_SESSION['id']);
+    $user->setImg_Profile($list['img_url']);
+    // error_log($list['img_url']);
+    $user->updateImageProfile();
     echo json_encode($response);
 }
