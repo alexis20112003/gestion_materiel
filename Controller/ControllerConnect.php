@@ -27,8 +27,7 @@ case 'connexion':
         if($_POST["mail"] == $user['email']  && $_POST["password"] == $user['password']){
 
           $status = "connected";
-          $_SESSION["id"] = $user['id_utilisateur'];
-          $_SESSION['id'] = User::encrypt_decrypt('encrypt', $_SESSION['id']);
+          $_SESSION['id'] = User::encrypt_decrypt('encrypt', $user['id_utilisateur']);
           $msg = "Connexion réussi";    
         }
       }
@@ -65,4 +64,3 @@ case 'deconnexion':
   break;
   
 }
-    ?>

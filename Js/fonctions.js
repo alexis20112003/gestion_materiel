@@ -462,3 +462,35 @@ function updateImageProfile() {
     },
   });
 }
+
+function updateImageBanniere() {
+  var my_files = $("#new_file").get(0).files;
+
+  let formData = new FormData();
+
+  let element = 'new_file';
+
+  formData.append(element, my_files[0]);
+
+  $.ajax({
+    url: "../controller/ControllerBanniere.php",
+    data: formData,
+    type: "POST",
+    contentType: false,
+    processData: false,
+    dataType: 'json',
+    success: function (response) {
+      if (response["reussite"] == 1) {
+        iziToast.success({
+          title: "Valide",
+          message: response["msg"],
+        });
+      }
+      $("#modal").modal("hide");
+      location.reload();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}

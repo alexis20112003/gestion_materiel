@@ -30,31 +30,31 @@ function formTest($array, $pieces = [])
     }
 
     return true;
-} 
+}
 
 
 switch ($_POST['request']) {
 
     case 'loadUser':
-        
-            $typeUser = User::selectUserbyType($_POST['type']);
-            echo json_encode($twig->render('contentGestionCompte.html.twig', array(
-                "typeUser" => $typeUser,
-               
-            )));
-        
-            
-            break;
-            
+
+        $typeUser = User::selectUserbyType($_POST['type']);
+        echo json_encode($twig->render('contentGestionCompte.html.twig', array(
+            "typeUser" => $typeUser,
+
+        )));
+
+
+        break;
+
     case 'loadAllUser':
 
         $allUser = User::selectAllUser();
         echo json_encode($twig->render('contentSuiviUser.html.twig', array(
             "allUser" => $allUser,
-            
+
         )));
-    
-        
+
+
         break;
 
     case 'loadDisabledUser':
@@ -62,10 +62,10 @@ switch ($_POST['request']) {
         $disabledUser = User::selectDisabledUser();
         echo json_encode($twig->render('contentDisabledUser.html.twig', array(
             "disabledUser" => $disabledUser,
-            
+
         )));
-    
-        
+
+
         break;
 
     case 'modalAddUser':
@@ -74,14 +74,14 @@ switch ($_POST['request']) {
         $role = User::typeUser();
         $sites = User::selectSites();
         $userSite = User::selectUserSite($_SESSION["id"]);
-            echo json_encode($twig->render('modalAddUser.html.twig', array(
-                "user" => $user,
-                "role" => $role,
-                "sites" => $sites,
-                "userSite" => $userSite
-            )));
-            
-            break;
+        echo json_encode($twig->render('modalAddUser.html.twig', array(
+            "user" => $user,
+            "role" => $role,
+            "sites" => $sites,
+            "userSite" => $userSite
+        )));
+
+        break;
 
     case 'addUser':
         if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['statut']) && !empty($_POST['site'])) {
@@ -97,14 +97,14 @@ switch ($_POST['request']) {
             $user->setNom($userNom);
             $user->setPrenom($userPrenom);
             $user->setEmail($userEmail);
-		    $user->setPass($userPassword);
-            if (!empty($_POST['promo'])){
+            $user->setPass($userPassword);
+            if (!empty($_POST['promo'])) {
                 $user->setPromo($_POST['promo']);
             }
-            $user->register($site,$statut);
+            $user->register($site, $statut);
             $msgMail = $mail->sendMailPassword($userEmail, $userNom, $userPrenom, $userPassword, $emailModel);
             $reussite = 1;
-            $msg = "Nouvel Utilisateur Ajouté"."<br>".$msgMail;    
+            $msg = "Nouvel Utilisateur Ajouté" . "<br>" . $msgMail;
         }
 
         echo json_encode(array("msg" => $msg, "reussite" => $reussite));
@@ -115,17 +115,17 @@ switch ($_POST['request']) {
 
         $user = new User($_POST["id"]);
         $typeUser = User::selectTypebyUser($_POST["id"]);
-      
-            echo json_encode($twig->render('modalUpdateUser.html.twig', array(
-                "user" => $user,
-                "typeUser" => $typeUser,        
-                )));
-            
-            break;
+
+        echo json_encode($twig->render('modalUpdateUser.html.twig', array(
+            "user" => $user,
+            "typeUser" => $typeUser,
+        )));
+
+        break;
 
 
     case 'updateUser':
-      
+
         if (isset($_POST['userId']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['enable'])) {
             $user = new User($_POST['userId']);
             $user->setNom($_POST['nom']);
@@ -140,22 +140,22 @@ switch ($_POST['request']) {
 
         echo json_encode(array("msg" => $msg, "statut" => $statut));
 
-    break;
+        break;
 
-    case 'loadProfilePage' :
+    case 'loadProfilePage':
 
         $user = new User($_POST["id"]);
-      
-            echo json_encode($twig->render('modalUpdateUser.html.twig', array(
-                "user" => $user,
-                      
-                )));
-            
-            break;
 
-    
+        echo json_encode($twig->render('modalUpdateUser.html.twig', array(
+            "user" => $user,
 
-    
+        )));
+
+        break;
+
+
+
+
     case 'modalSuiviUser':
 
         $user = User::selectCommandeIdUser($_POST['id']);
@@ -170,38 +170,19 @@ switch ($_POST['request']) {
 
     case 'modalUpdateImageProfile':
 
-        
+
         echo json_encode($twig->render(
             'modalUpdateImageProfile.html.twig',
         ));
 
         break;
 
-    case 'updateImageProfile':
-
-        if (isset($_FILES)){
-           
-            $list_image = [
-                "img_url" => 'gestion_materiel/Assets' .$_FILES['imgProfile']['name'],
-                'img_file' => $_FILES['imgProfile']['tmp_name']
-            ];
-            $list = [
-                'title'=> htmlspecialchars($_FILES['new_file']['name']),
-                'img_url' => $list_image['img_url']
-            ];
-    
-            move_uploaded_file($list_image['img_file'], $list_image['img_url']);
-             
-            $user = new User($_SESSION['id']);
-            $user->setImg_Profile($_POST['imgProfile']);
-            $user->updateImageProfile();
-            $statut = 1;
-            $msg = "Profile mis à jour";
-        }
-
-        echo json_encode(array("msg" => $msg, "statut" => $statut));
-
-    break;
+    case 'modalUpdateImageBanniere':
 
 
+        echo json_encode($twig->render(
+            'modalUpdateImageBanniere.html.twig',
+        ));
+
+        break;
 }

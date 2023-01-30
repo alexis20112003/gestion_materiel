@@ -33,7 +33,7 @@ if (isset($_FILES)) {
     move_uploaded_file($list_image['img_file'], $list_image['img_url']);
     $id_user = User::encrypt_decrypt('decrypt', $_SESSION['id']);
     $user = new User($id_user);
-    $user->setImg_Profile($list['img_url']);
-    $user->updateImageProfile();
+    $user->setImg_Banniere($list['img_url']);
+    $user->updateImageBanniere();
     echo json_encode($response);
 }
