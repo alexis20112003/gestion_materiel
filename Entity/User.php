@@ -479,7 +479,7 @@ class User
 	{
 		$output = false;
 		$encrypt_method = "AES-256-CBC";
-		$secret_key = "173ce3372e17e8643ee2ccd88bed87b10675dc35e79c69caa6fdb314456d4236";
+		$secret_key = "173ce3372e17e8643ee2ccd88bed87b10675dc35e79c69caa6fdb314456d423";
 		$secret_iv = "d3121dbc664c20f2740841164c5083684c4c2f131ad8483412ab07cfcbbbf380";
 		$key = hash('sha256', $secret_key);
 		$iv = substr(hash('sha256', $secret_iv), 0, 16);
