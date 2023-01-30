@@ -130,30 +130,6 @@ class Commande
         return $list;
     }
 
-    // public static function selectInfoLastCommande()
-    // {
-    //     $list = array();
-
-    //     $lastid = $GLOBALS['database']->lastInsertId();
-    //     error_log($lastid);
-    //     $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`
-    // 	INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande`
-    // 	INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
-    //     INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
-    //     WHERE `commande`.`id_commande` = :id;");
-    //     $requete->bindValue(':id', $lastid);
-
-    //     // $requete->execute();
-
-    //     $commands = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-    //     foreach ($commands as $command) {
-    //         $list[$command['id_commande']][] = $command;
-    //     }
-
-    //     return $lastid;
-    // }
-
     public static function selectCommandeGive()
     {
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`

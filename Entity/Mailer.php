@@ -39,10 +39,8 @@ class Mailer
             )));
             $mail->send();
             $message = 'Le mail a bien été envoyé.';
-        } catch (phpmailerException $e) {
-            echo $e->errorMessage();
         } catch (Exception $e) {
-            echo $e->getMessage();
+            return $e->getMessage();
         }
         return $message;
     }
@@ -75,10 +73,8 @@ class Mailer
             )));
             $mail->send();
             $message = 'Le mail a bien été envoyé.';
-        } catch (phpmailerException $e) {
-            echo $e->errorMessage();
         } catch (Exception $e) {
-            echo $e->getMessage();
+            return $e->getMessage();
         }
         return $message;
     }
