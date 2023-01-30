@@ -70,10 +70,11 @@ switch ($_POST['request']) {
 
     case 'modalAddUser':
 
-        $user = new User($_SESSION["id"]);
+        $id_user = User::encrypt_decrypt('decrypt', $_SESSION["id"]);
+        $user = new User($id_user);
         $role = User::typeUser();
         $sites = User::selectSites();
-        $userSite = User::selectUserSite($_SESSION["id"]);
+        $userSite = User::selectUserSite($id_user);
         echo json_encode($twig->render('modalAddUser.html.twig', array(
             "user" => $user,
             "role" => $role,
