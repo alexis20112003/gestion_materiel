@@ -61,7 +61,6 @@ break;
 case 'deconnexion':
   // $_SESSION['id'] = User::encrypt_decrypt('decrypt', $_SESSION['id']);
   session_destroy();
-  error_log("tooooooooooooootttttoooooooooo");
   echo json_encode(0);
   break;
   
