@@ -64,4 +64,3 @@ case 'deconnexion':
   break;
   
 }
-    ?>
