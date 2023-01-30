@@ -24,11 +24,11 @@ switch ($_POST['request']) {
             $demande->setDate_debut($_POST['date_debut']);
             $demande->setDate_fin($_POST['date_fin']);
             $demande->setRestitute(0);
-            $info_commande = $demande->insertCommande($_SESSION['id'], $id);
+            $id_user = User::encrypt_decrypt('decrypt', $_SESSION['id']);
+            $info_commande = $demande->insertCommande($id_user, $id);
             $mail = new Mailer;
-            $id_site = User::selectUserSite($_SESSION['id']);
+            $id_site = User::selectUserSite($id_user);
             $mail_user = User::selectAdminbySite($id_site);
-            error_log(json_encode($info_commande));
             $mail->sendMailNotification($mail_user, $info_commande);
 
             $response = $id;

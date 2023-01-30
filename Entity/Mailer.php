@@ -71,7 +71,7 @@ class Mailer
             $mail->IsHTML(true);
             $mail->Subject = 'Bienvenue';
             $mail->MsgHTML($twig->render('emailBodyNotification.html.twig', array(
-                "info" => $info,
+                "infos" => $info,
             )));
             $mail->send();
             $message = 'Le mail a bien été envoyé.';

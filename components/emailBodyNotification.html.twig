@@ -1,27 +1,25 @@
 <body>
-	{% for item in info %}
-		<p>{{item.nom_materiel}}
-			bvide</p>
-		{% set var = 0 %}
-		{% if var == 0 %}
-			<p>
-				{{item.nom}}
-				{{item.prenom}}
-				<br/>
-				A fait une demande.
-			</p>
-			<br>
-			<p>
-				Voici le matériel demandé :
-				<br/>
-				{% set var = 1 %}
-			{% endif %}
-			.{{item.nom_materiel}}
-			{% set var = 0 %}
+	{% set var = 0 %}
+	{% for info in infos %}
+		{% for item in info %}
 			{% if var == 0 %}
+				<p>
+					{{item.nom}}
+					{{item.prenom}}
+					<br/>
+					A fait une demande.
+				</p>
+				<br>
+				<p>
+					Voici le matériel demandé :
+				</p>
+				<br/>
+			{% endif %}
+			<p>
+				.{{item.nom_materiel}}
+				(caution:{{item.caution}})
 			</p>
 			{% set var = 1 %}
-		{% endif %}
-		{% set var = 0 %}
+		{% endfor %}
 	{% endfor %}
 </body>
