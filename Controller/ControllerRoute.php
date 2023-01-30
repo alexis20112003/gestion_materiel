@@ -18,7 +18,9 @@ switch ($_POST['request']) {
     case 'pageGestionMateriel':
 
         $icon = Materiel::typeMateriel();
-
+        foreach ($icon as $key => $value) {
+            $icon[$key]['id_type_materiel'] = User::encrypt_decrypt('encrypt', $value['id_type_materiel']);
+        }
         echo json_encode($twig->render('pageGestionMateriel.html.twig', array(
             "icon" => $icon
         )));
