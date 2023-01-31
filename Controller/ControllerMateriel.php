@@ -16,28 +16,26 @@ $twig = new \Twig\Environment($render);
 switch ($_POST['request']) {
 
     case 'loadMateriel':
-        error_log($_POST['type']);
-        if($_POST['type'] == 1){
+        if ($_POST['type'] == 1) {
             $type = Materiel::selectIdTypeMateriel($_POST['type']);
-        }else{
+        } else {
             $type_decrypted = User::encrypt_decrypt('decrypt', $_POST['type']);
             $type = Materiel::selectIdTypeMateriel($type_decrypted);
         }
-        error_log($_POST['type']);
         echo json_encode($twig->render('contentGestionMateriel.html.twig', array(
             "type" => $type,
-            
+
         )));
-    break;
+        break;
     case 'loadAllMateriel':
         $allMateriel = Materiel::selectAllMateriel();
         echo json_encode($twig->render('contentSuiviMateriel.html.twig', array(
             "allMateriel" => $allMateriel,
-            
+
         )));
 
         break;
-        
+
     case 'addMateriel':
 
         if (isset($_POST['nom']) && isset($_POST['description']) && isset($_POST['type']) && isset($_POST['caution'])) {
@@ -158,7 +156,4 @@ switch ($_POST['request']) {
         ));
 
         break;
-    
-         
 }
-
