@@ -182,3 +182,38 @@ function modalUpdateImageBanniere() {
     },
   });
 }
+
+function modalMotDePasse() {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "modalMotDePasse",
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+function modalUpdateProfile() {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "modalUpdateProfile",
+    },
+    success: function (response) {
+      $(".modal-content").html(response);
+      $("#modal").modal("show");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}

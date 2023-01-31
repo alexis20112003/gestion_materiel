@@ -5,7 +5,7 @@ function connexion() {
     type: "POST",
     data: {
       request: "connexion",
-      mail: $("#EmailConnexion").val(),
+      email: $("#EmailConnexion").val(),
       password: $("#PasswordConnexion").val(),
     },
     success: function (response) {

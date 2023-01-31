@@ -329,6 +329,20 @@ class User
 		return $result;
 	}
 
+	public static function selectUserbyEmail($email)
+	{
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
+		WHERE `utilisateur`.`email` = :email");
+
+		$requete->bindValue(':email', $email);
+
+		$requete->execute();
+
+		$result = $requete->fetch(PDO::FETCH_ASSOC);
+		
+		return $result["id_utilisateur"];
+	}
+
 	public static function selectAdminbySite($id)
 	{
 		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
@@ -455,6 +469,25 @@ class User
 		$requete->bindValue(':email', $this->email);
 		$requete->bindValue(':enable', $this->enable);
 		$requete->bindValue(':userId', $this->id);
+
+		$requete->execute();
+	}
+	public function updatePassword()
+	{
+		$requete = $GLOBALS['database']->prepare("UPDATE `utilisateur` SET `password`=:pass WHERE `id_utilisateur`= :id");
+		$requete->bindValue(':pass', $this->pass);
+		$requete->bindValue(':id', $this->id);
+
+		$requete->execute();
+	}
+	public function updateProfile()
+	{
+		$requete = $GLOBALS['database']->prepare("UPDATE `utilisateur` SET `nom`=:nom, `prenom`=:prenom, `email`= :email, `password`=:pass WHERE `id_utilisateur`= :id");
+		$requete->bindValue(':nom', $this->nom);
+		$requete->bindValue(':prenom', $this->prenom);
+		$requete->bindValue(':email', $this->email);
+		$requete->bindValue(':pass', $this->pass);
+		$requete->bindValue(':id', $this->id);
 
 		$requete->execute();
 	}

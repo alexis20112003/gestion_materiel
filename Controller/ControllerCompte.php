@@ -15,7 +15,7 @@ $twig = new \Twig\Environment($render);
 
 $reussite = 0;
 $statut = 0;
-$msg = "";
+$msg = "erreur";
 
 function formTest($array, $pieces = [])
 {
@@ -184,6 +184,72 @@ switch ($_POST['request']) {
         echo json_encode($twig->render(
             'modalUpdateImageBanniere.html.twig',
         ));
+
+        break;
+
+    case 'modalMotDePasse':
+
+
+        echo json_encode($twig->render(
+            'modalMotDePasse.html.twig',
+        ));
+
+        break;
+
+    case 'sendNewPassword':
+
+        if (isset($_POST['email'])) {
+            $email = $_POST['email'];
+            $id = User::selectUserbyEmail($email);
+            if(!empty($id)){
+                $user = new User($id);
+                $mail = new Mailer;
+                $emailModel = 'emailSendPassword.html.twig';
+                $userPassword = User::randomPassword();
+                $user->setPass($userPassword);
+                $userEmail = $email;
+                $userNom = $user->getNom();
+                $userPrenom = $user->getPrenom();
+                $user->updatePassword();
+                $msgMail = $mail->sendMailPassword($userEmail, $userNom, $userPrenom, $userPassword, $emailModel);
+                $statut = 1;
+                $msg = "Nouveau Mot de passe Envoyé";
+            }
+        }
+
+        echo json_encode(array("msg" => $msg, "statut" => $statut));
+
+        break;
+
+    case 'modalUpdateProfile':
+
+        $id_user = User::encrypt_decrypt('decrypt', $_SESSION["id"]);
+        $user = new User($id_user);
+        echo json_encode($twig->render(
+            'modalUpdateProfile.html.twig',array("user"=>$user)
+        ));
+
+        break;
+
+    case 'updateProfile':
+
+        if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['oldPassword']) && isset($_POST["newPassword"])){
+            $id_user = User::encrypt_decrypt('decrypt', $_SESSION["id"]);
+            $user = new User($id_user);
+            $user->setNom($_POST['nom']);
+            $user->setPrenom($_POST['prenom']);
+            $user->setEmail($_POST['email']);
+            $hash = $user->getPass();
+            
+            if (password_verify($_POST['oldPassword'], $hash)){
+            $user->setPass($_POST['newPassword']);
+            error_log("ici");
+            }
+            $user->updateProfile();
+            $statut = 1;
+            $msg = "Informations mises à jour";
+        }    
+        echo json_encode(array("msg" => $msg, "statut" => $statut));
 
         break;
 }
