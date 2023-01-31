@@ -68,6 +68,7 @@ switch ($_POST['request']) {
 
     case 'NotificationGive':
         $demande = Commande::selectCommandeGive();
+        error_log(print_r($demande, true));
         echo json_encode($twig->render('contentNotificationGive.html.twig', array(
             'demande' => $demande,
         )));

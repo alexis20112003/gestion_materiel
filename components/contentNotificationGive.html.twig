@@ -1,31 +1,36 @@
 <h3 class="mt-3 ms-2">Prêts</h3>
-<div class="group">
-	{% for item in demande %}
-		<div class="card">
-			<div class="card-info">
-				<div><img src="{{item.img_profile}}"class="rounded-circle card-avatar"></div>
-				<div class="card-title">{{item.prenom}}
-					{{item.nom}}</div>
-				<div class="card-subtitle">{{item.nom_materiel}}
-					//
-					{{item.date_debut}}
-					{{item.date_fin}}</div>
-				<div class="card-subtitle">caution :
-					{{item.caution}}
+<div class="row">
+	<div class="group">
+		{% for item in demande %}
+			<div class="col-3">
+				<div class="card">
+					<div class="card-info">
+						<div><img src="{{item.img_profile}}" class="rounded-circle card-avatar"></div>
+						<div class="card-title">{{item.prenom}}
+							{{item.nom}}</div>
+						<div class="card-subtitle">{{item.nom_materiel}}</div>
+						<div class="card-subtitle">
+							Du
+							{{item.date_debut}}<br>
+							au
+							{{item.date_fin}}
+						</div>
+						<div class="card-subtitle">caution :
+							{{item.caution}}
+						</div>
+					</div>
+					<ul class="card-social">
+						<button onclick="updateDemandeGive({{item.id_commande}});" class="check">
+							<li class="card-social__item">
+								<i class="fa-solid fa-check"></i>
+							</li>
+						</button>
+					</ul>
 				</div>
 			</div>
-			<ul class="card-social">
-				<button onclick="updateDemandeGive({{item.id_commande}});" class="check">
-					<li class="card-social__item">
-						<i class="fa-solid fa-check"></i>
-					</li>
-				</button>
-			</ul>
-		</div>
-	{% endfor %}
+		{% endfor %}
+	</div>
 </div>
-
-
 <style>
 	button.check {
 		padding: 12.5px 30px;
@@ -56,7 +61,8 @@
 		flex-wrap: wrap;
 	}
 	.card {
-		margin-top: 1.5rem;
+		position: relative;
+		margin-top: 2rem;
 		width: 190px;
 		height: 254px;
 		background: #f5f5f5;
@@ -86,6 +92,9 @@
 
 	/*Card footer*/
 	.card-social {
+		position: absolute;
+		top: 72%;
+		left: 2%;
 		transform: translateY(200%);
 		display: flex;
 		justify-content: space-around;
