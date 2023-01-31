@@ -436,7 +436,7 @@ function updateImageProfile() {
 
   let formData = new FormData();
 
-  let element = 'new_file';
+  let element = "new_file";
 
   formData.append(element, my_files[0]);
 
@@ -446,7 +446,7 @@ function updateImageProfile() {
     type: "POST",
     contentType: false,
     processData: false,
-    dataType: 'json',
+    dataType: "json",
     success: function (response) {
       if (response["reussite"] == 1) {
         iziToast.success({
@@ -468,7 +468,7 @@ function updateImageBanniere() {
 
   let formData = new FormData();
 
-  let element = 'new_file';
+  let element = "new_file";
 
   formData.append(element, my_files[0]);
 
@@ -478,7 +478,7 @@ function updateImageBanniere() {
     type: "POST",
     contentType: false,
     processData: false,
-    dataType: 'json',
+    dataType: "json",
     success: function (response) {
       if (response["reussite"] == 1) {
         iziToast.success({
@@ -488,6 +488,56 @@ function updateImageBanniere() {
       }
       $("#modal").modal("hide");
       location.reload();
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+function updateProfile() {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "updateProfile",
+      nom: $("#Nom").val(),
+      prenom: $("#Prenom").val(),
+      email: $("#Email").val(),
+      oldPassword: $("#PasswordConfirme").val(),
+      newPassword: $("#PasswordUpdate").val(),
+    },
+    success: function (response) {
+      if (response["statut"] == 1) {
+        iziToast.success({
+          title: "Valide",
+          message: response["msg"],
+        });
+      }
+      $("#modal").modal("hide");
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+function sendNewPassword() {
+  $.ajax({
+    url: "../controller/ControllerCompte.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "sendNewPassword",
+      email: $("#Email").val(),
+    },
+    success: function (response) {
+      $("#modal").modal("hide");
+      if (response["statut"] == 1) {
+        iziToast.success({
+          title: "Valide",
+          message: response["msg"],
+        });
+      }
     },
     error: function () {
       alert("Error !");

@@ -54,6 +54,13 @@
 .nav-tabs {
   cursor: pointer;
 }
+.linkMDP {
+  color: black;
+}
+.linkMDP:hover {
+  cursor: pointer;
+  color: darkgray;
+}
 .profileBanner {
   min-height: 200;
   background-repeat: no-repeat;
@@ -71,6 +78,10 @@
 .imgProfileBtn {
   top: 105%;
   left: 25%;
+}
+.profileBtn {
+  top: 110%;
+  left: 100%;
 }
 .btn-circle {
   width: 30px;
