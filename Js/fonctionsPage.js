@@ -36,6 +36,7 @@ function deconnexion() {
     success: function () {
       window.location.href =
         "http://localhost/gestion_materiel/templates/Accueil.php";
+      location.reload();
     },
     error: function () {
       alert("Error !");
