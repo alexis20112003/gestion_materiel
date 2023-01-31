@@ -15,6 +15,8 @@ class Materiel
 
     private $id_type_materiel;
 
+    private $id_site_materiel;
+
 
     public function __construct($id)
     {
@@ -83,6 +85,16 @@ class Materiel
         $this->id_type_materiel = $id_type_materiel;
     }
 
+    public function getId_site_materiel()
+    {
+        return $this->id_site_materiel;
+    }
+
+    public function setId_site_materiel($id_site_materiel)
+    {
+        $this->id_site_materiel = $id_site_materiel;
+    }
+
     private function getFromDatabase()
     {
 
@@ -100,6 +112,8 @@ class Materiel
             $this->caution = $data['caution'];
 
             $this->id_type_materiel = $data['id_type_materiel'];
+
+            $this->id_site_materiel = $data['id_site_materiel'];
 
             $this->enable = $data['enable'];
         }
