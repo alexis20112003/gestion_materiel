@@ -6,8 +6,8 @@
 					<div class="card-info">
 						{% set var = 0 %}
 						{% for item in items %}
-							<div><img class="rounded-circle card-avatar" src="{{item.img_profile}}"></div>
 							{% if var == 0 %}
+								<div><img class="rounded-circle card-avatar" src="{{item.img_profile}}"></div>
 								<div class="card-title">{{item.prenom}}
 									{{item.nom}}</div>
 								{% else %}

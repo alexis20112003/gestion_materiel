@@ -33,7 +33,7 @@ function deconnexion() {
     data: {
       request: "deconnexion",
     },
-    success: function (response) {
+    success: function () {
       window.location.href =
         "http://localhost/gestion_materiel/templates/Accueil.php";
     },
@@ -69,8 +69,8 @@ function pageGestionProfile() {
     data: {
       request: "pageGestionProfile",
     },
-    success: function (response) {
-      $("#page").html(response);
+    success: function () {
+      location.reload();
     },
     error: function () {
       alert("Error !");
