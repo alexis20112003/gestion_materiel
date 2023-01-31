@@ -2,9 +2,9 @@
 	{% for items in demande %}
 		<div class="card">
 			<div class="card-info">
-				<div class="card-avatar"><img src="{{user.img_profile}}"></div>
 				{% set var = 0 %}
 				{% for item in items %}
+					<div><img class="rounded-circle card-avatar" src="{{item.img_profile}}"></div>
 					{% if var == 0 %}
 						<div class="card-title">{{item.prenom}}
 							{{item.nom}}</div>
@@ -13,12 +13,12 @@
 					{% endif %}
 					{% if var == 0 %}
 						<div class="card-subtitle">
-							{{item.date_debut}}//
-							{{item.date_fin}}
+							Du {{item.date_debut}}<br>
+							au {{item.date_fin}}
 						</div>
 						{% else %}
 					{% endif %}
-					<div class="card-subtitle">{{item.nom_materiel}}</div>
+					<div class="card-subtitle pt-1">{{item.nom_materiel}}</div>
 					{% set var = 1 %}
 				{% endfor %}
 			</div>
@@ -89,6 +89,7 @@
 		flex-wrap: wrap;
 	}
 	.card {
+		position: relative;
 		margin-top: 1.5rem;
 		width: 190px;
 		height: 254px;
@@ -119,6 +120,9 @@
 
 	/*Card footer*/
 	.card-social {
+		position: absolute;
+   	 	top: 65%;
+    	left: 2%;
 		transform: translateY(200%);
 		display: flex;
 		justify-content: space-around;

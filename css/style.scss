@@ -1,7 +1,6 @@
 .accueilRow {
   position: relative;
 }
-
 .form-connexion {
   position: absolute;
   left: 12%;
@@ -52,7 +51,9 @@
 .tabSize {
   max-height: 80vh;
 }
-
+.nav-tabs {
+  cursor: pointer;
+}
 .profileBanner {
   min-height: 200;
   background-repeat: no-repeat;

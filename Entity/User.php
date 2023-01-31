@@ -397,7 +397,7 @@ class User
 
 		$result = $requete->fetch(PDO::FETCH_ASSOC);
 
-		return $result['id_site'];
+		return $result;
 	}
 
 
