@@ -30,8 +30,8 @@ switch ($_POST['request']) {
     case 'pageGestionCompte':
 
         $onglet = User::typeUser();
-        $user = new User($_SESSION["id"]);
-
+        $id_user = User::encrypt_decrypt('decrypt', $_SESSION['id']);
+        $user = new User($id_user);
         echo json_encode($twig->render('pageGestionCompte.html.twig', array(
             "onglet" => $onglet,
             "user" => $user
@@ -40,7 +40,8 @@ switch ($_POST['request']) {
         break;
 
     case 'pageGestionProfile':
-        $user = new User($_SESSION["id"]);
+        $id_user = User::encrypt_decrypt('decrypt', $_SESSION['id']);
+        $user = new User($id_user);
         echo json_encode($twig->render('pageGestionProfile.html.twig', array(
             "user" => $user,
         )));
