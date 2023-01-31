@@ -2,45 +2,13 @@
 	<h3>Date</h3>
 
 	<div class="input-group mb-3">
-		<input id="dropper" placeholder="Date" class="form-input-text__FormInput-sc-xxedi2-0 form-input-text___StyledFormInput-sc-xxedi2-1 dzARff edwdPU" type="text" data-dd-opt-min-date="" data-dd-opt-format="y-mm-dd" data-dd-opt-disabled-week-days="0,6" data-dd-opt-expandable="true" data-dd-opt-start-from-monday="true">
+		<input id="dropper" placeholder="Date" name="dropper" class="form-input-text__FormInput-sc-xxedi2-0 form-input-text___StyledFormInput-sc-xxedi2-1 dzARff edwdPU" type="text" data-dd-opt-min-date="" data-dd-opt-format="y-mm-dd" data-dd-opt-disabled-week-days="0,6" data-dd-opt-expandable="true" data-dd-opt-start-from-monday="true">
 		<div class="input-group-append">
 			<span class="inputspan">
 				<i class="fa-solid fa-calendar-days"></i>
 			</span>
 		</div>
 	</div>
-	<script>
-		const date = new Date();
-
-let day = date.getDate();
-let month = date.getMonth() + 1;
-let year = date.getFullYear();
-
-// This arrangement can be altered based on how we want the date's format to appear.
-let currentDate = `${year}-${month}-${day}`;
-new dateDropper({
-selector: 'input[type="text"]',
-format: "y-mm-dd",
-expandable: true,
-range: true,
-disabledWeekDays: '0,6',
-minDate: currentDate,
-lang: 'fr',
-startFromMonday: true,
-onRangeSet: function (range) {
-var start = range.a;
-var end = range.b;
-var date_debut = (start.y + '-' + start.mm + '-' + start.dd);
-var date_fin = (end.y + '-' + end.mm + '-' + end.dd);
-
-var field = (start.dd + '-' + start.mm + '-' + start.y + " // " + end.dd + '-' + end.mm + '-' + end.y);
-
-$("#dropper").val(field);
-// console.log($("#dropper").attr("data-dd-opt-range-start") + ' // ' + $("#dropper").attr("data-dd-opt-range-end"));
-ongletsMaterielDemande(date_debut, date_fin);
-}
-});
-	</script>
 	<style>
 		.edwdPU {
 			font-size: 14px;
