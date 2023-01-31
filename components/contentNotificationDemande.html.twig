@@ -1,41 +1,47 @@
-<div class="group">
-	{% for items in demande %}
-		<div class="card">
-			<div class="card-info">
-				{% set var = 0 %}
-				{% for item in items %}
-					<div><img class="rounded-circle card-avatar" src="{{item.img_profile}}"></div>
-					{% if var == 0 %}
-						<div class="card-title">{{item.prenom}}
-							{{item.nom}}</div>
-						{% else %}
+<div class="row overflow-auto">
+	<div class="group">
+		{% for items in demande %}
+			<div class="col-3">
+				<div class="card">
+					<div class="card-info">
+						{% set var = 0 %}
+						{% for item in items %}
+							<div><img class="rounded-circle card-avatar" src="{{item.img_profile}}"></div>
+							{% if var == 0 %}
+								<div class="card-title">{{item.prenom}}
+									{{item.nom}}</div>
+								{% else %}
 
-					{% endif %}
-					{% if var == 0 %}
-						<div class="card-subtitle">
-							Du {{item.date_debut}}<br>
-							au {{item.date_fin}}
-						</div>
-						{% else %}
-					{% endif %}
-					<div class="card-subtitle pt-1">{{item.nom_materiel}}</div>
-					{% set var = 1 %}
-				{% endfor %}
+							{% endif %}
+							{% if var == 0 %}
+								<div class="card-subtitle">
+									Du
+									{{item.date_debut}}<br>
+									au
+									{{item.date_fin}}
+								</div>
+								{% else %}
+							{% endif %}
+							<div class="card-subtitle pt-1">{{item.nom_materiel}}</div>
+							{% set var = 1 %}
+						{% endfor %}
+					</div>
+					<ul class="card-social">
+						<button onclick="refuseDemandeMateriel({{item.id_commande}});" class="x">
+							<li class="card-social__item">
+								<i class="fa-solid fa-x"></i>
+							</li>
+						</button>
+						<button onclick="acceptDemandeMateriel({{item.id_commande}});" class="check">
+							<li class="card-social__item">
+								<i class="fa-solid fa-check"></i>
+							</li>
+						</button>
+					</ul>
+				</div>
 			</div>
-			<ul class="card-social">
-				<button onclick="refuseDemandeMateriel({{item.id_commande}});" class="x">
-					<li class="card-social__item">
-						<i class="fa-solid fa-x"></i>
-					</li>
-				</button>
-				<button onclick="acceptDemandeMateriel({{item.id_commande}});" class="check">
-					<li class="card-social__item">
-						<i class="fa-solid fa-check"></i>
-					</li>
-				</button>
-			</ul>
-		</div>
-	{% endfor %}
+		{% endfor %}
+	</div>
 </div>
 <style>
 	button.check {
@@ -121,8 +127,8 @@
 	/*Card footer*/
 	.card-social {
 		position: absolute;
-   	 	top: 65%;
-    	left: 2%;
+		top: 65%;
+		left: 2%;
 		transform: translateY(200%);
 		display: flex;
 		justify-content: space-around;
