@@ -14,27 +14,23 @@ case 'connexion':
     $status = "";
     $msg = "Identifiants incorrect";
 
-    if(isset($_POST['mail'] ) && isset($_POST['password'])){
+    if(isset($_POST['email'] ) && isset($_POST['password'])){
      
-
-        $preparedSql = $GLOBALS['database']->prepare('SELECT `id_utilisateur`, `nom`, `prenom`, `email`, `password`, `promo` FROM `utilisateur` ');
-        // $preparedSql->bindvalue(":mail", $mail);
-        // $preparedSql->bindvalue(":password", $password);
-        $preparedSql->execute();
-        $users = $preparedSql->fetchAll(PDO::FETCH_ASSOC);
-      
+      $preparedSql = $GLOBALS['database']->prepare('SELECT `id_utilisateur`, `nom`, `prenom`, `email`, `password`, `promo` 
+      FROM `utilisateur` ');
+      $preparedSql->execute();
+      $users = $preparedSql->fetchAll(PDO::FETCH_ASSOC);
       foreach ($users as $user) {
-        if($_POST["mail"] == $user['email']  && $_POST["password"] == $user['password']){
+        $hash = $user['password'];
+        if (password_verify($_POST["password"], $hash) && $_POST["email"] == $user['email']){
+          // if($_POST['email'] == $user['email'] && $_POST['password'] == $user['password']){
 
-          $status = "connected";
-          $_SESSION['id'] = User::encrypt_decrypt('encrypt', $user['id_utilisateur']);
-          $msg = "Connexion réussi";    
-        }
+            $status = "connected";
+            $_SESSION['id'] = User::encrypt_decrypt('encrypt', $user['id_utilisateur']);
+            $msg = "Connexion réussi";    
+          }
       }
-      
     }
-  
-
   echo json_encode(array("error"=>$error, "status"=>$status, "msg"=>$msg, "session"=>$_SESSION));
 
 break;

@@ -1,10 +1,10 @@
 <body>
 	<div class="row">
 		<div class="col-9 rounded-pill bg-image profileBanner position-relative mt-2 ms-4" style="background-image: url({{user.img_banniere}});">
-			<button onclick="modalUpdateImageBanniere();" type="button" class="btn btn-primary btn-circle imgBanniereBtn position-absolute">
+			<button onclick="modalUpdateImageBanniere();" type="button" class="btn btn-dark btn-circle imgBanniereBtn position-absolute">
 				<i class="fa-solid fa-pencil"></i>
 			</button>
-			<img class="imgProfile img-fluid rounded-circle border border-2 border-dark position-absolute" src="{{user.img_profile}}"/><button onclick="modalUpdateImageProfile();" type="button" class="btn btn-primary btn-circle imgProfileBtn position-absolute">
+			<img class="imgProfile img-fluid rounded-circle border border-2 border-dark position-absolute" src="{{user.img_profile}}"/><button onclick="modalUpdateImageProfile();" type="button" class="btn btn-dark btn-circle imgProfileBtn position-absolute">
 				<i class="fa-solid fa-pencil"></i>
 			</button>
 		</div>
@@ -29,7 +29,7 @@
 				{{user.email}}
 			</div>
 
-			<div class="row mt-5">
+			<div class="row mt-5 position-relative">
 				<div class="col-12 col-lg-6 profileText d-flex justify-content-between">
 					<span class="boldText">Statut:</span>
 					{{user.statut}}
@@ -38,6 +38,9 @@
 					<span class="boldText">Promo:</span>
 					{{user.promo}}
 				</div>
+				<button onclick="modalUpdateProfile();" type="button" class="btn btn-dark btn-circle position-absolute profileBtn">
+					<i class="fa-solid fa-pencil"></i>
+				</button>
 			</div>
 		</div>
 	</div>
