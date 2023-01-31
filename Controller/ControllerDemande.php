@@ -24,7 +24,7 @@ switch ($_POST['request']) {
             $var = false;
             foreach ($id as $key => $materiel) {
                 foreach ($id_verif as $key => $all_materiel) {
-                    if ($materiel == $all_materiel) {
+                    if ($materiel == $all_materiel['id_materiels']) {
                         $var = true;
                     }
                 }

@@ -207,7 +207,7 @@ class Materiel
         $requete2->execute();
         $result2 = $requete2->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result2['id_materiels'];
+        return $result2;
     }
 
     public static function sqlCount($id)
