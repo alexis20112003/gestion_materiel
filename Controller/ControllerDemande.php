@@ -20,19 +20,32 @@ switch ($_POST['request']) {
 
         if (isset($_POST['id']) && isset($_POST['date_debut']) && isset($_POST['date_fin'])) {
             $id = json_decode($_POST['id']);
-            $demande = new Commande(0);
-            $demande->setDate_debut($_POST['date_debut']);
-            $demande->setDate_fin($_POST['date_fin']);
-            $demande->setRestitute(0);
-            $id_user = User::encrypt_decrypt('decrypt', $_SESSION['id']);
-            $info_commande = $demande->insertCommande($id_user, $id);
-            $mail = new Mailer;
-            $id_site = User::selectUserSite($id_user);
-            $mail_user = User::selectAdminbySite($id_site['id_site']);
-            $mail->sendMailNotification($mail_user, $info_commande);
-
-            $response = $id;
+            $id_verif = Materiel::verifMaterielDemande($_POST['date_debut'], $_POST['date_fin']);
+            $var = false;
+            foreach ($id as $key => $materiel) {
+                foreach ($id_verif as $key => $all_materiel) {
+                    if ($materiel == $all_materiel) {
+                        $var = true;
+                    }
+                }
+            }
+            if ($var == false) {
+                $demande = new Commande(0);
+                $demande->setDate_debut($_POST['date_debut']);
+                $demande->setDate_fin($_POST['date_fin']);
+                $demande->setRestitute(0);
+                $id_user = User::encrypt_decrypt('decrypt', $_SESSION['id']);
+                $info_commande = $demande->insertCommande($id_user, $id);
+                $mail = new Mailer;
+                $id_site = User::selectUserSite($id_user);
+                $mail_user = User::selectAdminbySite($id_site['id_site']);
+                $mail->sendMailNotification($mail_user, $info_commande);
+                $response = 'c bon';
+            } else {
+                $response = 'c pas bon';
+            }
         } else {
+            $response = 'c pas bon 2';
         }
         echo json_encode($response);
 

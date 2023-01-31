@@ -190,6 +190,26 @@ class Materiel
         return $list;
     }
 
+    public static function verifMaterielDemande($date_debut, $date_fin)
+    {
+
+        $requete2 = $GLOBALS['database']->prepare("SELECT *, `materiels`.`id_materiels` AS idMat FROM `materiels`
+        INNER JOIN `commande_materiel` ON `commande_materiel`.`id_materiels` = `materiels`.`id_materiels`
+        INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
+        WHERE (`commande_materiel`.`date_debut`  BETWEEN :date_debut AND :date_fin
+        OR `commande_materiel`.`date_fin`  BETWEEN :date_debut AND :date_fin
+        AND :date_debut  BETWEEN `commande_materiel`.`date_debut` AND `commande_materiel`.`date_fin`
+        OR :date_fin  BETWEEN `commande_materiel`.`date_debut` AND `commande_materiel`.`date_fin`)
+        AND `commande`.`statut` = 1");
+
+        $requete2->bindValue(':date_debut', $date_debut);
+        $requete2->bindValue(':date_fin', $date_fin);
+        $requete2->execute();
+        $result2 = $requete2->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result2['id_materiels'];
+    }
+
     public static function sqlCount($id)
     {
         $requete = $GLOBALS['database']->prepare("SELECT COUNT(*) as nb FROM `materiels` WHERE `id_type_materiel` = :id");
