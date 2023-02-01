@@ -1,19 +1,32 @@
 {% block body %}
-	<div class="col py-3">
-		<ul class="nav nav-tabs" id="myTab" role="tablist">
+<div class="row mt-5">
+	<div class="col-11 border border-2 border-dark rounded pb-5 mx-5">
+		<div class="row titreTableau border-bottom border-2 border-dark rounded">
+			<div class="col-3 py-3">
+				<h3>Demandes et attributions</h3>
+			</div>
+			<div class="col-2">
+				<i class="fa-solid fa-bell fa-3x pt-4 icons"></i>
+			</div>
+		</div>
+		<div class="col py-3">
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
 
-			<li class="nav-item" onclick="NotificationDemande();">
-				<a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
-					Demandes a valider</a>
-			</li>
-			<li class="nav-item" onclick="NotificationGive();">
-				<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
-					Prêt du materiel</a>
-			</li>
-			<li class="nav-item" onclick="NotificationRecover();">
-				<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
-					Récupération du materiel</a>
-			</li>
-		</ul>
+				<li class="nav-item" onclick="NotificationDemande();">
+					<a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+						Demandes a valider</a>
+				</li>
+				<li class="nav-item" onclick="NotificationGive();">
+					<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+						Prêt du materiel</a>
+				</li>
+				<li class="nav-item" onclick="NotificationRecover();">
+					<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+						Récupération du materiel</a>
+				</li>
+			</ul>
+		</div>
 		<div class="tab-content" id="myTabContent"></div>
+	</div>	
+</div>
 	{% endblock %}

@@ -1,13 +1,17 @@
 {% block body %}
-	<div>
-		<div class="row">
-			<div class="col-3 pt-4">
+	<div class="row mt-5">
+	<div class="col-11 border border-2 border-dark rounded mx-5">
+		<div class="row titreTableau border-bottom border-2 border-dark rounded">
+			<div class="col-3 py-3">
 				<h3>Gestion des Comptes</h3>
 			</div>
-			<div class="col-7">
+			<div class="col-2">
+				<i class="fa-solid fa-users fa-3x pt-4 icons"></i>
+			</div>
+			<div class="col-5">
 			</div>
 			<div class="col-2 pt-4">
-				<button class="btn border border-dark" onclick="modalAddUser();">Ajouter un utilisateur</button>
+				<button class="btn border border-white titreTableauBtn" onclick="modalAddUser();">Ajouter un utilisateur  <i class="fa-solid fa-user-plus push-right"></i></button>
 			</div>
 		</div>
 		<div class="col py-3">
@@ -44,7 +48,7 @@
 								Inactifs</a>
 						</li>
 			</ul>
-			<div class="tab-content overflow-auto tabSize" id="myTabContent">
+			<div class="tab-content tabSize" id="myTabContent">
 				{% for item in onglet %}
 					{% if item == onglet[0] %}
 						{% block listeActive %}{% endblock %}
@@ -55,6 +59,7 @@
 
 			</div>
 		</div>
+	</div>
 		<!-- Modal -->
 		<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog">
