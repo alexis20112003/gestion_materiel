@@ -134,8 +134,11 @@ class Materiel
 
     public  static function selectAllMateriel($id_site)
     {
+        // $test = array(1, 2);
+        // $test2 = implode("','", $test);
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_site_materiel` IN (" . $id_site . ")");
-        // $requete->bindValue(':id_site', $id_site);
+        // $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_site_materiel` IN (:id_site)");
+        // $requete->bindValue(':id_site', $test2);
 
         $requete->execute();
 

@@ -26,6 +26,7 @@ if (isset($_SESSION['id'])) {
   $list_id = "";
   foreach ($result as $key => $value) {
     $list_id .= $value['id_site'] . ',';
+    //array_push($list_id, (int)$value['id_site']);
   }
   $list_id = substr($list_id, 0, -1);
   $_SESSION['site_user'] = $list_id;
