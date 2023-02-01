@@ -21,12 +21,14 @@ if (isset($_SESSION['id'])) {
 
   $id = User::encrypt_decrypt('decrypt', $_SESSION['id']);
   $user = new User($id);
-  $list_id_site = array();
   $result = User::selectUserSite($id);
+
+  $list_id = "";
   foreach ($result as $key => $value) {
-    array_push($list_id_site, $value['id_site']);
+    $list_id .= $value['id_site'] . ',';
   }
-  $_SESSION['site_user'] = $list_id_site;
+  $list_id = substr($list_id, 0, -1);
+  $_SESSION['site_user'] = $list_id;
   echo $twig->render('header.html.twig') . $twig->render('main.html.twig', array(
     "user" => $user,
     "sites" => $sites,
