@@ -16,21 +16,32 @@ $twig = new \Twig\Environment($render);
 switch ($_POST['request']) {
 
     case 'loadMateriel':
+        $list_result = array();
         if ($_POST['type'] == 1) {
-            $type = Materiel::selectIdTypeMateriel($_POST['type'], $_SESSION['site_user']);
+            foreach ($_SESSION['site_user'] as $key => $value) {
+                $type = Materiel::selectIdTypeMateriel($_POST['type'], $value);
+                array_push($list_result, $type);
+            }
         } else {
             $type_decrypted = User::encrypt_decrypt('decrypt', $_POST['type']);
-            $type = Materiel::selectIdTypeMateriel($type_decrypted, $_SESSION['site_user']);
+            foreach ($_SESSION['site_user'] as $key => $value) {
+                $type = Materiel::selectIdTypeMateriel($type_decrypted, $value);
+                array_push($list_result, $type);
+            }
         }
         echo json_encode($twig->render('contentGestionMateriel.html.twig', array(
-            "type" => $type,
+            "type" => $list_result,
 
         )));
         break;
     case 'loadAllMateriel':
-        $allMateriel = Materiel::selectAllMateriel($_SESSION['site_user']);
+        $list_result = array();
+        foreach ($_SESSION['site_user'] as $key => $value) {
+            $allMateriel = Materiel::selectAllMateriel($value);
+            array_push($list_result, $allMateriel);
+        }
         echo json_encode($twig->render('contentSuiviMateriel.html.twig', array(
-            "allMateriel" => $allMateriel,
+            "allMateriel" => $list_result,
 
         )));
 
