@@ -157,15 +157,16 @@ class Materiel
         return $result;
     }
 
-    public static function selectIdTypeMaterielDemande($id, $date_debut, $date_fin)
+    public static function selectIdTypeMaterielDemande($id, $date_debut, $date_fin, $id_site)
     {
 
         $list = array();
         $list_not_dispo = array();
 
         $requete = $GLOBALS['database']->prepare("SELECT *  FROM `materiels`
-        WHERE `id_type_materiel`= $id ");
+        WHERE `id_type_materiel`= :id AND `id_site_materiel` = :id_site");
         $requete->bindValue(':id', $id);
+        $requete->bindValue(':id_site', $id_site);
         $requete->execute();
         $result = $requete->fetchAll(PDO::FETCH_ASSOC);
 
@@ -179,8 +180,10 @@ class Materiel
         OR `commande_materiel`.`date_fin`  BETWEEN :date_debut AND :date_fin
         AND :date_debut  BETWEEN `commande_materiel`.`date_debut` AND `commande_materiel`.`date_fin`
         OR :date_fin  BETWEEN `commande_materiel`.`date_debut` AND `commande_materiel`.`date_fin`)
-        AND `commande`.`statut` = 1");
+        AND `commande`.`statut` = 1
+        AND `materiels`.`id_site_materiel` =  :id_site");
         $requete2->bindValue(':id', $id);
+        $requete2->bindValue(':id_site', $id_site);
 
         $requete2->bindValue(':date_debut', $date_debut);
         $requete2->bindValue(':date_fin', $date_fin);

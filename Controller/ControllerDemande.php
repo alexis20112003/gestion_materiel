@@ -37,8 +37,7 @@ switch ($_POST['request']) {
                 $id_user = User::encrypt_decrypt('decrypt', $_SESSION['id']);
                 $info_commande = $demande->insertCommande($id_user, $id);
                 $mail = new Mailer;
-                $id_site = User::selectUserSite($id_user);
-                $mail_user = User::selectAdminbySite($id_site['id_site']);
+                $mail_user = User::selectAdminbySite($_SESSION['site_user']);
                 $mail->sendMailNotification($mail_user, $info_commande);
                 $response = 'c bon';
             } else {
@@ -52,11 +51,9 @@ switch ($_POST['request']) {
         break;
 
     case 'materielDemande':
-        $resultNum = Materiel::sqlCount($_POST['type']);
-        $type = Materiel::selectIdTypeMaterielDemande($_POST['type'], $_POST['date_debut'], $_POST['date_fin']);
+        $type = Materiel::selectIdTypeMaterielDemande($_POST['type'], $_POST['date_debut'], $_POST['date_fin'], $_SESSION['site_user']);
         echo json_encode($twig->render('contentDemandeUser.html.twig', array(
             "type" => $type,
-            "resultNum" => $resultNum,
         )));
 
         break;
