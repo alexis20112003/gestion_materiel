@@ -17,10 +17,10 @@ switch ($_POST['request']) {
 
     case 'loadMateriel':
         if ($_POST['type'] == 1) {
-            $type = Materiel::selectIdTypeMateriel($_POST['type']);
+            $type = Materiel::selectIdTypeMateriel($_POST['type'], $_SESSION['site_user']);
         } else {
             $type_decrypted = User::encrypt_decrypt('decrypt', $_POST['type']);
-            $type = Materiel::selectIdTypeMateriel($type_decrypted);
+            $type = Materiel::selectIdTypeMateriel($type_decrypted, $_SESSION['site_user']);
         }
         echo json_encode($twig->render('contentGestionMateriel.html.twig', array(
             "type" => $type,
@@ -28,7 +28,7 @@ switch ($_POST['request']) {
         )));
         break;
     case 'loadAllMateriel':
-        $allMateriel = Materiel::selectAllMateriel();
+        $allMateriel = Materiel::selectAllMateriel($_SESSION['site_user']);
         echo json_encode($twig->render('contentSuiviMateriel.html.twig', array(
             "allMateriel" => $allMateriel,
 

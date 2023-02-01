@@ -16,10 +16,13 @@ $preparedSql = $GLOBALS['database']->prepare('SELECT * FROM `site` ');
 $preparedSql->execute();
 $sites = $preparedSql->fetchAll(PDO::FETCH_ASSOC);
 
+
 if (isset($_SESSION['id'])) {
 
   $id = User::encrypt_decrypt('decrypt', $_SESSION['id']);
   $user = new User($id);
+  $result = User::selectUserSite($id);
+  $_SESSION['site_user'] = $result['id_site'];
   echo $twig->render('header.html.twig') . $twig->render('main.html.twig', array(
     "user" => $user,
     "sites" => $sites,

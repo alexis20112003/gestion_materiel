@@ -132,9 +132,10 @@ class Materiel
         $requete->execute();
     }
 
-    public  static function selectAllMateriel()
+    public  static function selectAllMateriel($id_site)
     {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels`");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_site_materiel` = :id_site");
+        $requete->bindValue(':id_site', $id_site);
 
         $requete->execute();
 
@@ -143,10 +144,11 @@ class Materiel
         return $result;
     }
 
-    public static function selectIdTypeMateriel($id)
+    public static function selectIdTypeMateriel($id, $id_site)
     {
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_type_materiel` = :id");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_type_materiel` = :id AND `id_site_materiel` = :id_site");
         $requete->bindValue(':id', $id);
+        $requete->bindValue(':id_site', $id_site);
 
         $requete->execute();
 
