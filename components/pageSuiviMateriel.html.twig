@@ -1,32 +1,38 @@
-<div>
-	<h3>Suivi de materiel</h3>
-
-	<div class="col py-3">
-		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<li class="nav-item" onclick="loadAllUser();">
-				<a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">User
-				</a>
-			</li>
-			<li class="nav-item" onclick="loadAllMateriel();">
-				<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
-					<i></i>Materiel
-				</a>
-			</li>
-		</ul>
-		<div class="tab-content overflow-auto tabSize" id="myTabContent"> {% block listeActive %}{% endblock %}
+<div class="row mt-5">
+	<div class="col-11 border border-2 border-dark rounded mx-5">
+		<div class="row titreTableau border-bottom border-2 border-dark rounded">
+			<div class="col-3 py-4">
+				<h3>Suivi de matériel</h3>
+			</div>
+			<div class="col-2">
+				<i class="fa-solid fa-location-crosshairs fa-3x py-4 icons"></i>
 			</div>
 		</div>
-	</div>
-
-	<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content"></div>
+		<div class="col py-3">
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item" onclick="loadAllUser();">
+					<a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">User
+					</a>
+				</li>
+				<li class="nav-item" onclick="loadAllMateriel();">
+					<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+						<i></i>Materiel
+					</a>
+				</li>
+			</ul>
+			<div class="tab-content overflow-auto tabSize" id="myTabContent"> {% block listeActive %}{% endblock %}
+				</div>
+			</div>
 		</div>
-	</div>
-
-	<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content"></div>
+		<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content"></div>
+			</div>
 		</div>
+		<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content"></div>
+			</div>
+		</div>	
 	</div>
 </div>
