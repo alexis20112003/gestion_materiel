@@ -234,6 +234,7 @@ function addTypeMateriel() {
     success: function (response) {
       loadMateriel(1);
       $("#modal").modal("hide");
+      pageGestionMateriel();
     },
     error: function () {
       alert("Error !");

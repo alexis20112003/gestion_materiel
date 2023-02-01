@@ -10,7 +10,7 @@
         <label for="inputPrenom" class="form-label">Description</label>
         <input type="text" class="form-control" id="Description" aria-describedby="prenomHelp"/>
         <label for="inputCaution" class="form-label">Caution</label>
-        <input type="number" class="form-control" id="Caution" aria-describedby="nomHelp"/>
+        <input type="number" min="0" class="form-control" id="Caution" aria-describedby="nomHelp"/>
         <label for="EmailUpdate" class="form-label">Type Materiel</label>
         <select class="form-select" name="type_Materiel" id="typeMateriel">
             {% for item in typeMateriel %}
