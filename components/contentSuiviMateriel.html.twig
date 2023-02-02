@@ -8,16 +8,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for items in allMateriel %}
-				{% for item in items %}
-					<tr>
-						<th onclick="modalSuiviMateriel({{item.id_materiels}})">
-							<i class="fa-solid fa-eye"></i>
-						</th>
-						<td>{{item.nom_materiel}}</td>
-						<td>{{item.description}}</td>
-					</tr>
-				{% endfor %}
+			{% for item in allMateriel %}
+				<tr>
+					<th onclick="modalSuiviMateriel({{item.id_materiels}})">
+						<i class="fa-solid fa-eye"></i>
+					</th>
+					<td>{{item.nom_materiel}}</td>
+					<td>{{item.description}}</td>
+				</tr>
 			{% endfor %}
 		</tbody>
 	</table>

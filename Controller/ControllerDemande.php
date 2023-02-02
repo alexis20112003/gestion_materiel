@@ -52,11 +52,9 @@ switch ($_POST['request']) {
         break;
 
     case 'materielDemande':
-        $list_result = array();
         $type = Materiel::selectIdTypeMaterielDemande($_POST['type'], $_POST['date_debut'], $_POST['date_fin'], $_SESSION['site_user']);
-        array_push($list_result, $type);
         echo json_encode($twig->render('contentDemandeUser.html.twig', array(
-            "type" => $list_result,
+            "type" => $type,
         )));
 
         break;
@@ -81,7 +79,6 @@ switch ($_POST['request']) {
 
     case 'NotificationGive':
         $demande = Commande::selectCommandeGive();
-        error_log(print_r($demande, true));
         echo json_encode($twig->render('contentNotificationGive.html.twig', array(
             'demande' => $demande,
         )));
