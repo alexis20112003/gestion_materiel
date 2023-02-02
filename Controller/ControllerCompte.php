@@ -37,7 +37,7 @@ switch ($_POST['request']) {
 
     case 'loadUser':
 
-        $typeUser = User::selectUserbyType($_POST['type']);
+        $typeUser = User::selectUserbyTypeandSite($_POST['type'], $_SESSION['site_user']);
         echo json_encode($twig->render('contentGestionCompte.html.twig', array(
             "typeUser" => $typeUser,
 
@@ -48,7 +48,7 @@ switch ($_POST['request']) {
 
     case 'loadAllUser':
 
-        $allUser = User::selectAllUser();
+        $allUser = User::selectAllUser($_SESSION['site_user']);
         echo json_encode($twig->render('contentSuiviUser.html.twig', array(
             "allUser" => $allUser,
 
@@ -59,7 +59,7 @@ switch ($_POST['request']) {
 
     case 'loadDisabledUser':
 
-        $disabledUser = User::selectDisabledUser();
+        $disabledUser = User::selectDisabledUser($_SESSION['site_user']);
         echo json_encode($twig->render('contentDisabledUser.html.twig', array(
             "disabledUser" => $disabledUser,
 
@@ -201,7 +201,7 @@ switch ($_POST['request']) {
         if (isset($_POST['email'])) {
             $email = $_POST['email'];
             $id = User::selectUserbyEmail($email);
-            if(!empty($id)){
+            if (!empty($id)) {
                 $user = new User($id);
                 $mail = new Mailer;
                 $emailModel = 'emailSendPassword.html.twig';
@@ -226,29 +226,30 @@ switch ($_POST['request']) {
         $id_user = User::encrypt_decrypt('decrypt', $_SESSION["id"]);
         $user = new User($id_user);
         echo json_encode($twig->render(
-            'modalUpdateProfile.html.twig',array("user"=>$user)
+            'modalUpdateProfile.html.twig',
+            array("user" => $user)
         ));
 
         break;
 
     case 'updateProfile':
 
-        if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['oldPassword']) && isset($_POST["newPassword"])){
+        if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['oldPassword']) && isset($_POST["newPassword"])) {
             $id_user = User::encrypt_decrypt('decrypt', $_SESSION["id"]);
             $user = new User($id_user);
             $user->setNom($_POST['nom']);
             $user->setPrenom($_POST['prenom']);
             $user->setEmail($_POST['email']);
             $hash = $user->getPass();
-            
-            if (password_verify($_POST['oldPassword'], $hash)){
-            $user->setPass($_POST['newPassword']);
-            error_log("ici");
+
+            if (password_verify($_POST['oldPassword'], $hash)) {
+                $user->setPass($_POST['newPassword']);
+                error_log("ici");
             }
             $user->updateProfile();
             $statut = 1;
             $msg = "Informations mises à jour";
-        }    
+        }
         echo json_encode(array("msg" => $msg, "statut" => $statut));
 
         break;

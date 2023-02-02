@@ -287,9 +287,14 @@ class User
 		return $result;
 	}
 
-	public  static function selectAllUser()
+	public  static function selectAllUser($id_site)
 	{
-		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`");
+		$ids = "'" . implode("','", $id_site) . "'";
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
+		INNER JOIN `utilisateur_site` ON `utilisateur`.`id_utilisateur` = `utilisateur_site`.`id_utilisateur`
+		INNER JOIN `site` ON `utilisateur_site`.`id_site` = `site`.`id_site`
+		WHERE `utilisateur_site`.`id_site` IN ($ids)
+        AND `utilisateur`.`enable` = 0;");
 
 		$requete->execute();
 
@@ -298,27 +303,36 @@ class User
 		return $result;
 	}
 
-	public  static function selectDisabledUser()
+	public  static function selectDisabledUser($id_site)
 	{
+		$ids = "'" . implode("','", $id_site) . "'";
 		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
-		INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
-		INNER JOIN `type` ON `utilisateur_type`.`id_type` = `type`.`id_type`
-		WHERE `utilisateur`.`enable` = 1");
-
-		$requete->execute();
-
-		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-		return $result;
-	}
-
-
-	public static function selectUserbyType($id)
-	{
-		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
+		INNER JOIN `utilisateur_site` ON `utilisateur`.`id_utilisateur` = `utilisateur_site`.`id_utilisateur`
+		INNER JOIN `site` ON `utilisateur_site`.`id_site` = `site`.`id_site`
 		INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
         INNER JOIN `type` ON `utilisateur_type`.`id_type` = `type`.`id_type`
-		WHERE `type`.`id_type` = :id");
+		WHERE `utilisateur_site`.`id_site` IN ($ids)
+        AND `utilisateur`.`enable` = 1;");
+
+		$requete->execute();
+
+		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+		return $result;
+	}
+
+
+	public static function selectUserbyTypeandSite($id, $id_site)
+	{
+		$ids = "'" . implode("','", $id_site) . "'";
+		$requete = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur`
+		INNER JOIN `utilisateur_site` ON `utilisateur`.`id_utilisateur` = `utilisateur_site`.`id_utilisateur`
+		INNER JOIN `site` ON `utilisateur_site`.`id_site` = `site`.`id_site`
+		INNER JOIN `utilisateur_type` ON `utilisateur`.`id_utilisateur` = `utilisateur_type`.`id_utilisateur`
+        INNER JOIN `type` ON `utilisateur_type`.`id_type` = `type`.`id_type`
+		WHERE `type`.`id_type` = :id 
+        AND `utilisateur_site`.`id_site` IN ($ids)
+        AND `utilisateur`.`enable` = 0;");
 
 		$requete->bindValue(':id', $id);
 
