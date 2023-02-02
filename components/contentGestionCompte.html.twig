@@ -9,19 +9,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for items in typeUser %}
-					{% for item in items %}
-						{% if item.enable == 0 %}
-							<tr>
-								<td>{{item.nom}}</td>
-								<td>{{item.prenom}}</td>
-								<td>{{item.promo}}</td>
-								<td onclick="modalUpdateUser({{item.id_utilisateur}});">
-									<i class="fa-solid fa-pencil"></i>
-								</td>
-							</tr>
-						{% endif %}
-					{% endfor %}
+				{% for item in typeUser %}
+					{% if item.enable == 0 %}
+						<tr>
+							<td>{{item.nom}}</td>
+							<td>{{item.prenom}}</td>
+							<td>{{item.promo}}</td>
+							<td onclick="modalUpdateUser({{item.id_utilisateur}});">
+								<i class="fa-solid fa-pencil"></i>
+							</td>
+						</tr>
+					{% endif %}
 				{% endfor %}
 			</tbody>
 		</div>

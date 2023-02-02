@@ -23,12 +23,13 @@ if (isset($_SESSION['id'])) {
   $user = new User($id);
   $result = User::selectUserSite($id);
 
-  $list_id = "";
+  // $list_id = "";
+  $list_id = array();
   foreach ($result as $key => $value) {
-    $list_id .= $value['id_site'] . ',';
-    //array_push($list_id, (int)$value['id_site']);
+    // $list_id .= $value['id_site'] . ',';
+    array_push($list_id, '' . $value['id_site'] . '');
   }
-  $list_id = substr($list_id, 0, -1);
+  // $list_id = substr($list_id, 0, -1);
   $_SESSION['site_user'] = $list_id;
   echo $twig->render('header.html.twig') . $twig->render('main.html.twig', array(
     "user" => $user,
