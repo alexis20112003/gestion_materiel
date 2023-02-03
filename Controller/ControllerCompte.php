@@ -244,7 +244,6 @@ switch ($_POST['request']) {
 
             if (password_verify($_POST['oldPassword'], $hash)) {
                 $user->setPass($_POST['newPassword']);
-                error_log("ici");
             }
             $user->updateProfile();
             $statut = 1;
