@@ -21,9 +21,7 @@ switch ($_POST['request']) {
       $users = $preparedSql->fetchAll(PDO::FETCH_ASSOC);
       foreach ($users as $user) {
         $hash = $user['password'];
-        if (password_verify($_POST["password"], $hash) && $_POST["email"] == $user['email']){
-          // if($_POST['email'] == $user['email'] && $_POST['password'] == $user['password']){
-
+        if (password_verify($_POST["password"], $hash) && $_POST["email"] == $user['email']){         
             $status = "connected";
             $_SESSION['id'] = User::encrypt_decrypt('encrypt', $user['id_utilisateur']);
             $msg = "Connexion réussi";    
