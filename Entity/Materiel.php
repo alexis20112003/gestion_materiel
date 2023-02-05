@@ -135,7 +135,7 @@ class Materiel
     public  static function selectAllMateriel($id_site)
     {
         $ids = "'" . implode("','", $id_site) . "'";
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_site_materiel` IN ($ids)");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_site_materiel` IN ($ids) AND `enable` = 0;");
 
         $requete->execute();
 
@@ -147,7 +147,7 @@ class Materiel
     public static function selectIdTypeMateriel($id, $id_site)
     {
         $ids = "'" . implode("','", $id_site) . "'";
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_type_materiel` = :id AND `id_site_materiel` IN ($ids)");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_type_materiel` = :id AND `id_site_materiel` IN ($ids) AND `enable` = 0;");
         $requete->bindValue(':id', $id);
         $requete->execute();
 
@@ -250,9 +250,9 @@ class Materiel
         return $result;
     }
 
-    public  function deleteMateriel()
+    public function deleteMateriel()
     {
-        $requete = $GLOBALS['database']->prepare("DELETE FROM `materiels` WHERE `id_materiels`= :id");
+        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `enable`= 1 WHERE `id_materiels`= :id");
         $requete->bindValue(':id', $this->id);
         $requete->execute();
     }

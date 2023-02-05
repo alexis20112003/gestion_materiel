@@ -36,8 +36,12 @@ function formTest($array, $pieces = [])
 switch ($_POST['request']) {
 
     case 'loadUser':
-
-        $typeUser = User::selectUserbyTypeandSite($_POST['type'], $_SESSION['site_user']);
+        if ($_POST['type'] == 4) {
+            $typeUser = User::selectUserbyTypeandSite($_POST['type'], $_SESSION['site_user']);
+        } else {
+            $type_decrypted = User::encrypt_decrypt('decrypt', $_POST['type']);
+            $typeUser = User::selectUserbyTypeandSite($type_decrypted, $_SESSION['site_user']);
+        }
         echo json_encode($twig->render('contentGestionCompte.html.twig', array(
             "typeUser" => $typeUser,
 

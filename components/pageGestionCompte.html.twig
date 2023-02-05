@@ -1,71 +1,70 @@
 {% block body %}
 	<div class="row mt-5">
-	<div class="col-11 border border-2 border-dark rounded mx-5">
-		<div class="row titreTableau border-bottom border-2 border-dark rounded">
-			<div class="col-3 py-3">
-				<h3>Gestion des Comptes</h3>
+		<div class="col-11 border border-2 border-dark rounded mx-5">
+			<div class="row titreTableau border-bottom border-2 border-dark rounded">
+				<div class="col-3 py-3">
+					<h3>Gestion des Comptes</h3>
+				</div>
+				<div class="col-2">
+					<i class="fa-solid fa-users fa-3x pt-4 icons"></i>
+				</div>
+				<div class="col-5"></div>
+				<div class="col-2 pt-4">
+					<button class="btn border border-white titreTableauBtn" onclick="modalAddUser();">Ajouter un utilisateur
+						<i class="fa-solid fa-user-plus push-right"></i>
+					</button>
+				</div>
 			</div>
-			<div class="col-2">
-				<i class="fa-solid fa-users fa-3x pt-4 icons"></i>
-			</div>
-			<div class="col-5">
-			</div>
-			<div class="col-2 pt-4">
-				<button class="btn border border-white titreTableauBtn" onclick="modalAddUser();">Ajouter un utilisateur  <i class="fa-solid fa-user-plus push-right"></i></button>
-			</div>
-		</div>
-		<div class="col py-3">
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				{% for item in onglet %}
-					{% if item == onglet[0] %}
-						<li class="nav-item" onclick="loadUser({{item.id_type}});">
-							<a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
-								<i class="{{item.onglet}}"></i>
-								{{item.statut | capitalize}}</a>
-						</li>
-					{% else %}
-						{% if user.statut == "super_admin" %}
-							<li class="nav-item" onclick="loadUser({{item.id_type}});">
-								<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+			<div class="col py-3">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					{% for item in onglet %}
+						{% if item == onglet[0] %}
+							<li class="nav-item" onclick="loadUser('{{item.id_type}}');">
+								<a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
 									<i class="{{item.onglet}}"></i>
 									{{item.statut | capitalize}}</a>
 							</li>
 						{% else %}
-							{% if item.statut != "admin" %}
-                        		{% if  item.statut != "super_admin" %}
-									<li class="nav-item" onclick="loadUser({{item.id_type}});">
-										<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
-											<i class="{{item.onglet}}"></i>
-											{{item.statut | capitalize}}</a>
-									</li>
+							{% if user.statut == "super_admin" %}
+								<li class="nav-item" onclick="loadUser('{{item.id_type}}');">
+									<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+										<i class="{{item.onglet}}"></i>
+										{{item.statut | capitalize}}</a>
+								</li>
+							{% else %}
+								{% if item.statut != "admin" %}
+									{% if  item.statut != "super_admin" %}
+										<li class="nav-item" onclick="loadUser('{{item.id_type}}');">
+											<a class="nav-link" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+												<i class="{{item.onglet}}"></i>
+												{{item.statut | capitalize}}</a>
+										</li>
+									{% endif %}
 								{% endif %}
 							{% endif %}
 						{% endif %}
-					{% endif %}
-				{% endfor %}
-				<li class="nav-item" onclick="loadDisabledUser();">
-							<a class="nav-link" id="ongletInactif" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
-								Inactifs</a>
-						</li>
-			</ul>
-			<div class="tab-content tabSize" id="myTabContent">
-				{% for item in onglet %}
-					{% if item == onglet[0] %}
-						{% block listeActive %}{% endblock %}
-					{% else %}
-						{% block liste %}{% endblock %}
-					{% endif %}
-				{% endfor %}
+					{% endfor %}
+					<li class="nav-item" onclick="loadDisabledUser();">
+						<a class="nav-link" id="ongletInactif" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">
+							Inactifs</a>
+					</li>
+				</ul>
+				<div class="tab-content tabSize" id="myTabContent">
+					{% for item in onglet %}
+						{% if item == onglet[0] %}
+							{% block listeActive %}{% endblock %}
+						{% else %}
+							{% block liste %}{% endblock %}
+						{% endif %}
+					{% endfor %}
 
+				</div>
 			</div>
 		</div>
-	</div>
 		<!-- Modal -->
 		<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog">
-				<div class="modal-content">
-					
-				</div>
+				<div class="modal-content"></div>
 			</div>
 		</div>
 	</div>

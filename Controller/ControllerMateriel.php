@@ -22,6 +22,9 @@ switch ($_POST['request']) {
             $type_decrypted = User::encrypt_decrypt('decrypt', $_POST['type']);
             $type = Materiel::selectIdTypeMateriel($type_decrypted, $_SESSION['site_user']);
         }
+        foreach ($type as $key => $value) {
+            $type[$key]['id_materiels'] = User::encrypt_decrypt('encrypt', $value['id_materiels']);
+        }
         echo json_encode($twig->render('contentGestionMateriel.html.twig', array(
             "type" => $type,
 
@@ -29,6 +32,9 @@ switch ($_POST['request']) {
         break;
     case 'loadAllMateriel':
         $allMateriel = Materiel::selectAllMateriel($_SESSION['site_user']);
+        foreach ($allMateriel as $key => $value) {
+            $allMateriel[$key]['id_materiels'] = User::encrypt_decrypt('encrypt', $value['id_materiels']);
+        }
         echo json_encode($twig->render('contentSuiviMateriel.html.twig', array(
             "allMateriel" => $allMateriel,
 
@@ -75,7 +81,8 @@ switch ($_POST['request']) {
         if (isset($_POST['id'])) {
             $id = json_decode($_POST['id']);
             foreach ($id as $value) {
-                $materiel = new Materiel($value);
+                $id_decrypted = User::encrypt_decrypt('decrypt', $value);
+                $materiel = new Materiel($id_decrypted);
                 $materiel->deleteMateriel();
             }
             $responce = $id;
@@ -87,7 +94,8 @@ switch ($_POST['request']) {
 
     case 'updateMateriel':
 
-        $materiel = new Materiel($_POST['id']);
+        $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        $materiel = new Materiel($id_decrypted);
         $materiel->setNom($_POST['nom']);
         $materiel->setDescription($_POST['description']);
         $materiel->setCaution($_POST['caution']);
@@ -101,7 +109,9 @@ switch ($_POST['request']) {
         break;
 
     case 'modalUpdateMateriel':
-        $materiel = new Materiel($_POST['id']);
+
+        $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        $materiel = new Materiel($id_decrypted);
         $typeMateriel =  Materiel::typeMateriel();
         echo json_encode($twig->render(
             'modalUpdatemateriel.html.twig',
@@ -127,7 +137,8 @@ switch ($_POST['request']) {
 
     case 'modalDetailMateriel':
 
-        $materiel = Materiel::detailMaterielById($_POST['id']);
+        $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        $materiel = Materiel::detailMaterielById($id_decrypted);
         echo json_encode($twig->render(
             'modalDetailMateriel.html.twig',
             array(
@@ -147,7 +158,8 @@ switch ($_POST['request']) {
 
     case 'modalSuiviMateriel':
 
-        $materiel = Materiel::selectCommandeIdMateriel($_POST['id']);
+        $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        $materiel = Materiel::selectCommandeIdMateriel($id_decrypted);
         echo json_encode($twig->render(
             'modalSuiviMateriel.html.twig',
             array(
