@@ -134,7 +134,6 @@ switch ($_POST['request']) {
             $user->setEmail($_POST['email']);
             $user->setEnable($_POST['enable']);
             $user->updateUser();
-            $response = $_POST['nom'] . ' ' . $_POST['prenom'] . ' ' . $_POST['email'] . ' ' . $_POST['enable'];
             $statut = 1;
             $msg = "Informations mises à jour";
         }
