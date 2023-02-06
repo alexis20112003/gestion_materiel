@@ -423,7 +423,7 @@ class User
 
 		$requete->execute();
 
-		$result = $requete->fetch(PDO::FETCH_ASSOC);
+		$result = $requete->fetchAll(PDO::FETCH_ASSOC);
 
 		return $result;
 	}

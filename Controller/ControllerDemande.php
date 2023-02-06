@@ -38,9 +38,11 @@ switch ($_POST['request']) {
                 $info_commande = $demande->insertCommande($id_user, $id);
                 $mail = new Mailer;
                 $id_site = User::selectUserSite($id_user);
-                $mail_user = User::selectAdminbySite($id_site['id_site']);
-                $mail->sendMailNotification($mail_user, $info_commande);
-                $response = 'c bon';
+                foreach ($id_site as $site) {
+                    $mail_user = User::selectAdminbySite($site['id_site']);
+                    $mail->sendMailNotification($mail_user, $info_commande);
+                    $response = 'c bon';
+                }
             } else {
                 $response = 'c pas bon';
             }
