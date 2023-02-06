@@ -44,12 +44,14 @@ switch ($_POST['request']) {
             $materiel->setDescription($_POST['description']);
             $materiel->setCaution($_POST['caution']);
             $materiel->setId_type_materiel($_POST['type']);
+            $materiel->setId_site_materiel($_POST['id_site']);
             $materiel->insertMateriel();
+            
 
-            $responce = $_POST['nom'] . ' ' . $_POST['description'] . ' ' . $_POST['caution'] . ' ' . $_POST['type'];
+            $response = $_POST['nom'] . ' ' . $_POST['description'] . ' ' . $_POST['caution'] . ' ' . $_POST['type'];
         }
 
-        echo json_encode($responce);
+        echo json_encode($response);
 
         break;
 
@@ -116,10 +118,12 @@ switch ($_POST['request']) {
     case 'modalAddMateriel':
 
         $typeMateriel =  Materiel::typeMateriel();
+        $id_site = User::selectSites();
         echo json_encode($twig->render(
             'modalAddMateriel.html.twig',
             array(
-                'typeMateriel' => $typeMateriel
+                'typeMateriel' => $typeMateriel,
+                'site' => $id_site
             )
         ));
 

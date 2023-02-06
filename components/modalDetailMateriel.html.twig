@@ -9,7 +9,6 @@
 			<th scope="col">Nom materiel</th>
 			<th scope="col">Description</th>
 			<th scope="col">Caution</th>
-			<th scope="col">Enable</th>
 
 		</tr>
 	</thead>
@@ -21,12 +20,6 @@
 					<td>{{item.nom_materiel}}</td>
 					<td>{{item.description}}</td>
 					<td>{{item.caution}}</td>
-					{% if item.enable == 0 %}
-						<td>Fonctionnel</td>
-					{% endif %}
-					{% if item.enable == 1 %}
-						<td>Non fonctionnel</td>
-					{% endif %}
 				</tr>
 			</td>
 		</tbody>
