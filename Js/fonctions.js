@@ -275,6 +275,8 @@ function ongletsMaterielDemande(date_debut, date_fin) {
     },
     success: function (response) {
       $("#result_demande").html(response);
+      let field = date_debut + ' // ' + date_fin;
+      $("#dropper").val(field);
       chargeMaterielDemande(1, date_debut, date_fin);
     },
     error: function () {

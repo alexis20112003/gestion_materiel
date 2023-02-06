@@ -88,14 +88,15 @@ function pageDemande() {
     },
     success: function (response) {
       $("#page").html(response);
+
       const date = new Date();
 
       let day = date.getDate();
       let month = date.getMonth() + 1;
       let year = date.getFullYear();
 
-      // This arrangement can be altered based on how we want the date's format to appear.
       let currentDate = `${year}-${month}-${day}`;
+
       new dateDropper({
         selector: 'input[name="dropper"]',
         format: "y-mm-dd",
@@ -111,13 +112,10 @@ function pageDemande() {
           var date_debut = (start.y + '-' + start.mm + '-' + start.dd);
           var date_fin = (end.y + '-' + end.mm + '-' + end.dd);
 
-          var field = (start.dd + '-' + start.mm + '-' + start.y + " // " + end.dd + '-' + end.mm + '-' + end.y);
-
-          $("#dropper").val(field);
-          // console.log($("#dropper").attr("data-dd-opt-range-start") + ' // ' + $("#dropper").attr("data-dd-opt-range-end"));
           ongletsMaterielDemande(date_debut, date_fin);
         }
       });
+      ongletsMaterielDemande(currentDate, currentDate);
     },
     error: function () {
       alert("Error !");
