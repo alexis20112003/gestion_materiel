@@ -55,6 +55,12 @@
 .tabSize::-webkit-scrollbar {
   display: none;
 }
+@media screen and (min-width: 320px) and (max-width: 576px) {
+  .tabSize {
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+}
 .nav-tabs {
   cursor: pointer;
 }

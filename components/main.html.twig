@@ -75,19 +75,19 @@
 							<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownMenuUser">
 								{% if user.getStatut == "admin" or user.getStatut == "super_admin" %}
 									<li>
-										<a class="dropdown-item" href="">Site Bastia</a>
+										<a class="dropdown-item" >Site Bastia</a>
 									</li>
 									<li>
-										<a class="dropdown-item" href="">Site Ajaccio</a>
+										<a class="dropdown-item" >Site Ajaccio</a>
 									</li>
 									<li onclick="pageGestionMateriel();">
-										<a class="dropdown-item" href="">Inventaire Materiel</a>
+										<a class="dropdown-item" >Inventaire Materiel</a>
 									</li>
 									<li onclick="pageNotificationDemande();">
-										<a class="dropdown-item" href="">Demandes et Attributions</a>
+										<a class="dropdown-item" >Demandes et Attributions</a>
 									</li>
 									<li onclick="pageGestionCompte();">
-										<a class="dropdown-item" href="">Gestion des Comptes</a>
+										<a class="dropdown-item" >Gestion des Comptes</a>
 									</li>
 								{% endif %}
 								{% if user.getStatut != "admin" and user.getStatut != "super_admin" %}
@@ -95,7 +95,7 @@
 										<a class="dropdown-item" href="#submenu1">Demandes</a>
 									</li>
 									<li>
-										<a class="dropdown-item" href="">Contacter Administrateur</a>
+										<a class="dropdown-item" >Contacter Administrateur</a>
 									</li>
 								{% endif %}
 
@@ -113,13 +113,13 @@
 							</a>
 							<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
 								<li onclick="pageGestionProfile();">
-									<a class="dropdown-item" href="#submenu1">Profile</a>
+									<a class="dropdown-item">Profile</a>
 								</li>
 								<li>
 									<hr class="dropdown-divider">
 								</li>
 								<li onclick="deconnexion();">
-									<a class="dropdown-item" href="">Deconnexion</a>
+									<a class="dropdown-item" >Deconnexion</a>
 								</li>
 							</ul>
 						</div>
