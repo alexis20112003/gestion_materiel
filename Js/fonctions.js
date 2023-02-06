@@ -160,10 +160,11 @@ function addMateriel() {
       description: $("#Description").val(),
       caution: $("#Caution").val(),
       type: $("#typeMateriel").val(),
+      id_site: $("#id_site").val(),
     },
     success: function (response) {
       console.log(response);
-      loadMateriel(1);
+      pageGestionMateriel();
       $("#modal").modal("hide");
     },
     error: function () {
@@ -213,7 +214,7 @@ function deleteMateriel() {
       id: JSON.stringify(id_check_s),
     },
     success: function () {
-      location.reload();
+      pageGestionMateriel();
     },
     error: function () {
       alert("Error !");

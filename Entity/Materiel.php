@@ -261,11 +261,13 @@ class Materiel
     public  function insertMateriel()
     {
         if ($this->id == 0) {
-            $requete = $GLOBALS['database']->prepare("INSERT INTO `materiels` (`nom_materiel`, `description`, `caution`, `id_type_materiel`) VALUES (:nom, :description, :caution, :id)");
+            $requete = $GLOBALS['database']->prepare("INSERT INTO `materiels` (`nom_materiel`, `description`, `caution`, `id_type_materiel`,`id_site_materiel`) VALUES (:nom, :description, :caution, :id, :id_site)");
             $requete->bindValue(':nom', $this->nom);
             $requete->bindValue(':description', $this->description);
             $requete->bindValue(':caution', $this->caution);
             $requete->bindValue(':id', $this->id_type_materiel);
+            $requete->bindValue(':id_site', $this->id_site_materiel);
+
 
 
             $requete->execute();

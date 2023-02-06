@@ -11,6 +11,12 @@
         <input type="text" class="form-control" id="Description" aria-describedby="prenomHelp"/>
         <label for="inputCaution" class="form-label">Caution</label>
         <input type="number" min="0" class="form-control" id="Caution" aria-describedby="nomHelp"/>
+        <label for="inputId_site" class="form-label">Site</label>
+        <select class="form-select" name="type_site" id="id_site">
+        {% for item in site %}
+            <option value="{{item.id_site}}">{{item.site}}</option>
+        {% endfor %}
+        </select>
         <label for="EmailUpdate" class="form-label">Type Materiel</label>
         <select class="form-select" name="type_Materiel" id="typeMateriel">
             {% for item in typeMateriel %}
