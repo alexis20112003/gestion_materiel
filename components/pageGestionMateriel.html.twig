@@ -1,20 +1,20 @@
 {% block body %}
-<div class="row mt-5">
-	<div class="col-11 border border-2 border-dark rounded mx-5">
+<div class="row mt-3 mt-md-5">
+	<div class="col-10 col-md-11 border border-2 border-dark rounded mx-3 mx-md-4 mx-l-5">
 		<div class="row titreTableau border-bottom border-2 border-dark rounded">
-			<div class="col-3 py-3">
+			<div class="col col-md-3 py-1 py-md-3">
 				<h3>Inventaire du Materiel</h3>
 			</div>
-			<div class="col-2">
+			<div class="d-none d-md-inline col-md-2">
 				<i class="fa-solid fa-computer fa-3x pt-4 icons"></i>
 			</div>
-			<div class="col-5"></div>
-			<div class="col-2 pt-4">
+			<div class="d-none d-md-inline col-md-3"></div>
+			<div class="col col-md-2 py-1 py-md-4">
 				<bouton onclick="modalAddMateriel();" class="btn border border-white titreTableauBtn">Nouveau Materiel <i class="fa-solid fa-computer"></i> <i class="fa-solid fa-plus"></i>
 				</bouton>
 			</div>
 		</div>
-		<div class="col py-3">
+		<div class="col py-sm-3">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				{% for item in icon %}
 					{% if item == icon[0] %}
