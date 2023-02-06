@@ -135,7 +135,7 @@ class Materiel
     public  static function selectAllMateriel($id_site)
     {
         $ids = "'" . implode("','", $id_site) . "'";
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_site_materiel` IN ($ids) AND `enable` = 0;");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_site_materiel` IN ($ids);");
 
         $requete->execute();
 
