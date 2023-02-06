@@ -164,7 +164,7 @@ class Materiel
         $list_not_dispo = array();
         $ids = "'" . implode("','", $id_site) . "'";
         $requete = $GLOBALS['database']->prepare("SELECT *  FROM `materiels`
-        WHERE `id_type_materiel`= :id AND `id_site_materiel` IN ($ids)");
+        WHERE `id_type_materiel`= :id AND `id_site_materiel` IN ($ids) AND `enable` = 0;");
         $requete->bindValue(':id', $id);
         $requete->execute();
         $result = $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -180,7 +180,8 @@ class Materiel
         AND :date_debut  BETWEEN `commande_materiel`.`date_debut` AND `commande_materiel`.`date_fin`
         OR :date_fin  BETWEEN `commande_materiel`.`date_debut` AND `commande_materiel`.`date_fin`)
         AND `commande`.`statut` = 1
-        AND `materiels`.`id_site_materiel` IN ($ids)");
+        AND `materiels`.`id_site_materiel` IN ($ids)
+        AND `materiels`.`enable` = 0;");
         $requete2->bindValue(':id', $id);
 
         $requete2->bindValue(':date_debut', $date_debut);
