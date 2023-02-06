@@ -10,7 +10,7 @@ function connexion() {
     },
     success: function (response) {
       if (response["status"] === "connected" && response["session"]) {
-        window.location.href = "Main.php";
+        window.location.href = "Authentification.php";
       }
       if (response["status"] != "connected" || !response["session"]) {
         iziToast.error({
@@ -18,6 +18,24 @@ function connexion() {
           message: response["msg"],
         });
       }
+    },
+    error: function () {
+      alert("Error !");
+    },
+  });
+}
+
+function authentification() {
+  $.ajax({
+    url: "../controller/ControllerConnect.php",
+    dataType: "json",
+    type: "POST",
+    data: {
+      request: "authentification",
+      token: $("#Token").val(),
+    },
+    success: function () {
+      window.location.href = "main.php";
     },
     error: function () {
       alert("Error !");
@@ -101,22 +119,33 @@ function pageDemande() {
         format: "y-mm-dd",
         expandable: true,
         range: true,
-        disabledWeekDays: '0,6',
+        disabledWeekDays: "0,6",
         minDate: currentDate,
-        lang: 'fr',
+        lang: "fr",
         startFromMonday: true,
         onRangeSet: function (range) {
           var start = range.a;
           var end = range.b;
-          var date_debut = (start.y + '-' + start.mm + '-' + start.dd);
-          var date_fin = (end.y + '-' + end.mm + '-' + end.dd);
+          var date_debut = start.y + "-" + start.mm + "-" + start.dd;
+          var date_fin = end.y + "-" + end.mm + "-" + end.dd;
 
-          var field = (start.dd + '-' + start.mm + '-' + start.y + " // " + end.dd + '-' + end.mm + '-' + end.y);
+          var field =
+            start.dd +
+            "-" +
+            start.mm +
+            "-" +
+            start.y +
+            " // " +
+            end.dd +
+            "-" +
+            end.mm +
+            "-" +
+            end.y;
 
           $("#dropper").val(field);
           // console.log($("#dropper").attr("data-dd-opt-range-start") + ' // ' + $("#dropper").attr("data-dd-opt-range-end"));
           ongletsMaterielDemande(date_debut, date_fin);
-        }
+        },
       });
     },
     error: function () {
