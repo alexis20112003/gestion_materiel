@@ -147,7 +147,7 @@ class Materiel
     public static function selectIdTypeMateriel($id, $id_site)
     {
         $ids = "'" . implode("','", $id_site) . "'";
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_type_materiel` = :id AND `id_site_materiel` IN ($ids)");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_type_materiel` = :id AND `id_site_materiel` IN ($ids) AND `enable` = 0;");
         $requete->bindValue(':id', $id);
         $requete->execute();
 
