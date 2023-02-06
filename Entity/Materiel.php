@@ -252,7 +252,7 @@ class Materiel
 
     public  function deleteMateriel()
     {
-        $requete = $GLOBALS['database']->prepare("DELETE FROM `materiels` WHERE `id_materiels`= :id");
+        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `enable`= 1 WHERE `id_materiels`= :id");
         $requete->bindValue(':id', $this->id);
         $requete->execute();
     }
