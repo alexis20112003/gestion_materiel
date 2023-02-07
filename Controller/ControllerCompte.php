@@ -74,7 +74,10 @@ switch ($_POST['request']) {
         $user = new User($id_user);
         $role = User::typeUser();
         $sites = User::selectSites();
-        $userSite = User::selectUserSite($id_user);
+        $id_sites = User::selectUserSite($id_user);
+        foreach ($id_sites as $site) {
+            $userSite = $site;   
+        }
         echo json_encode($twig->render('modalAddUser.html.twig', array(
             "user" => $user,
             "role" => $role,
