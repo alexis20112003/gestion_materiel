@@ -34,24 +34,6 @@ switch ($_POST['request']) {
 
     break;
 
-  case 'changePassword':
-
-    $error = 0;
-    $statut = 0;
-    $msg = "Mot de passe incorrect";
-    $user = new User($_SESSION["id"]);
-    if ($_POST["PasswordConfirme"] == $user->getPass()) {
-
-      $msg = "Changement réussi";
-    }
-
-
-
-
-    echo json_encode(array("error" => $error, "msg" => $msg, "statut" => $statut));
-
-    break;
-
   case 'deconnexion':
     session_destroy();
     echo json_encode(0);
