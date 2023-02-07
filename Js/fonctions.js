@@ -184,7 +184,6 @@ function updateMateriel() {
       nom: $("#Nom").val(),
       description: $("#Description").val(),
       caution: $("#Caution").val(),
-      enable: $("#Enable").val(),
       type: $("#typeMateriel").val(),
     },
     success: function (response) {
@@ -275,7 +274,7 @@ function ongletsMaterielDemande(date_debut, date_fin) {
     },
     success: function (response) {
       $("#result_demande").html(response);
-      let field = date_debut + ' // ' + date_fin;
+      let field = date_debut + " // " + date_fin;
       $("#dropper").val(field);
       chargeMaterielDemande(1, date_debut, date_fin);
     },

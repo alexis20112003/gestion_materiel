@@ -93,7 +93,6 @@ switch ($_POST['request']) {
         $materiel->setNom($_POST['nom']);
         $materiel->setDescription($_POST['description']);
         $materiel->setCaution($_POST['caution']);
-        $materiel->setEnable($_POST['enable']);
         $materiel->updateMateriel();
 
 
