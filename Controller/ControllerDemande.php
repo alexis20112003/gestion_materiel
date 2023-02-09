@@ -52,8 +52,12 @@ switch ($_POST['request']) {
         break;
 
     case 'materielDemande':
-        $type_decrypted = User::encrypt_decrypt('decrypt', $_POST['type']);
-        $type = Materiel::selectIdTypeMaterielDemande($type, $_POST['date_debut'], $_POST['date_fin'], $_SESSION['site_user']);
+        if ($_POST['type'] == 1) {
+            $type = Materiel::selectIdTypeMaterielDemande($_POST['type'], $_POST['date_debut'], $_POST['date_fin'], $_SESSION['site_user']);
+        } else {
+            $type_decrypted = User::encrypt_decrypt('decrypt', $_POST['type']);
+            $type = Materiel::selectIdTypeMaterielDemande($type_decrypted, $_POST['date_debut'], $_POST['date_fin'], $_SESSION['site_user']);
+        }
         echo json_encode($twig->render('contentDemandeUser.html.twig', array(
             "type" => $type,
         )));

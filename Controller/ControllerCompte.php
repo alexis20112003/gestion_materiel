@@ -42,6 +42,9 @@ switch ($_POST['request']) {
             $type_decrypted = User::encrypt_decrypt('decrypt', $_POST['type']);
             $typeUser = User::selectUserbyTypeandSite($type_decrypted, $_SESSION['site_user']);
         }
+        foreach ($typeUser as $key => $value) {
+            $typeUser[$key]['id_utilisateur'] = User::encrypt_decrypt('encrypt', $value['id_utilisateur']);
+        }
         echo json_encode($twig->render('contentGestionCompte.html.twig', array(
             "typeUser" => $typeUser,
 
@@ -53,6 +56,9 @@ switch ($_POST['request']) {
     case 'loadAllUser':
 
         $allUser = User::selectAllUser($_SESSION['site_user']);
+        foreach ($allUser as $key => $value) {
+            $allUser[$key]['id_utilisateur'] = User::encrypt_decrypt('encrypt', $value['id_utilisateur']);
+        }
         echo json_encode($twig->render('contentSuiviUser.html.twig', array(
             "allUser" => $allUser,
 
@@ -64,6 +70,9 @@ switch ($_POST['request']) {
     case 'loadDisabledUser':
 
         $disabledUser = User::selectDisabledUser($_SESSION['site_user']);
+        foreach ($disabledUser as $key => $value) {
+            $disabledUser[$key]['id_utilisateur'] = User::encrypt_decrypt('encrypt', $value['id_utilisateur']);
+        }
         echo json_encode($twig->render('contentDisabledUser.html.twig', array(
             "disabledUser" => $disabledUser,
 
@@ -118,8 +127,9 @@ switch ($_POST['request']) {
 
     case 'modalUpdateUser':
 
-        $user = new User($_POST["id"]);
-        $typeUser = User::selectTypebyUser($_POST["id"]);
+        $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        $user = new User($id_decrypted);
+        $typeUser = User::selectTypebyUser($id_decrypted);
 
         echo json_encode($twig->render('modalUpdateUser.html.twig', array(
             "user" => $user,
@@ -163,7 +173,8 @@ switch ($_POST['request']) {
 
     case 'modalSuiviUser':
 
-        $user = User::selectCommandeIdUser($_POST['id']);
+        $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        $user = User::selectCommandeIdUser($id_decrypted);
         echo json_encode($twig->render(
             'modalSuiviUser.html.twig',
             array(

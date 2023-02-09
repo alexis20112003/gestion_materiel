@@ -49,7 +49,8 @@ switch ($_POST['request']) {
             $materiel->setNom($_POST['nom']);
             $materiel->setDescription($_POST['description']);
             $materiel->setCaution($_POST['caution']);
-            $materiel->setId_type_materiel($_POST['type']);
+            $type_decrypted = User::encrypt_decrypt('decrypt', $_POST['type']);
+            $materiel->setId_type_materiel($type_decrypted);
             $materiel->insertMateriel();
 
             $responce = $_POST['nom'] . ' ' . $_POST['description'] . ' ' . $_POST['caution'] . ' ' . $_POST['type'];
@@ -126,6 +127,9 @@ switch ($_POST['request']) {
     case 'modalAddMateriel':
 
         $typeMateriel =  Materiel::typeMateriel();
+        foreach ($typeMateriel as $key => $value) {
+            $typeMateriel[$key]['id_type_materiel'] = User::encrypt_decrypt('encrypt', $value['id_type_materiel']);
+        }
         echo json_encode($twig->render(
             'modalAddMateriel.html.twig',
             array(
