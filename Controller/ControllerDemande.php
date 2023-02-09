@@ -23,8 +23,9 @@ switch ($_POST['request']) {
             $id_verif = Materiel::verifMaterielDemande($_POST['date_debut'], $_POST['date_fin']);
             $var = false;
             foreach ($id as $key => $materiel) {
+                $id_decrypted = User::encrypt_decrypt('decrypt', $materiel);
                 foreach ($id_verif as $key => $all_materiel) {
-                    if ($materiel == $all_materiel['id_materiels']) {
+                    if ($id_decrypted == $all_materiel['id_materiels']) {
                         $var = true;
                     }
                 }
@@ -58,6 +59,9 @@ switch ($_POST['request']) {
             $type_decrypted = User::encrypt_decrypt('decrypt', $_POST['type']);
             $type = Materiel::selectIdTypeMaterielDemande($type_decrypted, $_POST['date_debut'], $_POST['date_fin'], $_SESSION['site_user']);
         }
+        foreach ($type as $key => $value) {
+            $type[$key]['id_materiels'] = User::encrypt_decrypt('encrypt', $value['id_materiels']);
+        }
         echo json_encode($twig->render('contentDemandeUser.html.twig', array(
             "type" => $type,
         )));
@@ -66,7 +70,7 @@ switch ($_POST['request']) {
 
     case 'ongletsMaterielDemande':
         $icon = Materiel::typeMateriel();
-        foreach ($demande as $key => $value) {
+        foreach ($icon as $key => $value) {
             $icon[$key]['id_type_materiel'] = User::encrypt_decrypt('encrypt', $value['id_type_materiel']);
         }
         echo json_encode($twig->render('ongletsDemandeUser.html.twig', array(
