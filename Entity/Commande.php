@@ -112,7 +112,7 @@ class Commande
     {
         $list = array();
 
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`
+        $requete = $GLOBALS['database']->prepare("SELECT *, `commande_materiel`.`id_commande` AS idCom FROM `commande`
 		INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande`
 		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
         INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`

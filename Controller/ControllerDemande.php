@@ -52,7 +52,8 @@ switch ($_POST['request']) {
         break;
 
     case 'materielDemande':
-        $type = Materiel::selectIdTypeMaterielDemande($_POST['type'], $_POST['date_debut'], $_POST['date_fin'], $_SESSION['site_user']);
+        $type_decrypted = User::encrypt_decrypt('decrypt', $_POST['type']);
+        $type = Materiel::selectIdTypeMaterielDemande($type, $_POST['date_debut'], $_POST['date_fin'], $_SESSION['site_user']);
         echo json_encode($twig->render('contentDemandeUser.html.twig', array(
             "type" => $type,
         )));
@@ -61,6 +62,9 @@ switch ($_POST['request']) {
 
     case 'ongletsMaterielDemande':
         $icon = Materiel::typeMateriel();
+        foreach ($demande as $key => $value) {
+            $icon[$key]['id_type_materiel'] = User::encrypt_decrypt('encrypt', $value['id_type_materiel']);
+        }
         echo json_encode($twig->render('ongletsDemandeUser.html.twig', array(
             "icon" => $icon,
             "date_debut" => $_POST['date_debut'],
@@ -70,15 +74,24 @@ switch ($_POST['request']) {
         break;
 
     case 'NotificationDemande':
-        $demande = Commande::selectCommandeStatut();
+        $demandes = Commande::selectCommandeStatut();
+        // foreach ($demandes as $key => $demande) {
+        //     foreach ($demande as $key => $value) {
+        //         $demande[$key]['id_commande'] = User::encrypt_decrypt('encrypt', $value['id_commande']);
+        //     }
+        // }
+        // error_log(print_r($demandes, true));
         echo json_encode($twig->render('contentNotificationDemande.html.twig', array(
-            'demande' => $demande,
+            'demande' => $demandes,
         )));
 
         break;
 
     case 'NotificationGive':
         $demande = Commande::selectCommandeGive();
+        foreach ($demande as $key => $value) {
+            $demande[$key]['id_commande'] = User::encrypt_decrypt('encrypt', $value['id_commande']);
+        }
         echo json_encode($twig->render('contentNotificationGive.html.twig', array(
             'demande' => $demande,
         )));
@@ -87,6 +100,9 @@ switch ($_POST['request']) {
 
     case 'NotificationRecover':
         $demande = Commande::selectCommandeRecover();
+        foreach ($demande as $key => $value) {
+            $demande[$key]['id_commande'] = User::encrypt_decrypt('encrypt', $value['id_commande']);
+        }
         echo json_encode($twig->render('contentNotificationRecover.html.twig', array(
             'demande' => $demande,
         )));
@@ -95,7 +111,8 @@ switch ($_POST['request']) {
 
     case 'updateDemandeGive':
         $demande = new Commande(0);
-        $demande->updateDemandeGive($_POST['id']);
+        $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        $demande->updateDemandeGive($id_decrypted);
         $response = 'c bon';
         echo json_encode($response);
 
@@ -103,7 +120,8 @@ switch ($_POST['request']) {
 
     case 'updateDemandeRecover':
         $demande = new Commande(0);
-        $demande->updateDemandeRecover($_POST['id']);
+        $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        $demande->updateDemandeRecover($id_decrypted);
         $responce = 'c bon';
         echo json_encode($responce);
 
@@ -111,7 +129,8 @@ switch ($_POST['request']) {
 
     case 'refuseDemandeMateriel':
         $demande = new Commande(0);
-        $demande->refuseDemandeMateriel($_POST['id']);
+        // $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        $demande->refuseDemandeMateriel($id_decrypted);
         $response = 'c bon';
         echo json_encode($response);
 
@@ -119,7 +138,8 @@ switch ($_POST['request']) {
 
     case 'acceptDemandeMateriel':
         $demande = new Commande(0);
-        $demande->acceptDemandeMateriel($_POST['id']);
+        // $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        $demande->acceptDemandeMateriel($id_decrypted);
         $response = 'c bon';
         echo json_encode($response);
 
