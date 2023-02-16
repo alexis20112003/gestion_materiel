@@ -219,8 +219,8 @@ class Materiel
         OR :date_fin  BETWEEN `commande_materiel`.`date_debut` AND `commande_materiel`.`date_fin`)
         AND `commande`.`statut` = 1");
 
-        $requete2->bindValue(':date_debut', $date_debut);
-        $requete2->bindValue(':date_fin', $date_fin);
+        $requete2->bindParam(':date_debut', $date_debut);
+        $requete2->bindParam(':date_fin', $date_fin);
         $requete2->execute();
         $result2 = $requete2->fetchAll(PDO::FETCH_ASSOC);
 
