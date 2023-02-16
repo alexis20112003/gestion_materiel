@@ -41,12 +41,12 @@ switch ($_POST['request']) {
                 $id_site = User::selectUserSite($id_user);
                 $mail_user = User::selectAdminbySite($id_site['id_site']);
                 $mail->sendMailNotification($mail_user, $info_commande);
-                $response = 'c bon';
+                $response = 'ok';
             } else {
-                $response = 'c pas bon';
+                $response = 'error';
             }
         } else {
-            $response = 'c pas bon 2';
+            $response = 'error 2';
         }
         echo json_encode($response);
 

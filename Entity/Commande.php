@@ -190,7 +190,6 @@ class Commande
 
     public  function insertCommande($idUser, $id)
     {
-
         $requete = $GLOBALS['database']->prepare("INSERT INTO `commande` (`id_utilisateur`, `statut`) VALUES (:id, :statut)");
         $requete->bindValue(':id', $idUser);
         $requete->bindValue(':statut', 0);
@@ -208,10 +207,8 @@ class Commande
             $requete2->bindValue(':date_fin', $this->date_fin);
             $requete2->bindValue(':restitute', $this->restitute);
 
-
             $requete2->execute();
         }
-
         $requete3 = $GLOBALS['database']->prepare("SELECT * FROM `commande`
 		INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande`
 		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
@@ -221,13 +218,11 @@ class Commande
 
         $requete3->execute();
 
-
         $commands = $requete3->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($commands as $command) {
             $list[$command['id_commande']][] = $command;
         }
-
 
         return $list;
     }
