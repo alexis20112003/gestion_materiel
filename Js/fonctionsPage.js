@@ -114,7 +114,6 @@ function pageDemande() {
           var field = (start.dd + '-' + start.mm + '-' + start.y + " // " + end.dd + '-' + end.mm + '-' + end.y);
 
           $("#dropper").val(field);
-          // console.log($("#dropper").attr("data-dd-opt-range-start") + ' // ' + $("#dropper").attr("data-dd-opt-range-end"));
           ongletsMaterielDemande(date_debut, date_fin);
         }
       });
