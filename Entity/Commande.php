@@ -124,6 +124,12 @@ class Commande
         $commands = $requete->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($commands as $command) {
+            $datestart = new DateTime($command['date_debut']);
+            $command['debut_fr'] = $datestart->format('d-m-Y');
+
+            $dateend = new DateTime($command['date_fin']);
+            $command['fin_fr']  = $dateend->format('d-m-Y');
+
             $list[$command['id_commande']][] = $command;
         }
 
