@@ -13,36 +13,40 @@
 		
 	<div class="row mt-5 position-relative">
 		<div class="col-10 col-md-4 border border-2 border-dark rounded  px-md-5 pb-md-5 mt-5 mt-sm-1 mx-md-5 position-absolute profilePosition">
-				<div class="row">
-					<div class="col-12 col-lg-6 mt-lg-5 profileText d-flex justify-content-between">
-						<span class="boldText">Nom:</span>
-						{{user.nom}}
+			<form>
+				<div class="row g-3 align-items-center mt-2 mb-3">
+					<div class="col-auto">
+						<label for="profileNom" class="form-label boldText">Nom:</label>
 					</div>
-					<div class="col-12 col-lg-6 ps-1 mt-3 mt-lg-5 profileText d-flex justify-content-between">
-						<span class="boldText">Prenom:</span>
-						{{user.prenom}}
+					<div class="col-auto">
+						<input type="text" class="form-control" id="nomProfile" aria-describedby="nom" value={{user.nom}}>
 					</div>
 				</div>
-
-				<div class=" col-6 col-md-12 mt-5 d-flex justify-content-evenly ps-3 pe-5 profileText">
-					<span class="boldText">E-mail:</span>
-					{{user.email}}
-				</div>
-
-				<div class="row mt-5 position-relative">
-					<div class="col-12 col-lg-6 profileText d-flex justify-content-between">
-						<span class="boldText">Statut:</span>
-						{{user.statut}}
+				<div class="row g-3 align-items-center mb-3">
+					<div class="col-auto">
+						<label for="profilePrenom" class="form-label boldText">Prenom:</label>
 					</div>
-					<div class="col-12 col-lg-6 ps-1 mt-3 mt-lg-0 profileText d-flex justify-content-between">
-						<span class="boldText">Promo:</span>
-						{{user.promo}}
+					<div class="col-auto">
+						<input type="text" class="form-control" id="prenomProfile" value={{user.prenom}}>
 					</div>
-					<button onclick="modalUpdateProfile();" type="button" class="btn btn-dark btn-circle position-absolute profileBtn">
-						<i class="fa-solid fa-pencil"></i>
-					</button>
 				</div>
-			</div>
+				<div class="row g-3 align-items-center mb-3">
+					<div class="col-auto">
+						<label for="profileEmail" class="form-label boldText">Email:</label>
+					</div>
+					<div class="col-auto">
+						<input type="email" class="form-control" id="emailProfile" value={{user.email}}>
+					</div>
+				</div>
+				<div class="mb-3">
+					<label for="profileStatut" class="form-label boldText">Statut:</label>
+					<input type="text" class="form-control" id="statutProfile" value={{user.statut}}>
+				</div>
+				<div class="mb-3">
+					<label for="profilePromo" class="form-label boldText">Promo:</label>
+					<input type="text" class="form-control" id="statutPromo" value={{user.promo}}>
+				</div>
+			</form>
 		</div>
 	</div>
 
