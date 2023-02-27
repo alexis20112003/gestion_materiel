@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		{% set var = 0 %}
+		{% for item in infos %}
+			{% if var == 0 %}
+				<p>
+					votre demande du
+					{{item.date_debut}}
+					aux
+					{{item.date_fin}}
+					à été refuser
+				</p>
+			{% endif %}
+			{% set var = 1 %}
+		{% endfor %}
+	</body>
+</html>

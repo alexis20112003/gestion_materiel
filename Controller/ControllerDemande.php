@@ -113,7 +113,10 @@ switch ($_POST['request']) {
 
     case 'refuseDemandeMateriel':
         $demande = new Commande(0);
-        $demande->refuseDemandeMateriel($_POST['id']);
+        $email = $demande->refuseDemandeMateriel($_POST['id']);
+        $info_commande = Commande::selectCommandebyId($_POST['id']);
+        $mail = new Mailer;
+        $mail->sendMailRefuse($demande['email'], $info_commande);
         $response = 'c bon';
         echo json_encode($response);
 
@@ -121,7 +124,10 @@ switch ($_POST['request']) {
 
     case 'acceptDemandeMateriel':
         $demande = new Commande(0);
-        $demande->acceptDemandeMateriel($_POST['id']);
+        $email = $demande->acceptDemandeMateriel($_POST['id']);
+        $info_commande = Commande::selectCommandebyId($_POST['id']);
+        $mail = new Mailer;
+        $mail->sendMailAccept($email['email'], $info_commande);
         $response = 'c bon';
         echo json_encode($response);
 

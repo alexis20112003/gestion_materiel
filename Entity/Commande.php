@@ -257,6 +257,28 @@ class Commande
         $requete->bindValue(':id', $id);
         $requete->bindValue(':statut', 2);
         $requete->execute();
+
+        $requete2 = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur` 
+        INNER JOIN `commande` ON `commande`.`id_utilisateur` = `utilisateur`.`id_utilisateur` 
+        WHERE `commande`.`id_commande`= :id;");
+        $requete2->bindValue(':id', $id);
+        $requete2->execute();
+        $email = $requete2->fetch(PDO::FETCH_ASSOC);
+
+
+        return $email;
+    }
+
+    public static function selectCommandebyId($id)
+    {
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
+        INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande` 
+        WHERE `commande`.`id_commande`= :id;");
+        $requete->bindValue(':id', $id);
+        $requete->execute();
+        $commande = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        return $commande;
     }
 
     public  function acceptDemandeMateriel($id)
@@ -266,5 +288,15 @@ class Commande
         $requete->bindValue(':id', $id);
         $requete->bindValue(':statut', 1);
         $requete->execute();
+
+        $requete2 = $GLOBALS['database']->prepare("SELECT * FROM `utilisateur` 
+        INNER JOIN `commande` ON `commande`.`id_utilisateur` = `utilisateur`.`id_utilisateur` 
+        WHERE `commande`.`id_commande`= :id;");
+        $requete2->bindValue(':id', $id);
+        $requete2->execute();
+        $email = $requete2->fetch(PDO::FETCH_ASSOC);
+
+
+        return $email;
     }
 }
