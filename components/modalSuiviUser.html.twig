@@ -11,7 +11,6 @@
 			<th scope="col">rendu</th>
 		</tr>
 	</thead>
-	<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
 		<tbody>
 			{% for item in user %}
 				<tr>
@@ -28,7 +27,8 @@
 						<td>non rendu</td>
 					{% endif %}
 				</tr>
-			</td>
+			{% endfor %}
 		</tbody>
-	</tr>
-{% endfor %}</tbody></div></table></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+	</div>
+</table>
+<div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>

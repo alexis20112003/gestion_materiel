@@ -1,3 +1,4 @@
+// Page d'accueil
 .accueilRow {
   position: relative;
 }
@@ -12,7 +13,7 @@
     rgba(255, 255, 255, 1) 65%
   );
 }
-
+// Backgrounds
 .sideBar {
   background-image: url(../Assets/SideBarAccueil.jpg);
   background-repeat: no-repeat;
@@ -81,17 +82,29 @@
   left: 5%;
   width: 20%;
 }
+.imgProfile:hover {
+  cursor: pointer;
+}
+.profileBanner:hover {
+  cursor: pointer;
+}
 .imgBanniereBtn {
   top: 88%;
-  left: 94%;
+  left: 88%;
 }
 .imgProfileBtn {
-  top: 135%;
-  left: 20%;
+  top: 120%;
+  left: 21%;
+}
+@media (max-width: 992px) {
+  .imgProfileBtn {
+    top: 100%;
+    left: 21%;
+  }
 }
 .profileBtn {
-  top: 110%;
-  left: 100%;
+  top: 97%;
+  left: 97%;
 }
 .btn-circle {
   width: 30px;
@@ -171,13 +184,12 @@
   pointer-events: none;
 }
 .profilePosition {
-  top: 65%;
-  left: 28%;
+  top: 33%;
+  left: 33%;
 }
 @media screen and (max-width: 576px) {
   .profilePosition {
-    top: 65%;
-    left: 4%;
+    top: 10%;
   }
 }
 $position-values: (
