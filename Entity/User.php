@@ -368,7 +368,7 @@ class User
         AND `utilisateur_site`.`id_site` = :id
         AND `utilisateur`.`enable` = 0;");
 
-		$requete->bindParam(':id', $id);
+		$requete->bindValue(':id', $id);
 
 		$requete->execute();
 
@@ -419,7 +419,7 @@ class User
 		INNER JOIN `utilisateur` ON `utilisateur_site`.`id_utilisateur` = `utilisateur`.`id_utilisateur`
 		WHERE `utilisateur`.`id_utilisateur` = :id");
 
-		$requete->bindParam(':id', $id);
+		$requete->bindValue(':id', $id);
 
 		$requete->execute();
 

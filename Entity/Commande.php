@@ -112,7 +112,7 @@ class Commande
     {
         $list = array();
 
-        $requete = $GLOBALS['database']->prepare("SELECT *, `commande_materiel`.`id_commande` AS idCom FROM `commande`
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`
 		INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande`
 		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
         INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
@@ -190,38 +190,44 @@ class Commande
 
     public  function insertCommande($idUser, $id)
     {
+
         $requete = $GLOBALS['database']->prepare("INSERT INTO `commande` (`id_utilisateur`, `statut`) VALUES (:id, :statut)");
-        $requete->bindParam(':id', $idUser);
+        $requete->bindValue(':id', $idUser);
         $requete->bindValue(':statut', 0);
         $requete->execute();
         $lastid = $GLOBALS['database']->lastInsertId();
         $list = array();
 
         foreach ($id as $value) {
-            $id_decrypted = User::encrypt_decrypt('decrypt', $value);
 
-            $requete2 = $GLOBALS['database']->prepare("INSERT INTO `commande_materiel` (`id_commande`, `id_materiels`, `date_debut`, `date_fin`, `restitute`) 
-            VALUES (:id, :id_mat, :date_debut, :date_fin, :restitute)");
-            $requete2->bindParam(':id', $lastid);
-            $requete2->bindParam(':id_mat', $id_decrypted);
-            $requete2->bindParam(':date_debut', $this->date_debut);
-            $requete2->bindParam(':date_fin', $this->date_fin);
-            $requete2->bindParam(':restitute', $this->restitute);
+
+            $requete2 = $GLOBALS['database']->prepare("INSERT INTO `commande_materiel` (`id_commande`, `id_materiels`, `date_debut`, `date_fin`, `restitute`) VALUES (:id, :id_mat, :date_debut, :date_fin, :restitute)");
+            $requete2->bindValue(':id', $lastid);
+            $requete2->bindValue(':id_mat', $value);
+            $requete2->bindValue(':date_debut', $this->date_debut);
+            $requete2->bindValue(':date_fin', $this->date_fin);
+            $requete2->bindValue(':restitute', $this->restitute);
+
+
             $requete2->execute();
         }
+
         $requete3 = $GLOBALS['database']->prepare("SELECT * FROM `commande`
 		INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande`
 		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
         INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
         WHERE `commande`.`id_commande` = :id;");
-        $requete3->bindParam(':id', $lastid);
+        $requete3->bindValue(':id', $lastid);
+
         $requete3->execute();
+
 
         $commands = $requete3->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($commands as $command) {
             $list[$command['id_commande']][] = $command;
         }
+
 
         return $list;
     }

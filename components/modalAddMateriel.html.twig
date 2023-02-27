@@ -3,30 +3,31 @@
 		<h1 class="modal-title fs-5" id="ModifMatLabel">Ajouter materiel</h1>
 		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	</div>
-	<div class="modal-body">
-		<label for="inputNom" class="form-label">Nom</label>
-		<input type="text" class="form-control" id="Nom" aria-describedby="nomHelp"/>
-		<label for="inputPrenom" class="form-label">Description</label>
-		<input type="text" class="form-control" id="Description" aria-describedby="prenomHelp"/>
-		<label for="inputCaution" class="form-label">Caution</label>
-		<input type="number" min="0" class="form-control" id="Caution" aria-describedby="nomHelp"/>
-		<label for="inputId_site" class="form-label">Site</label>
-		<select class="form-select" name="type_site" id="id_site">
-			{% for item in site %}
-				<option value="{{item.id_site}}">{{item.site}}</option>
-			{% endfor %}
-		</select>
-		<label for="EmailUpdate" class="form-label">Type Materiel</label>
-		<select class="form-select" name="type_Materiel" id="typeMateriel">
-			{% for item in typeMateriel %}
-				<option value="{{item.id_type_materiel}}">{{item.origine_materiel}}</option>
-			{% endfor %}
-		</select>
-	</div>
-	<div class="modal-footer">
+    </div>
+    <div class="modal-body">
+        <label for="inputNom" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="Nom" aria-describedby="nomHelp"/>
+        <label for="inputPrenom" class="form-label">Description</label>
+        <input type="text" class="form-control" id="Description" aria-describedby="prenomHelp"/>
+        <label for="inputCaution" class="form-label">Caution</label>
+        <input type="number" min="0" class="form-control" id="Caution" aria-describedby="nomHelp"/>
+        <label for="inputId_site" class="form-label">Site</label>
+        <select class="form-select" name="type_site" id="id_site">
+        {% for item in site %}
+            <option value="{{item.id_site}}">{{item.site}}</option>
+        {% endfor %}
+        </select>
+        <label for="EmailUpdate" class="form-label">Type Materiel</label>
+        <select class="form-select" name="type_Materiel" id="typeMateriel">
+            {% for item in typeMateriel %}
+                <option value="{{item.id_type_materiel}}">{{item.origine_materiel}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="modal-footer">
 
-		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-		<input type="submit" class="btn btn-primary" value="Ajouter">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary"  value ="Ajouter">
 
-	</div>
+    </div>
 </form>
