@@ -17,20 +17,20 @@ $reussite = 0;
 $statut = 0;
 $msg = "erreur";
 
-function formTest($array, $pieces = [])
-{
-    if (count($array) > 0) {
-        foreach ($array as $k => $v) {
-            if (!in_array($k, $pieces) || empty($v)) {
-                return false;
-            }
-        }
-    } else {
-        return false;
-    }
+// function formTest($array, $pieces = [])
+// {
+//     if (count($array) > 0) {
+//         foreach ($array as $k => $v) {
+//             if (!in_array($k, $pieces) || empty($v)) {
+//                 return false;
+//             }
+//         }
+//     } else {
+//         return false;
+//     }
 
-    return true;
-}
+//     return true;
+// }
 
 
 switch ($_POST['request']) {

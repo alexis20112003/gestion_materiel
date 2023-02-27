@@ -18,7 +18,7 @@ $msg = "";
 
 
 if (isset($_FILES)) {
-    $msg = 'c bon';
+    $msg = 'bon';
     $response = $msg;
     $list_image = [
         "img_url" => '../Assets/image/' . $_FILES['new_file']['name'],
