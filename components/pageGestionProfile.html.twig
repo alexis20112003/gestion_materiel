@@ -1,54 +1,44 @@
 <body>
-	<div class="row">
-		<div class="col-9 col-md-11 rounded-pill border border-2 border-dark bg-image profileBanner position-relative mt-2 ms-4" style="background-image: url({{user.img_banniere}});">
-			<button onclick="modalUpdateImageBanniere();" type="button" class="btn btn-dark btn-circle imgBanniereBtn position-absolute">
-				<i class="fa-solid fa-pencil"></i>
-			</button>
-			<img class="imgProfile img-fluid rounded-circle border border-2 border-dark position-absolute" src="{{user.img_profile}}"/><button onclick="modalUpdateImageProfile();" type="button" class="btn btn-dark btn-circle imgProfileBtn position-absolute">
-				<i class="fa-solid fa-pencil"></i>
-			</button>
+	<div class="row position-relative">
+		<div onclick="modalUpdateImageBanniere();" class="col-9 col-md-11 rounded-pill border border-2 border-dark bg-image profileBanner mt-2 ms-4" style="background-image: url({{user.img_banniere}});">
+			<img onclick="modalUpdateImageProfile();" class="imgProfile img-fluid rounded-circle border border-2 border-dark position-absolute" src="{{user.img_profile}}"/>
 		</div>
 	</div>
 
-		
-	<div class="row mt-5 position-relative">
-		<div class="col-10 col-md-4 border border-2 border-dark rounded  px-md-5 pb-md-5 mt-5 mt-sm-1 mx-md-5 position-absolute profilePosition">
-			<form>
-				<div class="row g-3 align-items-center mt-2 mb-3">
-					<div class="col-auto">
-						<label for="profileNom" class="form-label boldText">Nom:</label>
+	<div class="col-xl-6 mt-5 me-1 position-absolute profilePosition">
+		<div class="card mb-4">
+			<div class="card-body border border-dark rounded">
+				<form>
+					<div class="row gx-2 mb-3">
+						<div class="col-md-6">
+							<label class="small mb-1" for="inputFirstName">Nom:</label>
+							<input class="form-control" id="inputFirstName" type="text" value={{user.nom}}>
+						</div>
+						<div class="col-md-6">
+							<label class="small mb-1" for="inputLastName">Prenom:</label>
+							<input class="form-control" id="inputLastName" type="text" value={{user.prenom}}>
+						</div>
 					</div>
-					<div class="col-auto">
-						<input type="text" class="form-control" id="nomProfile" aria-describedby="nom" value={{user.nom}}>
+					<div class="mb-3">
+						<label class="small mb-1" for="inputEmailAddress">Email:</label>
+						<input class="form-control" id="inputEmailAddress" type="email" value={{user.email}}>
 					</div>
-				</div>
-				<div class="row g-3 align-items-center mb-3">
-					<div class="col-auto">
-						<label for="profilePrenom" class="form-label boldText">Prenom:</label>
+					<div class="row gx-2 mb-3">
+						<div class="col-md-6">
+							<label class="small mb-1" for="inputStatut">Statut</label>
+							<input class="form-control" id="inputStatut" type="text" value={{user.statut}}>
+						</div>
+						<div class="col-md-6">
+							<label class="small mb-1" for="inputPromo">Promotion</label>
+							<input class="form-control" id="inputPromo" type="text" value={{user.promo}}>
+						</div>
 					</div>
-					<div class="col-auto">
-						<input type="text" class="form-control" id="prenomProfile" value={{user.prenom}}>
-					</div>
-				</div>
-				<div class="row g-3 align-items-center mb-3">
-					<div class="col-auto">
-						<label for="profileEmail" class="form-label boldText">Email:</label>
-					</div>
-					<div class="col-auto">
-						<input type="email" class="form-control" id="emailProfile" value={{user.email}}>
-					</div>
-				</div>
-				<div class="mb-3">
-					<label for="profileStatut" class="form-label boldText">Statut:</label>
-					<input type="text" class="form-control" id="statutProfile" value={{user.statut}}>
-				</div>
-				<div class="mb-3">
-					<label for="profilePromo" class="form-label boldText">Promo:</label>
-					<input type="text" class="form-control" id="statutPromo" value={{user.promo}}>
-				</div>
-			</form>
+					<button onclick="modalUpdateProfile();" type="button" class="btn btn-dark">Modifier</button>
+				</form>
+			</div>
 		</div>
 	</div>
+	
 
 	<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog">
