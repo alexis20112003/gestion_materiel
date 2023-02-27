@@ -11,26 +11,26 @@
 				<form>
 					<div class="row gx-2 mb-3">
 						<div class="col-md-6">
-							<label class="small mb-1" for="inputFirstName">Nom:</label>
-							<input class="form-control" id="inputFirstName" type="text" value={{user.nom}}>
+							<label class="small mb-1 boldText" for="inputFirstName">Nom:</label>
+							<input readonly="readonly" class="form-control" id="inputFirstName" type="text" value="{{user.nom}}">
 						</div>
 						<div class="col-md-6">
-							<label class="small mb-1" for="inputLastName">Prenom:</label>
-							<input class="form-control" id="inputLastName" type="text" value={{user.prenom}}>
+							<label class="small mb-1 boldText" for="inputLastName">Prenom:</label>
+							<input readonly="readonly" class="form-control " id="inputLastName" type="text" value={{user.prenom}}>
 						</div>
 					</div>
 					<div class="mb-3">
-						<label class="small mb-1" for="inputEmailAddress">Email:</label>
-						<input class="form-control" id="inputEmailAddress" type="email" value={{user.email}}>
+						<label class="small mb-1 boldText" for="inputEmailAddress">Email:</label>
+						<input readonly="readonly" class="form-control" id="inputEmailAddress" type="email" value={{user.email}}>
 					</div>
 					<div class="row gx-2 mb-3">
 						<div class="col-md-6">
-							<label class="small mb-1" for="inputStatut">Statut</label>
-							<input class="form-control" id="inputStatut" type="text" value={{user.statut}}>
+							<label class="small mb-1 boldText" for="inputStatut">Statut</label>
+							<input readonly="readonly" class="form-control" id="inputStatut" type="text" value={{user.statut}}>
 						</div>
 						<div class="col-md-6">
-							<label class="small mb-1" for="inputPromo">Promotion</label>
-							<input class="form-control" id="inputPromo" type="text" value={{user.promo}}>
+							<label class="small mb-1 boldText" for="inputPromo">Promotion</label>
+							<input readonly="readonly" class="form-control" id="inputPromo" type="text" value={{user.promo}}>
 						</div>
 					</div>
 					<button onclick="modalUpdateProfile();" type="button" class="btn btn-dark">Modifier</button>
