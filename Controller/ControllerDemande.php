@@ -137,8 +137,9 @@ switch ($_POST['request']) {
 
     case 'refuseDemandeMateriel':
         $demande = new Commande(0);
-        // $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
-        $demande->refuseDemandeMateriel($id_decrypted);
+        $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        // error_log($id_decrypted);
+        // $demande->refuseDemandeMateriel($id_decrypted);
         $response = 'c bon';
         echo json_encode($response);
 
@@ -146,8 +147,9 @@ switch ($_POST['request']) {
 
     case 'acceptDemandeMateriel':
         $demande = new Commande(0);
-        // $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
-        $demande->acceptDemandeMateriel($id_decrypted);
+        $id_decrypted = User::encrypt_decrypt('decrypt', $_POST['id']);
+        // error_log($id_decrypted);
+        // $demande->acceptDemandeMateriel($id_decrypted);
         $response = 'c bon';
         echo json_encode($response);
 
