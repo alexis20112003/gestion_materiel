@@ -46,7 +46,7 @@ switch ($_POST['request']) {
             $materiel->setId_type_materiel($_POST['type']);
             $materiel->setId_site_materiel($_POST['id_site']);
             $materiel->insertMateriel();
-            
+
 
             $response = $_POST['nom'] . ' ' . $_POST['description'] . ' ' . $_POST['caution'] . ' ' . $_POST['type'];
         }
