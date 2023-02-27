@@ -26,8 +26,8 @@
 							{% set var = 1 %}
 						{% endfor %}
 					</div>
+					{% set dup = 0 %}
 					{% for item in items %}
-						{% set dup = 0 %}
 						{% if dup == 0 %}
 							<ul class="card-social">
 								<button onclick="refuseDemandeMateriel('{{item.idCom}}');" class="x">
