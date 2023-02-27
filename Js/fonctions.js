@@ -150,6 +150,7 @@ function loadAllMateriel() {
 }
 
 function addMateriel() {
+
   $.ajax({
     url: "../controller/ControllerMateriel.php",
     dataType: "json",
