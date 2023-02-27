@@ -1,25 +1,31 @@
-<body>
-	{% set var = 0 %}
-	{% for info in infos %}
-		{% for item in info %}
-			{% if var == 0 %}
-				<p>
-					{{item.nom}}
-					{{item.prenom}}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		{% set var = 0 %}
+		{% for info in infos %}
+			{% for item in info %}
+				{% if var == 0 %}
+					<p>
+						{{item.nom}}
+						{{item.prenom}}
+						<br/>
+						A fait une demande.
+					</p>
+					<br>
+					<p>
+						Voici le matériel demandé :
+					</p>
 					<br/>
-					A fait une demande.
-				</p>
-				<br>
+				{% endif %}
 				<p>
-					Voici le matériel demandé :
+					-{{item.nom_materiel}}
+					(caution:{{item.caution}})
 				</p>
-				<br/>
-			{% endif %}
-			<p>
-				-{{item.nom_materiel}}
-				(caution:{{item.caution}})
-			</p>
-			{% set var = 1 %}
+				{% set var = 1 %}
+			{% endfor %}
 		{% endfor %}
-	{% endfor %}
-</body>
+	</body>
+</html>
