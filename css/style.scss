@@ -38,22 +38,15 @@
   background-size: 100% 100vh;
   max-height: 100vh;
 }
-.updatePosition {
-  top: 20%;
-  left: 40%;
-}
 .nav-item {
   font-weight: bold;
 }
 .nav-link {
   color: black;
 }
-.linkMDP {
-  color: black;
-}
-.linkMDP:hover {
-  cursor: pointer;
-  color: darkgray;
+.updatePosition {
+  top: 20%;
+  left: 40%;
 }
 .tabSize {
   max-height: 60vh;
@@ -70,6 +63,13 @@
 }
 .nav-tabs {
   cursor: pointer;
+}
+.linkMDP {
+  color: black;
+}
+.linkMDP:hover {
+  cursor: pointer;
+  color: darkgray;
 }
 .profileBanner {
   min-height: 200;
