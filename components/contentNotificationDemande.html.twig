@@ -26,16 +26,16 @@
 							{% set var = 1 %}
 						{% endfor %}
 					</div>
+					{% set dup = 0 %}
 					{% for item in items %}
-						{% set dup = 0 %}
 						{% if dup == 0 %}
 							<ul class="card-social">
-								<button onclick="refuseDemandeMateriel({{item.id_commande}});" class="x">
+								<button onclick="refuseDemandeMateriel('{{item.idCom}}');" class="x">
 									<li class="card-social__item">
 										<i class="fa-solid fa-x"></i>
 									</li>
 								</button>
-								<button onclick="acceptDemandeMateriel({{item.id_commande}});" class="check">
+								<button onclick="acceptDemandeMateriel('{{item.idCom}}');" class="check">
 									<li class="card-social__item">
 										<i class="fa-solid fa-check"></i>
 									</li>

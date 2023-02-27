@@ -10,7 +10,7 @@
 		<tbody>
 			{% for item in allMateriel %}
 				<tr>
-					<th onclick="modalSuiviMateriel({{item.id_materiels}})">
+					<th onclick="modalSuiviMateriel('{{item.id_materiels}}')">
 						<i class="fa-solid fa-eye"></i>
 					</th>
 					<td>{{item.nom_materiel}}</td>

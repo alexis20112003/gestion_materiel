@@ -135,7 +135,7 @@ class Materiel
     public  static function selectAllMateriel($id_site)
     {
         $ids = "'" . implode("','", $id_site) . "'";
-        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_site_materiel` IN ($ids)");
+        $requete = $GLOBALS['database']->prepare("SELECT * FROM `materiels` WHERE `id_site_materiel` IN ($ids);");
 
         $requete->execute();
 
@@ -159,17 +159,15 @@ class Materiel
 
     public static function selectIdTypeMaterielDemande($id, $date_debut, $date_fin, $id_site)
     {
-
         $list = array();
         $list_not_dispo = array();
         $ids = "'" . implode("','", $id_site) . "'";
         $requete = $GLOBALS['database']->prepare("SELECT *  FROM `materiels`
+
         WHERE `id_type_materiel`= :id AND `id_site_materiel` IN ($ids) AND `enable` = 0;");
         $requete->bindValue(':id', $id);
         $requete->execute();
         $result = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-
 
         $requete2 = $GLOBALS['database']->prepare("SELECT *, `materiels`.`id_materiels` AS idMat FROM `materiels`
         INNER JOIN `commande_materiel` ON `commande_materiel`.`id_materiels` = `materiels`.`id_materiels`
@@ -189,21 +187,15 @@ class Materiel
         $requete2->execute();
         $result2 = $requete2->fetchAll(PDO::FETCH_ASSOC);
 
-
         foreach ($result2 as $key => $no_materiel) {
             array_push($list_not_dispo, $no_materiel['idMat']);
         }
-
-
 
         foreach ($result as $key => $materiel) {
             if (!in_array($materiel['id_materiels'], $list_not_dispo)) {
                 array_push($list, $materiel);
             }
         }
-
-
-
 
         return $list;
     }
@@ -220,8 +212,8 @@ class Materiel
         OR :date_fin  BETWEEN `commande_materiel`.`date_debut` AND `commande_materiel`.`date_fin`)
         AND `commande`.`statut` = 1");
 
-        $requete2->bindValue(':date_debut', $date_debut);
-        $requete2->bindValue(':date_fin', $date_fin);
+        $requete2->bindParam(':date_debut', $date_debut);
+        $requete2->bindParam(':date_fin', $date_fin);
         $requete2->execute();
         $result2 = $requete2->fetchAll(PDO::FETCH_ASSOC);
 
@@ -251,7 +243,7 @@ class Materiel
         return $result;
     }
 
-    public  function deleteMateriel()
+    public function deleteMateriel()
     {
         $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `enable`= 1 WHERE `id_materiels`= :id");
         $requete->bindValue(':id', $this->id);

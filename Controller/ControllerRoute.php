@@ -30,6 +30,9 @@ switch ($_POST['request']) {
     case 'pageGestionCompte':
 
         $onglet = User::typeUser();
+        foreach ($onglet as $key => $value) {
+            $onglet[$key]['id_type'] = User::encrypt_decrypt('encrypt', $value['id_type']);
+        }
         $id_user = User::encrypt_decrypt('decrypt', $_SESSION['id']);
         $user = new User($id_user);
         echo json_encode($twig->render('pageGestionCompte.html.twig', array(
@@ -56,15 +59,12 @@ switch ($_POST['request']) {
     case 'pageSuiviMateriel':
 
         $icon = Materiel::typeMateriel();
-
+        foreach ($icon as $key => $value) {
+            $icon[$key]['id_type_materiel'] = User::encrypt_decrypt('encrypt', $value['id_type_materiel']);
+        }
         echo json_encode($twig->render('pageSuiviMateriel.html.twig', array(
             "icon" => $icon
         )));
-
-        break;
-
-    case 'pageNotificationDemande':
-        echo json_encode($twig->render('pageNotificationDemande.html.twig', array()));
 
         break;
 
