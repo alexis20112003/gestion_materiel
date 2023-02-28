@@ -108,16 +108,19 @@ class Commande
         }
     }
 
-    public static function selectCommandeStatut()
+    public static function selectCommandeStatut($id_site)
     {
         $list = array();
+        $ids = "'" . implode("','", $id_site) . "'";
 
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`
 		INNER JOIN `commande_materiel` ON `commande_materiel`.`id_commande` = `commande`.`id_commande`
 		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
         INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
+        INNER JOIN `utilisateur_site` ON `utilisateur_site`.`id_utilisateur` = `utilisateur`.`id_utilisateur`
         WHERE (CURRENT_DATE < `commande_materiel`.`date_debut` OR CURRENT_DATE =`commande_materiel`.`date_debut`) 
-        AND `commande`.`statut` = 0;");
+        AND `commande`.`statut` = 0
+        AND `utilisateur_site`.`id_site` IN ($ids);");
 
         $requete->execute();
 
@@ -130,16 +133,19 @@ class Commande
         return $list;
     }
 
-    public static function selectCommandeGive()
+    public static function selectCommandeGive($id_site)
     {
+        $ids = "'" . implode("','", $id_site) . "'";
 
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
 		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
 		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
         INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
+        INNER JOIN `utilisateur_site` ON `utilisateur_site`.`id_utilisateur` = `utilisateur`.`id_utilisateur`
         WHERE CURRENT_DATE =`commande_materiel`.`date_debut`
         AND `commande`.`statut` = 1
-        AND `commande_materiel`.`restitute` = 0;");
+        AND `commande_materiel`.`restitute` = 0
+        AND `utilisateur_site`.`id_site` IN ($ids);");
 
         $requete->execute();
 
@@ -148,16 +154,19 @@ class Commande
         return $result;
     }
 
-    public static function selectCommandeRecover()
+    public static function selectCommandeRecover($id_site)
     {
+        $ids = "'" . implode("','", $id_site) . "'";
 
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
 		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
 		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
         INNER JOIN `utilisateur` ON `utilisateur`.`id_utilisateur` = `commande`.`id_utilisateur`
+        INNER JOIN `utilisateur_site` ON `utilisateur_site`.`id_utilisateur` = `utilisateur`.`id_utilisateur`
         WHERE (CURRENT_DATE =`commande_materiel`.`date_fin` OR CURRENT_DATE >`commande_materiel`.`date_fin`)
         AND `commande`.`statut` = 1
-        AND `commande_materiel`.`restitute` = 1;");
+        AND `commande_materiel`.`restitute` = 1
+        AND `utilisateur_site`.`id_site` IN ($ids);");
 
         $requete->execute();
 

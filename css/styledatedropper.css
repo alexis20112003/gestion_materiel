@@ -1,0 +1,201 @@
+.edwdPU {
+    font-size: 14px;
+    border-radius: 6px;
+    line-height: 1.5;
+    padding: 5px 10px;
+    transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+    border: 2px solid #dee1e2;
+    color: rgb(14, 14, 16);
+    background: #dee1e2;
+    width: 250px;
+    display: block;
+    height: 36px;
+
+
+}
+
+.edwdPU:hover {
+    border-color: #ccc;
+}
+
+.edwdPU:focus {
+    border-color: #9147ff;
+    background: #fff;
+}
+
+.fa-calendar-days {
+    margin-top: 4px;
+}
+
+.inputspan {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 5px 10px;
+    transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+    border: 2px solid #dee1e2;
+    color: rgb(14, 14, 16);
+    background: #dee1e2;
+    display: block;
+    height: 36px;
+
+
+}
+
+.inputspan:hover {
+    border-color: #ccc;
+}
+
+.inputspan:focus {
+    border-color: #9147ff;
+    background: #fff;
+}
+
+button.check {
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 100px;
+    background-color: #0AAE57;
+    color: #ffffff;
+    font-weight: Bold;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+button.check:hover {
+    background-color: #05984A;
+    box-shadow: 0 0 20px #6fc5ff50;
+}
+
+button.check:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    box-shadow: none;
+}
+
+.group {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.cards {
+    position: relative;
+    margin-top: 2rem;
+    width: 190px;
+    height: 254px;
+    background: #f5f5f5;
+    padding: 2rem 1.5rem;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.cards-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+button.x {
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 100px;
+    background-color: #EA171A;
+    color: #ffffff;
+    font-weight: Bold;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+button.x:hover {
+    background-color: #C80D10;
+    box-shadow: 0 0 20px #6fc5ff50;
+}
+
+button.x:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    box-shadow: none;
+}
+
+/*Image*/
+.cards-avatar {
+    --size: 60px;
+    background: linear-gradient(to top, #f1e1c1 0%, #fcbc97 100%);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+    margin-bottom: 1rem;
+}
+
+
+/*Card footer*/
+.cards-social {
+    position: absolute;
+    top: 72%;
+    left: 2%;
+    transform: translateY(200%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cards-social__item {
+    list-style: none;
+}
+
+.fa-solid {
+    display: block;
+    height: 18px;
+    width: 18px;
+    fill: #515F65;
+    cursor: pointer;
+    transition: fill 0.2s ease, transform 0.2s ease;
+}
+
+/*Text*/
+.cards-title {
+    color: #333;
+    font-size: 1.5em;
+    font-weight: 600;
+    line-height: 2rem;
+}
+
+.cards-subtitle {
+    color: #859ba8;
+    font-size: 0.8em;
+}
+
+/*Hover*/
+.cards:hover {
+    box-shadow: 0 8px 50px #23232333;
+}
+
+.cards:hover .cards-info {
+    transform: translateY(-5%);
+}
+
+.cards:hover .cards-social {
+    transform: translateY(100%);
+    opacity: 1;
+}
+
+.fa-solid:hover {
+    fill: #232323;
+    transform: scale(1.2);
+}
+
+.cards-avatar:hover {
+    transform: scale(1.1);
+}
+
+.fa-cart-shopping {
+    margin-top: 5px;
+    margin-right: 5px;
+}

@@ -63,16 +63,22 @@ switch ($_POST['request']) {
 
     case 'ongletsMaterielDemande':
         $icon = Materiel::typeMateriel();
-        echo json_encode($twig->render('ongletsDemandeUser.html.twig', array(
+        $date_deb = new DateTime($_POST['date_debut']);
+        $date_start = $date_deb->format("d-m-Y");
+        $date_fin = new DateTime($_POST['date_fin']);
+        $date_end = $date_fin->format("d-m-Y");
+        $html = $twig->render('ongletsDemandeUser.html.twig', array(
             "icon" => $icon,
             "date_debut" => $_POST['date_debut'],
             "date_fin" => $_POST['date_fin']
-        )));
+        ));
+
+        echo json_encode(array("html" => $html, "date_start" => $date_start, "date_end" => $date_end));
 
         break;
 
     case 'NotificationDemande':
-        $demande = Commande::selectCommandeStatut();
+        $demande = Commande::selectCommandeStatut($_SESSION['site_user']);
         echo json_encode($twig->render('contentNotificationDemande.html.twig', array(
             'demande' => $demande,
         )));
@@ -80,7 +86,7 @@ switch ($_POST['request']) {
         break;
 
     case 'NotificationGive':
-        $demande = Commande::selectCommandeGive();
+        $demande = Commande::selectCommandeGive($_SESSION['site_user']);
         echo json_encode($twig->render('contentNotificationGive.html.twig', array(
             'demande' => $demande,
         )));
@@ -88,7 +94,7 @@ switch ($_POST['request']) {
         break;
 
     case 'NotificationRecover':
-        $demande = Commande::selectCommandeRecover();
+        $demande = Commande::selectCommandeRecover($_SESSION['site_user']);
         echo json_encode($twig->render('contentNotificationRecover.html.twig', array(
             'demande' => $demande,
         )));
