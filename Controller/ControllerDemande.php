@@ -72,7 +72,7 @@ switch ($_POST['request']) {
         break;
 
     case 'NotificationDemande':
-        $demande = Commande::selectCommandeStatut();
+        $demande = Commande::selectCommandeStatut($_SESSION['site_user']);
         echo json_encode($twig->render('contentNotificationDemande.html.twig', array(
             'demande' => $demande,
         )));
@@ -80,7 +80,7 @@ switch ($_POST['request']) {
         break;
 
     case 'NotificationGive':
-        $demande = Commande::selectCommandeGive();
+        $demande = Commande::selectCommandeGive($_SESSION['site_user']);
         echo json_encode($twig->render('contentNotificationGive.html.twig', array(
             'demande' => $demande,
         )));
@@ -88,7 +88,7 @@ switch ($_POST['request']) {
         break;
 
     case 'NotificationRecover':
-        $demande = Commande::selectCommandeRecover();
+        $demande = Commande::selectCommandeRecover($_SESSION['site_user']);
         echo json_encode($twig->render('contentNotificationRecover.html.twig', array(
             'demande' => $demande,
         )));
