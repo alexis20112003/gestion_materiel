@@ -16,9 +16,9 @@
 							{% if var == 0 %}
 								<div class="card-subtitle">
 									Du
-									{{item.debut_fr}}<br>
+									{{item.date_debut|date("d-m-Y")}}<br>
 									au
-									{{item.fin_fr}}
+									{{item.date_fin|date("d-m-Y")}}
 								</div>
 								{% else %}
 							{% endif %}

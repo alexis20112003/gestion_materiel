@@ -124,12 +124,6 @@ class Commande
         $commands = $requete->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($commands as $command) {
-            $datestart = new DateTime($command['date_debut']);
-            $command['debut_fr'] = $datestart->format('d-m-Y');
-
-            $dateend = new DateTime($command['date_fin']);
-            $command['fin_fr']  = $dateend->format('d-m-Y');
-
             $list[$command['id_commande']][] = $command;
         }
 
@@ -138,6 +132,7 @@ class Commande
 
     public static function selectCommandeGive()
     {
+
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
 		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
 		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
@@ -155,6 +150,7 @@ class Commande
 
     public static function selectCommandeRecover()
     {
+
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande_materiel`
 		INNER JOIN `materiels` ON `materiels`.`id_materiels` = `commande_materiel`.`id_materiels`
 		INNER JOIN `commande` ON `commande`.`id_commande` = `commande_materiel`.`id_commande`
