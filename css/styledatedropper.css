@@ -7,7 +7,7 @@
     border: 2px solid #dee1e2;
     color: rgb(14, 14, 16);
     background: #dee1e2;
-    width: 205px;
+    width: 250px;
     display: block;
     height: 36px;
 
@@ -193,4 +193,9 @@ button.x:active {
 
 .cards-avatar:hover {
     transform: scale(1.1);
+}
+
+.fa-cart-shopping {
+    margin-top: 5px;
+    margin-right: 5px;
 }

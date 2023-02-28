@@ -8,10 +8,10 @@
 			{% if var == 0 %}
 				<p>
 					votre demande du
-					{{item.date_debut}}
-					aux
-					{{item.date_fin}}
-					à été accepter
+					{{item.date_debut|date("d-m-Y")}}
+					au
+					{{item.date_fin|date("d-m-Y")}}
+					à été accepté
 				</p>
 			{% endif %}
 			{% set var = 1 %}

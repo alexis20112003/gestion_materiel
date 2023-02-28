@@ -274,8 +274,8 @@ function ongletsMaterielDemande(date_debut, date_fin) {
       date_fin: date_fin,
     },
     success: function (response) {
-      $("#result_demande").html(response);
-      let field = date_debut + " // " + date_fin;
+      $("#result_demande").html(response["html"]);
+      let field = "Du " + response['date_start'] + " au " + response['date_end'];
       $("#dropper").val(field);
       chargeMaterielDemande(1, date_debut, date_fin);
     },
