@@ -93,6 +93,7 @@ switch ($_POST['request']) {
         $materiel->setNom($_POST['nom']);
         $materiel->setDescription($_POST['description']);
         $materiel->setCaution($_POST['caution']);
+        $materiel->setId_type_materiel($_POST['type']);
         $materiel->updateMateriel();
 
 

@@ -121,7 +121,9 @@ class Materiel
 
     public function updateMateriel()
     {
-        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` SET `nom_materiel`=:nom, `description`=:description, `caution`=:caution, `enable`=:enable, `id_type_materiel`=:typeMateriel WHERE `id_materiels`= :id");
+        $requete = $GLOBALS['database']->prepare("UPDATE `materiels` 
+        SET `nom_materiel`=:nom, `description`=:description, `caution`=:caution, `enable`=:enable, `id_type_materiel`=:typeMateriel 
+        WHERE `id_materiels`= :id");
         $requete->bindValue(':id', $this->id);
         $requete->bindValue(':nom', $this->nom);
         $requete->bindValue(':description', $this->description);
