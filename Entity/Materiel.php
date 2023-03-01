@@ -124,12 +124,12 @@ class Materiel
         $requete = $GLOBALS['database']->prepare("UPDATE `materiels` 
         SET `nom_materiel`=:nom, `description`=:description, `caution`=:caution, `enable`=:enable, `id_type_materiel`=:typeMateriel 
         WHERE `id_materiels`= :id");
-        $requete->bindValue(':id', $this->id);
-        $requete->bindValue(':nom', $this->nom);
-        $requete->bindValue(':description', $this->description);
-        $requete->bindValue(':caution', $this->caution);
-        $requete->bindValue(':enable', $this->enable);
-        $requete->bindValue(':typeMateriel', $this->id_type_materiel);
+        $requete->bindParam(':id', $this->id);
+        $requete->bindParam(':nom', $this->nom);
+        $requete->bindParam(':description', $this->description);
+        $requete->bindParam(':caution', $this->caution);
+        $requete->bindParam(':enable', $this->enable);
+        $requete->bindParam(':typeMateriel', $this->id_type_materiel);
 
         $requete->execute();
     }
@@ -263,18 +263,20 @@ class Materiel
     public  function insertMateriel()
     {
         if ($this->id == 0) {
-            $requete = $GLOBALS['database']->prepare("INSERT INTO `materiels` (`nom_materiel`, `description`, `caution`, `id_type_materiel`,`id_site_materiel`) VALUES (:nom, :description, :caution, :id, :id_site)");
-            $requete->bindValue(':nom', $this->nom);
-            $requete->bindValue(':description', $this->description);
-            $requete->bindValue(':caution', $this->caution);
-            $requete->bindValue(':id', $this->id_type_materiel);
-            $requete->bindValue(':id_site', $this->id_site_materiel);
+            $requete = $GLOBALS['database']->prepare("INSERT INTO `materiels` (`nom_materiel`, `description`, `caution`, `id_type_materiel`,`id_site_materiel`) 
+            VALUES (:nom, :description, :caution, :id, :id_site)");
+            $requete->bindParam(':nom', $this->nom);
+            $requete->bindParam(':description', $this->description);
+            $requete->bindParam(':caution', $this->caution);
+            $requete->bindParam(':id', $this->id_type_materiel);
+            $requete->bindParam(':id_site', $this->id_site_materiel);
 
 
 
             $requete->execute();
         }
     }
+    
     public static function selectCommandeIdMateriel($id)
     {
         $requete = $GLOBALS['database']->prepare("SELECT * FROM `commande`
