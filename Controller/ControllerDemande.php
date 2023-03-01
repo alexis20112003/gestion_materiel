@@ -122,7 +122,7 @@ switch ($_POST['request']) {
         $email = $demande->refuseDemandeMateriel($_POST['id']);
         $info_commande = Commande::selectCommandebyId($_POST['id']);
         $mail = new Mailer;
-        $mail->sendMailRefuse($demande['email'], $info_commande);
+        $mail->sendMailRefuse($email['email'], $info_commande);
         $response = 'c bon';
         echo json_encode($response);
 
